@@ -1,1 +1,35 @@
 raw_data/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Environment variables
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Test caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# macOS
+.DS_Store
+
+# Logs
+*.log
+
+# IDE (personal settings)
+.vscode/
+.idea/
+
+# Credentials
+service-account.json
+credentials.json
