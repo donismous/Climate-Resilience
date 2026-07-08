@@ -72,7 +72,7 @@ Example indicators include:
 
 ### Dashboard
 
-* Streamlit *(or your dashboard framework)*
+* Streamlit
 
 ### MLOps
 
@@ -80,35 +80,7 @@ Example indicators include:
 * BigQuery
 * Docker
 * GitHub
-* GitHub Actions *(planned)*
-* Cloud Run *(planned)*
-
----
-
-## 📁 Project Structure
-
-```text
-├── data/
-│   ├── raw/
-│   └── processed/
-│
-├── notebooks/
-│
-├── src/
-│   ├── data/
-│   ├── features/
-│   ├── models/
-│   ├── visualization/
-│   └── utils/
-│
-├── app/
-│
-├── tests/
-│
-├── README.md
-├── requirements.txt
-└── .gitignore
-```
+* Cloud Run
 
 ---
 
@@ -124,32 +96,6 @@ Move into the project directory
 
 ```bash
 cd Climate-Resilience
-```
-
-Create a virtual environment
-
-```bash
-python -m venv .venv
-```
-
-Activate it
-
-macOS/Linux
-
-```bash
-source .venv/bin/activate
-```
-
-Windows
-
-```bash
-.venv\Scripts\activate
-```
-
-Install dependencies
-
-```bash
-pip install -r requirements.txt
 ```
 
 ---
