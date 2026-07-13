@@ -53,7 +53,7 @@ Example indicators include:
 raw_data/
 ├── readiness/
 │   └── readiness.csv
-├── sector/
+├── sectors/
 │   ├── economic.csv
 │   ├── governance.csv
 │   └── social.csv
