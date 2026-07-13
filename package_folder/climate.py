@@ -3,7 +3,7 @@ import pickle
 
 ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
 
-def my_prediction_function(a, b, c, d):
+def prediction_function(a, b, c, d):
     """Function using a pretrained model loaded from disk to output a prediction.
 
     DUMMY ARGUMENTS:
