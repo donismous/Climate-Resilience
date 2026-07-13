@@ -48,7 +48,27 @@ Example indicators include:
 * Infrastructure
 * Governance
 
----
+## 📊 Dataset Folder Structure
+
+raw_data/
+├── readiness/
+│   └── readiness.csv
+├── sector/
+│   ├── economic.csv
+│   ├── governance.csv
+│   └── social.csv
+└── vulnerability/
+    ├── capacity.csv
+    ├── exposure.csv
+    ├── sensitivity.csv
+    ├── vulnerability.csv
+    └── sectors/
+        ├── ecosystems.csv
+        ├── food.csv
+        ├── habitat.csv
+        ├── health.csv
+        ├── infrastructure.csv
+        └── water.csv
 
 ## 🛠 Technologies
 
