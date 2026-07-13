@@ -49,7 +49,8 @@ Example indicators include:
 * Governance
 
 ## 📊 Dataset Folder Structure
-'''raw_data/
+```
+raw_data/
 ├── readiness/
 │   └── readiness.csv
 ├── sector/
@@ -67,7 +68,8 @@ Example indicators include:
         ├── habitat.csv
         ├── health.csv
         ├── infrastructure.csv
-        └── water.csv'''
+        └── water.csv
+```
         
 **Note:** The raw datasets are excluded from Git using `.gitignore` because they are large. Download the ND-GAIN data and place it in the `raw_data/` directory following the structure above.
 
