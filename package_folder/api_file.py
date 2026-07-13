@@ -17,9 +17,9 @@ def root():
 
 # DUMMY Prediction endpoint
 @app.get("/predict")
-def predict(a, b, c, d):
+def predict(a: float, b: float, c: float, d: float):
     # Use the function in our package to run the prediction
     prediction = prediction_function(a, b, c, d)
 
     # Return prediction
-    return {"prediction": int(prediction[0])}
+    return {"prediction": int(prediction)}
