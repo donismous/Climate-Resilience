@@ -142,3 +142,6 @@ webencodings==0.5.1
 websocket-client==1.9.0
 fastapi
 uvicorn
+
+streamlit==1.59.2
+plotly==6.9.0
