@@ -1,6 +1,3 @@
-raw_data/
-gain.csv
-
 # Python
 __pycache__/
 *.py[cod]
