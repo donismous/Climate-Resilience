@@ -1,5 +1,5 @@
 # ignore all csv files under raw_data folder
-raw_data/*.csv
+raw_data/
 
 # Python
 __pycache__/
