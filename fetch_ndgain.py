@@ -77,7 +77,13 @@ def fetch_ndgain(indicator: str = None, country: str = None) -> pd.DataFrame:
             break
         params["skip"] += PAGE_SIZE
 
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    # The API returns every field as a string; observation values and years
+    # need to be numeric for aggregation and modelling downstream.
+    for column in ("OBS_VALUE", "TIME_PERIOD"):
+        if column in df.columns:
+            df[column] = pd.to_numeric(df[column], errors="coerce")
+    return df
 
 
 if __name__ == "__main__":
