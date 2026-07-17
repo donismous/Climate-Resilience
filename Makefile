@@ -14,7 +14,8 @@ push_image_production:
 	docker push ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod
 
 deploy_to_cloud_run:
-	gcloud run deploy \
+	gcloud run deploy climate-resilience-app \
 		--image ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod \
 		--memory ${MEMORY} \
-		--region ${GCP_REGION}
+		--region ${GCP_REGION} \
+		--allow-unauthenticated

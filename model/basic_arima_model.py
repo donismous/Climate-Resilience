@@ -245,5 +245,9 @@ if __name__ == "__main__":
     combined = extend_with_forecast(risk, end_year=2030)
     print("Actuals + forecasts to 2030 (all countries):")
     print(combined.tail(12))
+
+    output_dir = ROOT / "data" / "outputs"
+    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path = output_dir / "risk_score_with_forecast.csv"
     combined.to_csv("risk_score_with_forecast.csv", index=False)
     print(f"Saved {len(combined)} rows to risk_score_with_forecast.csv")
