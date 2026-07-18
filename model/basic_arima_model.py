@@ -246,7 +246,7 @@ if __name__ == "__main__":
     print("Actuals + forecasts to 2030 (all countries):")
     print(combined.tail(12))
 
-    output_dir = ROOT / "data" / "outputs"
+    output_dir = ROOT / "data" / "output"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / "risk_score_with_forecast.csv"
     combined.to_csv("risk_score_with_forecast.csv", index=False)
