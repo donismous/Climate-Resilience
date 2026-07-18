@@ -35,3 +35,6 @@ htmlcov/
 # Credentials
 service-account.json
 credentials.json
+
+#Python Version
+.python-version
