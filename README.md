@@ -48,29 +48,29 @@ Example indicators include:
 * Infrastructure
 * Governance
 
-## 📊 Dataset Folder Structure
+## 📊 Data Folder Structure
 ```
-raw_data/
-├── readiness/
-│   └── readiness.csv
-├── sectors/
-│   ├── economic.csv
-│   ├── governance.csv
-│   └── social.csv
-└── vulnerability/
-    ├── capacity.csv
-    ├── exposure.csv
-    ├── sensitivity.csv
-    ├── vulnerability.csv
-    └── sectors/
-        ├── ecosystems.csv
-        ├── food.csv
-        ├── habitat.csv
-        ├── health.csv
-        ├── infrastructure.csv
-        └── water.csv
+data/
+├── data_preprocessed/
+│   └── processed_data.csv
+├── inputs/
+│   └── fetch/
+│         ├── fetch_ndgain.py
+│         └── ndgain_raw.csv
+├── outputs
+│   ├── risk_score_with_forecast.csv
+│   └── ... #another output csv
+└── preprocessing/
+    ├── __init__.py
+    ├── clean.py
+    ├── filer.py
+    ├── pipeline.py
+    ├── prepare.py
+    ├── save.py
+    └── validate.py
+
 ```
-        
+
 **Note:** The raw datasets are excluded from Git using `.gitignore` because they are large. Download the ND-GAIN data and place it in the `raw_data/` directory following the structure above.
 
 ## 🛠 Technologies
