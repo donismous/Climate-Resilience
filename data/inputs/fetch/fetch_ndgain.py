@@ -15,7 +15,7 @@ Usage:
     Or import and filter from another module / notebook:
 
         from fetch_ndgain import fetch_ndgain
-        df = fetch_ndgain(indicator="UND_NDGAIN_VULNER", country="FRA")
+        df = fetch_ndgain(indicator="NDGAIN_VULNER", country="FRA")
 """
 
 import requests
@@ -40,7 +40,7 @@ def fetch_ndgain(indicator: str = None, country: str = None) -> pd.DataFrame:
 
     Args:
         indicator: Optional indicator code to filter on, e.g.
-            "UND_NDGAIN_VULNER" (vulnerability score). If omitted, all
+            "NDGAIN_VULNER" (vulnerability score). If omitted, all
             indicators in the dataset are returned.
         country: Optional ISO3 country code to filter on, e.g. "FRA".
             If omitted, all countries are returned.

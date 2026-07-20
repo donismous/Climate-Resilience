@@ -1,6 +1,6 @@
 
-from fetch_ndgain import fetch_ndgain
-from preprocessing.pipeline import preprocess
+from data.inputs.fetch.fetch_ndgain import fetch_ndgain
+from data.preprocessing.pipeline import preprocess
 
 df = fetch_ndgain()
 

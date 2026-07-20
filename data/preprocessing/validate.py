@@ -1,6 +1,5 @@
 """ Validation module for ND-GAIN data. """
 
-import pandas as pd
 from config.indicators import indicator_map
 
 VALID_INDICATORS = set(indicator_map.keys())
@@ -22,7 +21,7 @@ def validate(df):
 
 def check_required_columns(df):
 
-    missing = REQUIRED_COLUMNS - set(df.columns)
+    missing = set(REQUIRED_COLUMNS) - set(df.columns)
 
     if missing:
         raise ValueError(
@@ -32,7 +31,6 @@ def check_required_columns(df):
 def check_missing_values(df):
 
     critical = ["Country", "Year", "Indicator"]
-
     missing = df[critical].isna().sum()
 
     if missing.any():

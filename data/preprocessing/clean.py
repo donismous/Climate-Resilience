@@ -4,7 +4,6 @@ and sorting the data."""
 
 import pandas as pd
 
-
 def clean_data(df):
     df = standardize_columns(df)
     df = convert_types(df)
@@ -27,7 +26,6 @@ def standardize_columns(df):
 def convert_types(df):
 
     df["Year"] = pd.to_numeric(df["Year"], errors="coerce").astype("Int64")
-
     df["Value"] = pd.to_numeric(df["Value"], errors="coerce")
 
     return df

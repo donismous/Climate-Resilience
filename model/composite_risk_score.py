@@ -27,8 +27,8 @@ Usage:
 import pandas as pd
 
 # Headline ND-GAIN indicator codes in the Data360 dataset.
-VULNERABILITY_INDICATOR = "UND_NDGAIN_VULNERABILITY"
-READINESS_INDICATOR = "UND_NDGAIN_READINESS"
+VULNERABILITY_INDICATOR = "NDGAIN_VULNERABILITY"
+READINESS_INDICATOR = "NDGAIN_READINESS"
 
 # Weights of the composite score.
 VULNERABILITY_WEIGHT = 0.6
@@ -95,7 +95,7 @@ if __name__ == "__main__":
 
     # Allow running from the repo root or the model/ folder.
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from fetch_ndgain import fetch_ndgain
+    from data.inputs.fetch.fetch_ndgain import fetch_ndgain
 
     df = fetch_ndgain()
     risk = compute_composite_risk(df)
