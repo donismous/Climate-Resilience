@@ -237,7 +237,7 @@ if __name__ == "__main__":
 
     # Allow running from the repo root or the model/ folder.
     sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from fetch_ndgain import fetch_ndgain
+    from data.inputs.fetch.fetch_ndgain import fetch_ndgain
     from model.composite_risk_score import compute_composite_risk
 
     risk = compute_composite_risk(fetch_ndgain())

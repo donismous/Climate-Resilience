@@ -1,5 +1,6 @@
 raw_data/
 .csv
+ndgain_raw.csv
 package_folder.egg-info
 
 # Python
