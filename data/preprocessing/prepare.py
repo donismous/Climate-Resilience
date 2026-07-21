@@ -3,7 +3,7 @@
 
 import pandas as pd
 
-DROP_COUNTRIES = pd.read_csv("config/drop_countries.csv")["Name"]
+DROP_COUNTRIES = pd.read_csv("config/drop_countries.csv")["ISO3"]
 
 def prepare_for_model(df: pd.DataFrame) -> pd.DataFrame:
 
@@ -11,6 +11,7 @@ def prepare_for_model(df: pd.DataFrame) -> pd.DataFrame:
     df = drop_countries(df)
     df = impute_missing(df)
     df = sort_time_series(df)
+    df = add_country_names(df)
 
     return df
 
@@ -33,18 +34,11 @@ def drop_countries(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def impute_missing(df: pd.DataFrame) -> pd.DataFrame:
-
     indicator_cols = df.columns.difference(["Country", "Year"])
 
     df[indicator_cols] = (
-        df.groupby("Country")[indicator_cols]
-          .transform(
-              lambda x: (
-                  x.interpolate(method="linear")
-                   .ffill()
-                   .bfill()
-              )
-          )
+        df.groupby("Year")[indicator_cols]
+          .transform(lambda x: x.fillna(x.mean()))
     )
 
     return df
@@ -55,3 +49,16 @@ def sort_time_series(df: pd.DataFrame) -> pd.DataFrame:
         df.sort_values(["Country", "Year"])
           .reset_index(drop=True)
     )
+
+def add_country_names(df: pd.DataFrame) -> pd.DataFrame:
+    country_names = pd.read_csv("config/iso3_to_country_name.csv", sep=";")
+    country_map = country_names.set_index("ISO3")["Name"]
+    df.insert(
+    loc=df.columns.get_loc("Country") + 1,
+    column="Name",
+    value=df["Country"].map(country_map)
+    )
+    return df
+
+if __name__ == "__main__":
+    add_country_names()
