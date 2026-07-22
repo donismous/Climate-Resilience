@@ -6,6 +6,9 @@ import pandas as pd
 ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
 FORECAST_PATH = os.path.join(ROOT_PATH, "data", "outputs", "risk_score_with_forecast.csv")
 
+# Load country names
+COUNTRY_NAMES_PATH = os.path.join(ROOT_PATH, "config", "iso3_to_country_name.csv")
+
 
 @lru_cache(maxsize=1)
 def _load_forecast() -> pd.DataFrame:
@@ -31,6 +34,12 @@ def _load_forecast() -> pd.DataFrame:
         )
     return pd.read_csv(FORECAST_PATH)
 
+
+@lru_cache(maxsize=1)
+def _load_country_names() -> dict:
+    """Load the ISO3 -> country name mapping, cached after first read."""
+    names_df = pd.read_csv(COUNTRY_NAMES_PATH, sep=";", usecols=["ISO3", "Name"])
+    return dict(zip(names_df["ISO3"], names_df["Name"]))
 
 def prediction_function(country: str, year: int) -> dict:
     """Look up the risk score for a country/year from the precomputed data.
@@ -59,8 +68,38 @@ def prediction_function(country: str, year: int) -> dict:
 
     row = match.iloc[0]
     return {
+        "country_name": _load_country_names().get(country.upper()),
         "risk_score": float(row["risk_score"]),
         "source": row["source"],
         "lower": None if pd.isna(row.get("lower")) else float(row["lower"]),
         "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
     }
+
+def all_predictions(year: int | None = None) -> list[dict]:
+    """Return every country/year row from the precomputed data.
+
+    Args:
+        year: If given, restrict to this calendar year (still all countries).
+            If omitted, returns every row in the dataset.
+
+    Returns:
+        A list of dicts, each shaped like the /predict response: country,
+        year, risk_score, source, lower, upper.
+    """
+    df = _load_forecast()
+    country_names = _load_country_names()
+    if year is not None:
+        df = df[df["year"] == year]
+
+    records = []
+    for _, row in df.iterrows():
+        records.append({
+            "country": row["country"],
+            "country_name": country_names.get(row["country"]),
+            "year": int(row["year"]),
+            "risk_score": float(row["risk_score"]),
+            "source": row["source"],
+            "lower": None if pd.isna(row.get("lower")) else float(row["lower"]),
+            "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
+        })
+    return records

@@ -5,5 +5,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY package_folder package_folder
 COPY data/outputs data/outputs
+COPY config config
 
 CMD uvicorn package_folder.api_file:app --host 0.0.0.0 --port $PORT
