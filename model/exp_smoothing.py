@@ -202,18 +202,20 @@ if __name__ == "__main__":
     import sys
     from pathlib import Path
 
+    import pandas as pd
+
     ROOT = Path(__file__).resolve().parent.parent
     sys.path.insert(0, str(ROOT))
-    from fetch_ndgain import fetch_ndgain
     from model.composite_risk_score import compute_composite_risk
 
-    risk = compute_composite_risk(fetch_ndgain())
+    df = pd.read_csv(ROOT / "data" / "data_preprocessed" / "processed_data.csv")
+    risk = compute_composite_risk(df)
 
     combined = extend_with_forecast(risk, end_year=2030)
     print("Actuals + forecasts to 2030 (all countries):")
     print(combined.tail(12))
 
-    output_dir = ROOT / "data" / "output"
+    output_dir = ROOT / "data" / "outputs"
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path = output_dir / "risk_score_with_ets_forecast.csv"
     combined.to_csv(output_path, index=False)
