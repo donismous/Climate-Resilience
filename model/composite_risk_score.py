@@ -118,6 +118,14 @@ def get_composite_risk() -> pd.DataFrame:
     print(f"Saved {len(risk)} rows to {OUTPUT_PATH}")
     return risk
 
+    out = out.rename(
+        columns={
+            "Country": "country",
+            "Year": "year",
+            vulnerability_col: "vulnerability",
+            readiness_col: "readiness",
+        }
+    )
 
 if __name__ == "__main__":
     import sys

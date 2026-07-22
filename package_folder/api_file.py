@@ -23,14 +23,31 @@ def root():
 
 # Prediction endpoint
 @app.get("/predict")
-def predict(country: str, year: int):
+def predict(
+    country: str = Query(
+        ...,
+        min_length=3,
+        max_length=3,
+        pattern="^[A-Za-z]{3}$",
+        description="ISO3 country code, e.g. FRA",
+    ),
+    year: int = Query(..., description="Calendar year"),
+):
     """Return the composite climate risk score for a country and year.
 
     Args:
-        country: ISO3 country code, e.g. "FRA".
+        country: ISO3 country code, e.g. "FRA". Must be a real ISO 3166-1
+            alpha-3 code, checked before hitting the data lookup.
         year: Calendar year (actual or forecast, up to the horizon in the
             precomputed data).
     """
+    country = country.upper()
+    if pycountry.countries.get(alpha_3=country) is None:
+        raise HTTPException(
+            status_code=422,
+            detail=f"{country!r} is not a valid ISO3 country code.",
+        )
+
     try:
         result = prediction_function(country, year)
     except ValueError as error:
