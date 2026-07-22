@@ -2,13 +2,19 @@
 Initializes a FastAPI instance for the application with defined endpoints.
 '''
 
-import pycountry
-from fastapi import FastAPI, HTTPException, Query
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
-from package_folder.climate import prediction_function
+from package_folder.climate import prediction_function, all_predictions
 
 # FastAPI instance
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Root endpoint
 @app.get("/")
@@ -49,4 +55,15 @@ def predict(
     except FileNotFoundError as error:
         raise HTTPException(status_code=500, detail=str(error))
 
-    return {"country": country, "year": year, **result}
+    return {"country": country.upper(), "year": year, **result}
+
+# All-countries endpoint
+@app.get("/predict_all")
+def predict_all(year: int | None = None):
+    """Return every country's risk score, optionally filtered to one year.
+
+    Args:
+        year: Optional calendar year to narrow results to (still all countries).
+    """
+    records = all_predictions(year)
+    return {"count": len(records), "data": records}
