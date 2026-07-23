@@ -15,6 +15,7 @@ push_image_production:
 
 deploy_to_cloud_run:
 	gcloud run deploy climate-resilience-app \
+		--project=$(GCP_PROJECT) \
 		--image ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod \
 		--memory ${MEMORY} \
 		--region ${GCP_REGION} \

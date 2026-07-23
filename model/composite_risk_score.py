@@ -9,26 +9,39 @@ Both indicators are on a 0-1 scale, where higher vulnerability means more
 exposed and higher readiness means better prepared, so the score is also on
 a 0-1 scale with higher values meaning higher climate risk.
 
+The input is the preprocessed dataset produced by
+``data.preprocessing.pipeline.preprocess`` (saved to
+``data/data_preprocessed/processed_data.csv``): one row per (country, year)
+with one column per indicator, already cleaned, filtered and imputed. All
+indicator columns are kept in the output alongside the new ``risk_score``
+column, so the saved dataset is the single starting point for every
+downstream model (composite score and per-indicator ARIMA alike). The raw
+API download is fetched once by ``fetch_ndgain`` and is not used here.
+
 Usage:
-    Run as a script to download the data, compute the scores and save them
-    to ``composite_risk_score.csv``:
+    Run as a script to load the preprocessed data, compute the scores and
+    save them to ``data/outputs/composite_risk_score.csv``:
 
         python model/composite_risk_score.py
 
     Or import from another module / notebook:
 
-        from fetch_ndgain import fetch_ndgain
-        from model.composite_risk_score import compute_composite_risk
+        from model.composite_risk_score import get_composite_risk
 
-        df = fetch_ndgain()
-        risk = compute_composite_risk(df)
+        risk = get_composite_risk()
 """
+
+from pathlib import Path
 
 import pandas as pd
 
-# Headline ND-GAIN indicator codes in the Data360 dataset.
-VULNERABILITY_INDICATOR = "NDGAIN_VULNERABILITY"
-READINESS_INDICATOR = "NDGAIN_READINESS"
+ROOT = Path(__file__).resolve().parent.parent
+PROCESSED_PATH = ROOT / "data" / "data_preprocessed" / "processed_data.csv"
+OUTPUT_PATH = ROOT / "data" / "outputs" / "composite_risk_score.csv"
+
+# Headline indicator columns in the preprocessed dataset.
+VULNERABILITY_COLUMN = "Vulnerability"
+READINESS_COLUMN = "Readiness"
 
 # Weights of the composite score.
 VULNERABILITY_WEIGHT = 0.6
@@ -37,68 +50,102 @@ READINESS_WEIGHT = 0.4
 
 def compute_composite_risk(
     df: pd.DataFrame,
-    vulnerability_indicator: str = VULNERABILITY_INDICATOR,
-    readiness_indicator: str = READINESS_INDICATOR,
+    vulnerability_column: str = VULNERABILITY_COLUMN,
+    readiness_column: str = READINESS_COLUMN,
 ) -> pd.DataFrame:
     """Compute the composite risk score by country and year.
 
     Args:
-        df: DataFrame from ``fetch_ndgain`` with one row per
-            (country, indicator, year) observation. Must contain both the
-            vulnerability and readiness indicators.
-        vulnerability_indicator: Indicator code for the vulnerability score.
-        readiness_indicator: Indicator code for the readiness score.
+        df: Preprocessed DataFrame from the preprocessing pipeline (or read
+            from ``data/data_preprocessed/processed_data.csv``), with one
+            row per (country, year) and one column per indicator. Must
+            contain the ``Country``, ``Year``, vulnerability and readiness
+            columns.
+        vulnerability_column: Column holding the vulnerability score.
+        readiness_column: Column holding the readiness score.
 
     Returns:
-        A DataFrame with one row per (country, year) where both indicators
-        are available, and columns ``country``, ``year``, ``vulnerability``,
-        ``readiness`` and ``risk_score``, sorted by country then year.
+        The input DataFrame (all indicator columns preserved) with an added
+        ``risk_score`` column, restricted to rows where both headline
+        indicators are available, sorted by country then year.
 
     Raises:
-        ValueError: If either indicator is missing from ``df``.
+        ValueError: If either indicator column is missing from ``df``.
     """
-    for indicator in (vulnerability_indicator, readiness_indicator):
-        if indicator not in df["INDICATOR"].values:
-            raise ValueError(f"Indicator {indicator!r} not found in the data.")
+    for column in (vulnerability_column, readiness_column):
+        if column not in df.columns:
+            raise ValueError(f"Column {column!r} not found in the data.")
 
-    # One column per indicator, indexed by (country, year).
-    wide = (
-        df[df["INDICATOR"].isin([vulnerability_indicator, readiness_indicator])]
-        .pivot_table(
-            index=["REF_AREA", "TIME_PERIOD"],
-            columns="INDICATOR",
-            values="OBS_VALUE",
-        )
-        .rename(
-            columns={
-                vulnerability_indicator: "vulnerability",
-                readiness_indicator: "readiness",
-            }
-        )
-        # The score needs both components, so drop years missing either.
-        .dropna(subset=["vulnerability", "readiness"])
-        .reset_index()
-        .rename(columns={"REF_AREA": "country", "TIME_PERIOD": "year"})
+    # The score needs both components, so drop years missing either.
+    risk = df.dropna(subset=[vulnerability_column, readiness_column]).copy()
+    risk["risk_score"] = (
+        risk[vulnerability_column] * VULNERABILITY_WEIGHT
+        + (1 - risk[readiness_column]) * READINESS_WEIGHT
     )
-    wide.columns.name = None
+    return risk.sort_values(["Country", "Year"]).reset_index(drop=True)
 
-    wide["risk_score"] = (
-        wide["vulnerability"] * VULNERABILITY_WEIGHT
-        + (1 - wide["readiness"]) * READINESS_WEIGHT
+
+def get_composite_risk() -> pd.DataFrame:
+    """Load the composite risk dataset, computing and saving it if missing.
+
+    Resolution order:
+        1. ``data/outputs/composite_risk_score.csv`` if it exists.
+        2. Otherwise compute it from
+           ``data/data_preprocessed/processed_data.csv`` and save it.
+        3. If the preprocessed file is missing too, run the preprocessing
+           pipeline on the one-off raw download first (requires the current
+           working directory to be the repo root, as the pipeline reads its
+           config files with relative paths).
+
+    Returns:
+        A DataFrame with one row per (country, year), one column per
+        indicator and a ``risk_score`` column.
+    """
+    if OUTPUT_PATH.exists():
+        return pd.read_csv(OUTPUT_PATH)
+
+    if PROCESSED_PATH.exists():
+        df = pd.read_csv(PROCESSED_PATH)
+    else:
+        from data.preprocessing.pipeline import preprocess
+
+        raw = pd.read_csv(ROOT / "data" / "inputs" / "fetch" / "ndgain_raw.csv")
+        df = preprocess(raw)
+
+    risk = compute_composite_risk(df)
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    risk.to_csv(OUTPUT_PATH, index=False)
+    print(f"Saved {len(risk)} rows to {OUTPUT_PATH}")
+    return risk
+
+    out = out.rename(
+        columns={
+            "Country": "country",
+            "Year": "year",
+            vulnerability_col: "vulnerability",
+            readiness_col: "readiness",
+        }
     )
-    return wide.sort_values(["country", "year"]).reset_index(drop=True)
-
 
 if __name__ == "__main__":
     import sys
-    from pathlib import Path
 
     # Allow running from the repo root or the model/ folder.
-    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-    from data.inputs.fetch.fetch_ndgain import fetch_ndgain
+    sys.path.insert(0, str(ROOT))
 
-    df = fetch_ndgain()
+    # Force a fresh computation: running the script means regenerating the
+    # output, so bypass the existing-file shortcut of get_composite_risk.
+    if PROCESSED_PATH.exists():
+        df = pd.read_csv(PROCESSED_PATH)
+    else:
+        from data.preprocessing.pipeline import preprocess
+
+        df = preprocess(
+            pd.read_csv(ROOT / "data" / "inputs" / "fetch" / "ndgain_raw.csv")
+        )
+
     risk = compute_composite_risk(df)
     print(risk.head())
-    risk.to_csv("composite_risk_score.csv", index=False)
-    print(f"Saved {len(risk)} rows to composite_risk_score.csv")
+    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    risk.to_csv(OUTPUT_PATH, index=False)
+    print(f"Saved {len(risk)} rows to {OUTPUT_PATH}")
