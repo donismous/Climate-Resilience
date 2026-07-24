@@ -20,5 +20,5 @@ deploy_to_cloud_run:
 		--memory ${MEMORY} \
 		--region ${GCP_REGION} \
 
-run_pipeline:
+run_preprocess_pipeline:
 	python data/preprocessing/pipeline.py
