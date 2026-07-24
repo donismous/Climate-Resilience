@@ -95,8 +95,8 @@ def extend_with_forecast(
 if __name__ == "__main__":
     from model.composite_risk_score import get_composite_risk
 
-    combined = extend_with_forecast(get_composite_risk(), end_year=2030)
-    print("Actuals + forecasts to 2030 (all countries):")
+    combined = extend_with_forecast(get_composite_risk(), end_year=2040)
+    print("Actuals + forecasts to 2040 (all countries):")
     print(combined.tail(12))
 
     output_path = ROOT / "data" / "outputs" / "risk_score_with_forecast.csv"
