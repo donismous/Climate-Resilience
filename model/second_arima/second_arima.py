@@ -39,9 +39,9 @@ class ARIMACountryModel:
 
         Args:
             grid: List of (p, d, q) tuples to search.
-                  Default: [(0, 0, 1), (2, 0, 1)]
+                  Default: [(0, 0, 1), (2, 0, 0), (2, 0, 1)]
         """
-        self.grid = grid or [(0, 0, 1), (2, 0, 1)]
+        self.grid = grid or [(0, 0, 1), (2, 0 ,1), (2, 0, 1)]
         self.models = {}  # {indicator: {country: fitted_model}}
         self.best_orders = {}  # {indicator: (p, d, q)}
         self.training_results = []
