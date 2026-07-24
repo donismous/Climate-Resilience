@@ -9,11 +9,6 @@ This module handles:
 #select best order per country (out of the 2 Default: [(0, 0, 1), (2, 0, 1)])
 #fit
 #create new dataframe with all country-year-indications (actual data + forecast until 2030)
-#add exposure back to the dataframe (constant value for each country)
-#calculate vulnerability based on results of vulnerability sectors and calculate readiness based on readiness sectors
-#calculate composite risk score with (0.4*(1-readiness) + 0.6*vulnerability)
-#save all_indicators_values.csv (including vulnerability, readiness, composite risk score) to data/outputs
-#save composite_risk_score.csv to data/outputs
 
 """
 
@@ -256,109 +251,17 @@ def forecast_to_dataframe(df, model, last_year=2030):
 
     return pd.DataFrame(rows)
 
-def calculate_composite_metrics(forecast_df, df_original):
-
-    vulnerability_indicators = [
-    "Food",
-    "Water",
-    "Health",
-    "Habitat",
-    "Infrastructure",
-    "Ecosystems",
-    "Sensitivity",
-    "Capacity"
-    ]
-
-    readiness_indicators = [
-    "Economic",
-    "Governance",
-    "Social"
-    ]
-
-    exposure = (
-        df_original
-        .reset_index()
-        .groupby(["Country", "Year"])["Exposure"]
-        .first()
-        .rename("Exposure")
-    )
-
-    vulnerability = (
-    forecast_df[
-        forecast_df["Indicator"].isin(vulnerability_indicators)
-    ]
-    .groupby(["Country","Year"])["Value"]
-    .mean()
-    .rename("Vulnerability")
-    )
-
-    readiness = (
-    forecast_df[
-        forecast_df["Indicator"].isin(readiness_indicators)
-    ]
-    .groupby(["Country","Year"])["Value"]
-    .mean()
-    .rename("Readiness")
-    )
-
-    summary = pd.concat(
-    [vulnerability, readiness, exposure],
-    axis=1
-    ).reset_index()
-
-    summary["CompositeRisk"] = (
-    0.4 * (1 - summary["Readiness"])
-    + 0.6 * summary["Vulnerability"]
-    )
-
-    extra = []
-
-    indicators = [
-        "Exposure",
-        "Vulnerability",
-        "Readiness",
-        "CompositeRisk"
-        ]
-
-    extra = []
-
-    for _, row in summary.iterrows():
-        for indicator in indicators:
-            extra.append({
-                "Country": row.Country,
-                "Year": row.Year,
-                "Indicator": indicator,
-                "Value": row[indicator]
-            })
-
-    forecast_df = pd.concat(
-        [forecast_df, pd.DataFrame(extra)],
-        ignore_index=True
-    )
-
-    forecast_df = forecast_df.sort_values(
-        ["Country", "Year"]
-        ).reset_index(drop=True)
-
-    return forecast_df, summary
-
-def save_outputs(forecast_df, summary):
-    forecast_df.to_csv(
-        "data/outputs/all_indicator_values.csv",
-        index=False
-    )
-
-    summary.to_csv(
-        "data/outputs/composite_risk_score.csv",
-        index=False
-        )
-
 def main():
 
     # Load
     df_original = load_data()
     df = df_original.drop(
         columns=["Exposure", "Readiness", "Vulnerability"]
+    )
+
+    df_original.reset_index().to_parquet(
+    "data/intermediate/df_original.parquet",
+    index=False,
     )
 
     countries = df.index.get_level_values("Country").unique()
@@ -375,14 +278,9 @@ def main():
         last_year=2030
     )
 
-    # Post-process
-    forecast_df, summary = calculate_composite_metrics(forecast_df, df_original)
-
-    # Save
-    save_outputs(
-        forecast_df,
-        summary,
+    forecast_df.to_parquet(
+    "data/intermediate/forecast.parquet",
+    index=False,
     )
-
 if __name__ == "__main__":
     main()
