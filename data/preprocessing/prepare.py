@@ -59,6 +59,3 @@ def add_country_names(df: pd.DataFrame) -> pd.DataFrame:
     value=df["Country"].map(country_map)
     )
     return df
-
-if __name__ == "__main__":
-    add_country_names()
