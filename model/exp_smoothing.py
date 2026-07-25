@@ -36,40 +36,10 @@ Usage:
 import numpy as np
 import pandas as pd
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from model.arima import prepare_series
 
 N_SIMULATIONS = 1000
 RANDOM_SEED = 0
-
-
-def prepare_series(risk_df: pd.DataFrame, country: str) -> pd.Series:
-    """Extract one country's yearly risk score series.
-
-    Identical to ``basic_arima_model.prepare_series`` -- duplicated here so
-    this module has no import-time dependency on the ARIMA file.
-
-    Args:
-        risk_df: DataFrame from ``compute_composite_risk`` with ``country``,
-            ``year`` and ``risk_score`` columns.
-        country: ISO3 country code to select, e.g. "FRA".
-
-    Returns:
-        A Series of risk_score indexed by year (yearly PeriodIndex, sorted).
-
-    Raises:
-        ValueError: If the country has no data.
-    """
-    sub = risk_df[risk_df["country"] == country]
-    if sub.empty:
-        raise ValueError(f"No risk score data for country {country!r}.")
-
-    series = (
-        sub.assign(year=pd.PeriodIndex(sub["year"].astype(str), freq="Y"))
-        .set_index("year")["risk_score"]
-        .sort_index()
-    )
-    series.name = f"{country}_risk_score"
-    return series
-
 
 def fit_ets(series: pd.Series):
     """Fit Holt's linear trend method, choosing damped vs. non-damped by AIC.
@@ -132,7 +102,6 @@ def forecast(result, steps: int = 5) -> pd.DataFrame:
         }
     )
 
-
 def extend_with_forecast(
     risk_df: pd.DataFrame, countries: list = None, end_year: int = 2030
 ) -> pd.DataFrame:
@@ -145,7 +114,9 @@ def extend_with_forecast(
     amount of history to be meaningful.
 
     Args:
-        risk_df: DataFrame from ``compute_composite_risk``.
+        risk_df: DataFrame from ``compute_composite_risk`` /
+            ``get_composite_risk``, with ``Country``, ``Year`` and
+            ``risk_score`` columns.
         countries: Optional list of ISO3 codes to process. Defaults to every
             country in ``risk_df``.
         end_year: Last year to forecast (inclusive).
@@ -156,11 +127,11 @@ def extend_with_forecast(
         bounds, only filled on forecast rows), sorted by country then year.
     """
     if countries is None:
-        countries = sorted(risk_df["country"].unique())
+        countries = sorted(risk_df["Country"].unique())
 
     frames = []
     for country in countries:
-        series = prepare_series(risk_df, country)
+        series = prepare_series(risk_df, country, "risk_score")
         frames.append(
             pd.DataFrame(
                 {
@@ -211,7 +182,7 @@ if __name__ == "__main__":
     df = pd.read_csv(ROOT / "data" / "data_preprocessed" / "processed_data.csv")
     risk = compute_composite_risk(df)
 
-    combined = extend_with_forecast(risk, end_year=2030)
+    combined = extend_with_forecast(risk, end_year=2040)
     print("Actuals + forecasts to 2030 (all countries):")
     print(combined.tail(12))
 

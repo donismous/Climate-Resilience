@@ -137,7 +137,7 @@ def fit_arima(series: pd.Series, order: tuple = None):
     return result
 
 
-def forecast(result, steps: int = 5) -> pd.DataFrame:
+def forecast(result, steps: int = 15) -> pd.DataFrame:
     """Forecast future values with 95% confidence intervals.
 
     Args:

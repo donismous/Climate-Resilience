@@ -82,6 +82,7 @@ def compute_composite_risk(
         risk[vulnerability_column] * VULNERABILITY_WEIGHT
         + (1 - risk[readiness_column]) * READINESS_WEIGHT
     )
+
     return risk.sort_values(["Country", "Year"]).reset_index(drop=True)
 
 
@@ -117,15 +118,6 @@ def get_composite_risk() -> pd.DataFrame:
     risk.to_csv(OUTPUT_PATH, index=False)
     print(f"Saved {len(risk)} rows to {OUTPUT_PATH}")
     return risk
-
-    out = out.rename(
-        columns={
-            "Country": "country",
-            "Year": "year",
-            vulnerability_col: "vulnerability",
-            readiness_col: "readiness",
-        }
-    )
 
 if __name__ == "__main__":
     import sys
