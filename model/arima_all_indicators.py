@@ -38,7 +38,7 @@ def extend_with_forecast(
     df: pd.DataFrame,
     indicators: list = None,
     countries: list = None,
-    end_year: int = 2030,
+    end_year: int = 2040,
 ) -> pd.DataFrame:
     """Concatenate actual indicator values with ARIMA forecasts up to a year.
 
