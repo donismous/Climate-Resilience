@@ -6,9 +6,9 @@ This module handles:
 
 #load_data
 #drop_columns (exposure, readiness, vulnerability)
-#select best order per country (out of the 2 Default: [(0, 0, 1), (2, 0, 1)])
+#select best order per country (out of the 2 Default: [(0, 0, 1), (2, 0, 0), (2, 0, 1)])
 #fit
-#create new dataframe with all country-year-indications (actual data + forecast until 2030)
+#create new dataframe with all country-year-indications (actual data + forecast until 2040)
 
 """
 
@@ -210,7 +210,7 @@ class ARIMACountryModel:
 
         return forecasts
 
-def forecast_to_dataframe(df, model, last_year=2030):
+def forecast_to_dataframe(df, model, last_year=2040):
 
     rows = []
 
@@ -275,7 +275,7 @@ def main():
     forecast_df = forecast_to_dataframe(
         df,
         model,
-        last_year=2030
+        last_year=2040
     )
 
     forecast_df.to_parquet(

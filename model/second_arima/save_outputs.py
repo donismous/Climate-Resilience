@@ -13,26 +13,25 @@ This module handles:
 """
 
 import pandas as pd
-import numpy as np
 
 
-def calculate_composite_metrics(forecast_df, df_original):
+def calculate_composite_metrics(forecast_df, df_original, weights):
 
     vulnerability_indicators = [
-    "Food",
-    "Water",
-    "Health",
-    "Habitat",
-    "Infrastructure",
-    "Ecosystems",
-    "Sensitivity",
-    "Capacity"
+        "Food",
+        "Water",
+        "Health",
+        "Habitat",
+        "Infrastructure",
+        "Ecosystems",
+        "Sensitivity",
+        "Capacity"
     ]
 
     readiness_indicators = [
-    "Economic",
-    "Governance",
-    "Social"
+        "Economic",
+        "Governance",
+        "Social"
     ]
 
     exposure = (
@@ -44,41 +43,55 @@ def calculate_composite_metrics(forecast_df, df_original):
     )
 
     vulnerability = (
-    forecast_df[
-        forecast_df["Indicator"].isin(vulnerability_indicators)
-    ]
-    .groupby(["Country","Year"])["Value"]
-    .mean()
-    .rename("Vulnerability")
+        forecast_df[
+            forecast_df["Indicator"].isin(vulnerability_indicators)
+        ]
+        .groupby(["Country", "Year"])["Value"]
+        .mean()
+        .rename("Vulnerability")
     )
 
     readiness = (
-    forecast_df[
-        forecast_df["Indicator"].isin(readiness_indicators)
-    ]
-    .groupby(["Country","Year"])["Value"]
-    .mean()
-    .rename("Readiness")
+        forecast_df[
+            forecast_df["Indicator"].isin(readiness_indicators)
+        ]
+        .groupby(["Country", "Year"])["Value"]
+        .mean()
+        .rename("Readiness")
     )
 
     summary = pd.concat(
-    [vulnerability, readiness, exposure],
-    axis=1
+        [vulnerability, readiness, exposure],
+        axis=1
     ).reset_index()
 
-    summary["CompositeRisk"] = (
-    0.4 * (1 - summary["Readiness"])
-    + 0.6 * summary["Vulnerability"]
+    # Create Country-Year x Indicator matrix
+    indicator_matrix = (
+        forecast_df
+        .pivot(
+            index=["Country", "Year"],
+            columns="Indicator",
+            values="Value"
+        )
     )
 
-    extra = []
+    # Add Exposure to the matrix (it's in df_original, not forecast_df)
+    indicator_matrix["Exposure"] = exposure
+
+    # Reorder columns to match the weights
+    indicator_matrix = indicator_matrix[weights.index]
+
+    # Calculate PC1-weighted Composite Risk
+    summary["CompositeRisk"] = (
+        indicator_matrix @ weights
+    ).values
 
     indicators = [
         "Exposure",
         "Vulnerability",
         "Readiness",
         "CompositeRisk"
-        ]
+    ]
 
     extra = []
 
@@ -96,11 +109,19 @@ def calculate_composite_metrics(forecast_df, df_original):
         ignore_index=True
     )
 
-    forecast_df = forecast_df.sort_values(
-        ["Country", "Year"]
-        ).reset_index(drop=True)
+    forecast_df = (
+        forecast_df
+        .sort_values(["Country", "Indicator", "Year"])
+        .reset_index(drop=True)
+    )
 
     return forecast_df, summary
+
+def add_source(forecast_df):
+
+    forecast_df["source"] = forecast_df["Year"].apply(
+    lambda year: "actual" if year <= 2023 else "forecast"
+    )
 
 def save_outputs(forecast_df, summary):
     forecast_df.to_csv(
@@ -108,18 +129,29 @@ def save_outputs(forecast_df, summary):
         index=False
     )
 
-    summary.to_csv(
-        "data/outputs/composite_risk_score.csv",
-        index=False
-        )
+def change_column_names(forecast_df):
+    forecast_df.rename(columns={
+    "Country" : "country",
+    "Year" : "year",
+    "Indicator" : "indicator",
+    "Value" : "value"
+    }, inplace=True
+    )
 
 def main():
 
     forecast_df = pd.read_parquet("data/intermediate/forecast.parquet")
     df_original = pd.read_parquet("data/intermediate/df_original.parquet")
 
+    weights = pd.read_csv("config/risk_score_weights.csv")
+    weights = weights.rename(columns={"Unnamed: 0": "Indicator"})
+    weights = weights.set_index("Indicator")
+    weights = weights["PC1"]
+
     # Post-process
-    forecast_df, summary = calculate_composite_metrics(forecast_df, df_original)
+    forecast_df, summary = calculate_composite_metrics(forecast_df, df_original, weights)
+    add_source(forecast_df)
+    change_column_names(forecast_df)
 
     # Save
     save_outputs(
