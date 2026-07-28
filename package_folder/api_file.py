@@ -4,10 +4,19 @@ Initializes a FastAPI instance for the application with defined endpoints.
 from dotenv import load_dotenv
 load_dotenv()
 
-from fastapi import FastAPI, HTTPException
+import pycountry
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from package_folder.climate import prediction_function, all_predictions
+
+from package_folder.llm_integration import (
+    summarize_dashboard,
+    explain_drivers,
+    draft_recommendations,
+    ChatSession,
+)
 
 # FastAPI instance
 app = FastAPI()
@@ -17,6 +26,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# In-memory store for chat sessions.
+_chat_sessions: dict[str, ChatSession] = {}
 
 # Root endpoint
 @app.get("/")
@@ -69,3 +81,80 @@ def predict_all(year: int | None = None):
     """
     records = all_predictions(year)
     return {"count": len(records), "data": records}
+
+# --- LLM-powered endpoints ---
+
+class DashboardStats(BaseModel):
+    countries_shown: list[str]
+    year_range: list[int]
+    mean_risk_score: float
+    highest_risk_country: str
+    lowest_risk_country: str
+
+
+class DriverInput(BaseModel):
+    pca_summary: dict
+    shap_summary: dict
+
+
+class RecommendationRequest(BaseModel):
+    persona: str  # "individual", "business", or "government"
+    industry: str | None = None
+    dashboard_summary: str
+    driver_summary: str
+
+
+class ChatStartRequest(BaseModel):
+    session_id: str
+    persona: str
+    industry: str | None = None
+    context_summary: str
+
+
+class ChatMessageRequest(BaseModel):
+    session_id: str
+    message: str
+
+
+@app.post("/summarize")
+def summarize(stats: DashboardStats):
+    return {"summary": summarize_dashboard(stats.model_dump())}
+
+
+@app.post("/explain-drivers")
+def drivers(input: DriverInput):
+    return {"explanation": explain_drivers(input.pca_summary, input.shap_summary)}
+
+
+@app.post("/recommendations")
+def recommendations(request: RecommendationRequest):
+    if request.persona == "business" and not request.industry:
+        raise HTTPException(status_code=422, detail="industry is required when persona is 'business'.")
+    text = draft_recommendations(
+        persona=request.persona,
+        industry=request.industry,
+        dashboard_summary=request.dashboard_summary,
+        driver_summary=request.driver_summary,
+    )
+    return {"recommendations": text}
+
+
+@app.post("/chat/start")
+def chat_start(request: ChatStartRequest):
+    if request.persona == "business" and not request.industry:
+        raise HTTPException(status_code=422, detail="industry is required when persona is 'business'.")
+    _chat_sessions[request.session_id] = ChatSession(
+        persona=request.persona,
+        industry=request.industry,
+        context_summary=request.context_summary,
+    )
+    return {"status": "started", "session_id": request.session_id}
+
+
+@app.post("/chat/message")
+def chat_message(request: ChatMessageRequest):
+    session = _chat_sessions.get(request.session_id)
+    if session is None:
+        raise HTTPException(status_code=404, detail="No chat session found for this session_id. Call /chat/start first.")
+    answer = session.ask(request.message)
+    return {"answer": answer}

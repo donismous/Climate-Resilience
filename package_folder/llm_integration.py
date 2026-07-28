@@ -17,9 +17,7 @@ import google.generativeai as genai
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
-# gemini-2.0-flash is fast and free-tier friendly. Swap to
-# gemini-1.5-flash if 2.0 isn't available on your account/region.
-MODEL_NAME = "gemini-2.0-flash"
+MODEL_NAME = "gemini-flash-latest"
 
 TOPIC_SCOPE_INSTRUCTIONS = """You are an assistant embedded in a climate
 risk dashboard. You only discuss topics related to climate risk, the
