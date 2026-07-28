@@ -1,6 +1,8 @@
 '''
 Initializes a FastAPI instance for the application with defined endpoints.
 '''
+from dotenv import load_dotenv
+load_dotenv()
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
