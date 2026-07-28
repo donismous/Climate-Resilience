@@ -133,7 +133,7 @@ Countries that worsened the most long-term: {movers['worsened']}
 Global average trend: {movers['global_direction']} (slope: {movers['global_mean_slope']:.5f}/year)"""
 
     response = _model(TOPIC_SCOPE_INSTRUCTIONS).generate_content(
-        prompt, generation_config={"max_output_tokens": 250}
+        prompt, generation_config={"max_output_tokens": 1000}
     )
     return response.text
 
@@ -152,6 +152,6 @@ For each weakest indicator, briefly explain in plain language why it likely
 drags down this country's risk profile."""
 
     response = _model(TOPIC_SCOPE_INSTRUCTIONS).generate_content(
-        prompt, generation_config={"max_output_tokens": 350}
+        prompt, generation_config={"max_output_tokens": 1000}
     )
     return response.text

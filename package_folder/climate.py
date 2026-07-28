@@ -129,8 +129,8 @@ def _country_trend(df: pd.DataFrame, country: str) -> dict:
     return {
         "country": country,
         "country_name": _load_country_names().get(country),
-        "slope_per_year": slope,
-        "significant": p_value < 0.05,
+        "slope_per_year": float(slope),
+        "significant": bool(p_value < 0.05),
         "direction": "improving" if slope < 0 else "worsening",
     }
 
