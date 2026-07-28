@@ -41,7 +41,7 @@ class ARIMACountryModel:
             grid: List of (p, d, q) tuples to search.
                   Default: [(0, 0, 1), (2, 0, 0), (2, 0, 1)]
         """
-        self.grid = grid or [(0, 0, 1), (2, 0 ,1), (2, 0, 1)]
+        self.grid = grid or [(0, 0, 1), (2, 0 ,0), (2, 0, 1)]
         self.models = {}  # {indicator: {country: fitted_model}}
         self.best_orders = {}  # {indicator: (p, d, q)}
         self.training_results = []
@@ -151,11 +151,10 @@ class ARIMACountryModel:
                     print(type(series))
                     print(series.name)
                     print(series.index)
-                    if country == "AFG" and indicator == "Capacity":
 
-                        with warnings.catch_warnings():
-                            warnings.simplefilter("ignore")
-                            model = ARIMA(series, order=order).fit()
+                    with warnings.catch_warnings():
+                        warnings.simplefilter("ignore")
+                        model = ARIMA(series, order=order).fit()
 
                     self.models[country][indicator] = model
 
@@ -240,14 +239,15 @@ def forecast_to_dataframe(df, model, last_year=2040):
             # forecasts
             future = forecasts[country][indicator]
 
-            for i, value in enumerate(future):
+            forecast_year_range = range(final_year + 1, final_year + len(future) + 1)
 
+            for year, value in zip(forecast_year_range, future.values):
                 rows.append({
                 "Country": country,
-                "Year": final_year + i + 1,
+                "Year": year,
                 "Indicator": indicator,
                 "Value": value
-                })
+            })
 
     return pd.DataFrame(rows)
 
