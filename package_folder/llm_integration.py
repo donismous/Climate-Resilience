@@ -122,3 +122,36 @@ Dashboard context for this conversation:
             }
             for msg in self._chat.history
         ]
+
+def summarize_world_map(movers: dict) -> str:
+    """Narrate the world map view: top movers + global trend."""
+    prompt = f"""Summarize this global climate risk picture. Respond ONLY in
+concise bullet points (max 6 bullets, one short sentence each). Short preamble.
+
+Countries that improved the most long-term: {movers['improved']}
+Countries that worsened the most long-term: {movers['worsened']}
+Global average trend: {movers['global_direction']} (slope: {movers['global_mean_slope']:.5f}/year)"""
+
+    response = _model(TOPIC_SCOPE_INSTRUCTIONS).generate_content(
+        prompt, generation_config={"max_output_tokens": 250}
+    )
+    return response.text
+
+
+def summarize_country_detail(detail: dict) -> str:
+    """Narrate a single country's performance, trend, and indicator breakdown."""
+    prompt = f"""Summarize this country's climate risk profile. Respond ONLY
+in concise bullet points (max 6 bullets). Short preamble.
+
+Country: {detail['country_name']} ({detail['country']})
+Trend: {detail['trend']['direction']} (slope: {detail['trend']['slope_per_year']:.5f}/year, statistically significant: {detail['trend']['significant']})
+Strongest indicators (most favorable): {detail['strongest_indicators']}
+Weakest indicators (least favorable): {detail['weakest_indicators']}
+
+For each weakest indicator, briefly explain in plain language why it likely
+drags down this country's risk profile."""
+
+    response = _model(TOPIC_SCOPE_INSTRUCTIONS).generate_content(
+        prompt, generation_config={"max_output_tokens": 350}
+    )
+    return response.text

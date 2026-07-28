@@ -9,13 +9,20 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
-from package_folder.climate import prediction_function, all_predictions
+from package_folder.climate import (
+    prediction_function,
+    all_predictions,
+    get_global_movers,
+    get_country_detail
+)
 
 from package_folder.llm_integration import (
     summarize_dashboard,
     explain_drivers,
     draft_recommendations,
     ChatSession,
+    summarize_world_map,
+    summarize_country_detail
 )
 
 # FastAPI instance
@@ -82,14 +89,11 @@ def predict_all(year: int | None = None):
     records = all_predictions(year)
     return {"count": len(records), "data": records}
 
-# --- LLM-powered endpoints ---
-
-class DashboardStats(BaseModel):
-    countries_shown: list[str]
-    year_range: list[int]
-    mean_risk_score: float
-    highest_risk_country: str
-    lowest_risk_country: str
+# LLM-powered endpoints
+class SummarizeRequest(BaseModel):
+    countries: list[str] | None = None  # None = all countries
+    year_min: int | None = None
+    year_max: int | None = None
 
 
 class DriverInput(BaseModel):
@@ -117,7 +121,7 @@ class ChatMessageRequest(BaseModel):
 
 
 @app.post("/summarize")
-def summarize(stats: DashboardStats):
+def summarize(request: SummarizeRequest):
     return {"summary": summarize_dashboard(stats.model_dump())}
 
 
@@ -158,3 +162,20 @@ def chat_message(request: ChatMessageRequest):
         raise HTTPException(status_code=404, detail="No chat session found for this session_id. Call /chat/start first.")
     answer = session.ask(request.message)
     return {"answer": answer}
+
+@app.get("/world-summary")
+def world_summary(top_n: int = 5):
+    movers = get_global_movers(top_n=top_n)
+    return {"movers": movers, "summary": summarize_world_map(movers)}
+
+
+@app.get("/country-detail/{country}")
+def country_detail(country: str):
+    country = country.upper()
+    if pycountry.countries.get(alpha_3=country) is None:
+        raise HTTPException(status_code=422, detail=f"{country!r} is not a valid ISO3 country code.")
+    try:
+        detail = get_country_detail(country)
+    except ValueError as error:
+        raise HTTPException(status_code=404, detail=str(error))
+    return {"detail": detail, "summary": summarize_country_detail(detail)}
