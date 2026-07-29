@@ -13,94 +13,139 @@ This module handles:
 """
 
 import pandas as pd
-import numpy as np
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
 
 
-def calculate_composite_metrics(forecast_df, df_original):
+def calculate_composite_metrics(forecast_df, df_original, weights):
+    print(forecast_df["Year"].min(), forecast_df["Year"].max())
+    print(sorted(forecast_df["Year"].unique())[-10:])
 
     vulnerability_indicators = [
-    "Food",
-    "Water",
-    "Health",
-    "Habitat",
-    "Infrastructure",
-    "Ecosystems",
-    "Sensitivity",
-    "Capacity"
+        "Food", "Water", "Health", "Habitat",
+        "Infrastructure", "Ecosystems",
+        "Sensitivity", "Capacity"
     ]
 
     readiness_indicators = [
-    "Economic",
-    "Governance",
-    "Social"
+        "Economic", "Governance", "Social"
     ]
 
-    exposure = (
-        df_original
-        .reset_index()
-        .groupby(["Country", "Year"])["Exposure"]
-        .first()
-        .rename("Exposure")
-    )
-
-    vulnerability = (
-    forecast_df[
-        forecast_df["Indicator"].isin(vulnerability_indicators)
-    ]
-    .groupby(["Country","Year"])["Value"]
-    .mean()
-    .rename("Vulnerability")
-    )
-
-    readiness = (
-    forecast_df[
-        forecast_df["Indicator"].isin(readiness_indicators)
-    ]
-    .groupby(["Country","Year"])["Value"]
-    .mean()
-    .rename("Readiness")
-    )
-
-    summary = pd.concat(
-    [vulnerability, readiness, exposure],
-    axis=1
-    ).reset_index()
-
-    summary["CompositeRisk"] = (
-    0.4 * (1 - summary["Readiness"])
-    + 0.6 * summary["Vulnerability"]
-    )
-
-    extra = []
-
-    indicators = [
+    calculated = [
         "Exposure",
         "Vulnerability",
         "Readiness",
         "CompositeRisk"
-        ]
+    ]
 
-    extra = []
+    # Remove previously calculated indicators
+    forecast_df = forecast_df[
+        ~forecast_df["Indicator"].isin(calculated)
+    ].copy()
 
-    for _, row in summary.iterrows():
-        for indicator in indicators:
-            extra.append({
-                "Country": row.Country,
-                "Year": row.Year,
-                "Indicator": indicator,
-                "Value": row[indicator]
-            })
+    # Exposure (constant after last observed year)
+    last_year = forecast_df["Year"].max()
 
-    forecast_df = pd.concat(
-        [forecast_df, pd.DataFrame(extra)],
-        ignore_index=True
+    exposure = (
+        df_original
+        .groupby(["Country", "Year"])["Exposure"]
+        .first()
     )
 
-    forecast_df = forecast_df.sort_values(
-        ["Country", "Year"]
-        ).reset_index(drop=True)
+    full_index = pd.MultiIndex.from_product(
+        [
+            exposure.index.get_level_values("Country").unique(),
+            range(
+                exposure.index.get_level_values("Year").min(),
+                last_year + 1
+            ),
+        ],
+        names=["Country", "Year"],
+    )
+
+    exposure = (
+        exposure
+        .reindex(full_index)
+        .groupby(level=0)
+        .ffill()
+    )
+
+    # One row per Country-Year
+    indicator_matrix = (
+        forecast_df
+        .pivot_table(
+            index=["Country", "Year"],
+            columns="Indicator",
+            values="Value",
+            aggfunc="first"
+        )
+    )
+
+    # Keep only Country-Year pairs that exist in forecast_df
+    indicator_matrix["Exposure"] = exposure.loc[indicator_matrix.index]
+
+    indicator_matrix["Vulnerability"] = (
+        indicator_matrix[vulnerability_indicators]
+        .mean(axis=1)
+    )
+
+    indicator_matrix["Readiness"] = (
+        indicator_matrix[readiness_indicators]
+        .mean(axis=1)
+    )
+
+    indicator_matrix["CompositeRisk"] = (
+        indicator_matrix[weights.index] @ weights
+    ) / weights.sum()
+
+    summary = (
+        indicator_matrix[
+            [
+                "Exposure",
+                "Vulnerability",
+                "Readiness",
+                "CompositeRisk"
+            ]
+        ]
+        .reset_index()
+    )
+
+    extra = summary.melt(
+        id_vars=["Country", "Year"],
+        var_name="Indicator",
+        value_name="Value"
+    )
+
+    forecast_df = (
+        pd.concat([forecast_df, extra], ignore_index=True)
+        .sort_values(["Country", "Indicator", "Year"])
+        .reset_index(drop=True)
+    )
+
+    print(indicator_matrix.index.get_level_values("Year").max())
+    print(summary["Year"].max())
+    print(forecast_df["Year"].max())
+    print(df_original.index.names)
+    print(df_original.columns.tolist())
+    print(
+        forecast_df.groupby("Year")["Indicator"]
+        .nunique()
+        .tail(20)
+    )
+
+    print(
+        forecast_df[forecast_df["Year"] > 2023]["Indicator"].unique()
+    )
+
 
     return forecast_df, summary
+
+def add_source(forecast_df):
+
+    forecast_df["source"] = forecast_df["Year"].apply(
+    lambda year: "actual" if year <= 2023 else "forecast"
+    )
 
 def save_outputs(forecast_df, summary):
     forecast_df.to_csv(
@@ -108,18 +153,29 @@ def save_outputs(forecast_df, summary):
         index=False
     )
 
-    summary.to_csv(
-        "data/outputs/composite_risk_score.csv",
-        index=False
-        )
+def change_column_names(forecast_df):
+    forecast_df.rename(columns={
+    "Country" : "country",
+    "Year" : "year",
+    "Indicator" : "indicator",
+    "Value" : "value"
+    }, inplace=True
+    )
 
 def main():
 
     forecast_df = pd.read_parquet("data/intermediate/forecast.parquet")
     df_original = pd.read_parquet("data/intermediate/df_original.parquet")
 
+    weights = pd.read_csv("config/risk_score_weights.csv")
+    weights = weights.rename(columns={"Unnamed: 0": "Indicator"})
+    weights = weights.set_index("Indicator")
+    weights = weights["PC1"]
+
     # Post-process
-    forecast_df, summary = calculate_composite_metrics(forecast_df, df_original)
+    forecast_df, summary = calculate_composite_metrics(forecast_df, df_original, weights)
+    add_source(forecast_df)
+    change_column_names(forecast_df)
 
     # Save
     save_outputs(
