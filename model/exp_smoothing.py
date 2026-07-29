@@ -36,7 +36,7 @@ Usage:
 import numpy as np
 import pandas as pd
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
-from model.arima import prepare_series
+from model.old_models.arima import prepare_series
 
 N_SIMULATIONS = 1000
 RANDOM_SEED = 0
@@ -177,7 +177,7 @@ if __name__ == "__main__":
 
     ROOT = Path(__file__).resolve().parent.parent
     sys.path.insert(0, str(ROOT))
-    from model.composite_risk_score import compute_composite_risk
+    from model.old_models.composite_risk_score import compute_composite_risk
 
     df = pd.read_csv(ROOT / "data" / "data_preprocessed" / "processed_data.csv")
     risk = compute_composite_risk(df)

@@ -31,7 +31,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from config.indicators import indicator_map
-from model.arima import prepare_series, select_order, fit_arima, forecast
+from model.old_models.arima import prepare_series, select_order, fit_arima, forecast
 
 
 def extend_with_forecast(
@@ -120,7 +120,7 @@ def extend_with_forecast(
 
 
 if __name__ == "__main__":
-    from model.composite_risk_score import get_composite_risk
+    from model.old_models.composite_risk_score import get_composite_risk
 
     combined = extend_with_forecast(get_composite_risk(), end_year=2030)
     print("Actuals + forecasts to 2030 (all countries, all indicators):")

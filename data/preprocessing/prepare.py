@@ -11,7 +11,6 @@ def prepare_for_model(df: pd.DataFrame) -> pd.DataFrame:
     df = drop_countries(df)
     df = impute_missing(df)
     df = sort_time_series(df)
-    df = add_country_names(df)
 
     return df
 
