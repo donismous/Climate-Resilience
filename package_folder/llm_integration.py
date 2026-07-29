@@ -14,6 +14,8 @@ raw dataframes -- the model's job is narration/interpretation, not analysis.
 import os
 
 import google.generativeai as genai
+import google.api_core.exceptions as google_exceptions
+
 
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
@@ -26,9 +28,20 @@ methodology, the forecasts shown in this dashboard, and practical
 implications for the user's stated persona. If asked about anything
 unrelated, politely decline and redirect to what you can help with."""
 
-
 def _model(system_instruction: str) -> genai.GenerativeModel:
     return genai.GenerativeModel(MODEL_NAME, system_instruction=system_instruction)
+
+
+def _generate(model: genai.GenerativeModel, prompt: str, max_output_tokens: int) -> str:
+    """Wraps generate_content with a friendly message on quota errors."""
+    try:
+        response = model.generate_content(prompt, generation_config={"max_output_tokens": max_output_tokens})
+        return response.text
+    except google_exceptions.ResourceExhausted:
+        return (
+            "The AI summary service has hit its free-tier daily request limit. "
+            "Please try again later."
+        )
 
 
 def summarize_dashboard(filtered_stats: dict) -> str:
@@ -63,7 +76,8 @@ SHAP feature importances: {shap_summary}"""
 def draft_recommendations(
     persona: str, industry: str | None, dashboard_summary: str, driver_summary: str
 ) -> str:
-    """Draft persona-specific recommendations.
+    """Draft persona-specific recommendations focused on contributing to
+    climate risk reduction, not personal financial self-protection.
 
     Args:
         persona: "individual", "business", or "government"
@@ -73,9 +87,29 @@ def draft_recommendations(
     """
     audience = persona if persona != "business" else f"a business in the {industry} industry"
 
-    prompt = f"""Based on this climate risk analysis, draft 3-5 concrete,
-actionable recommendations for {audience}. Be specific and practical, not
-generic. Ground the recommendations in the data below.
+    prompt = f"""Based on this climate risk analysis, draft recommendations
+for {audience} focused specifically on how they can contribute to REDUCING
+climate risk globally or for the countries/regions involved -- not on how
+they can protect their own assets, investments, or personal financial
+interests from climate risk.
+
+Do NOT recommend things like: reallocating investments away from
+high-risk regions, personal financial hedging, building personal resilience
+infrastructure for self-protection, or diversifying income away from
+vulnerable areas. These protect the individual/business from risk but do
+nothing to reduce the risk itself.
+
+Instead, focus on concrete actions that address the underlying drivers of
+risk identified below -- for example: supporting or investing in adaptation
+and readiness-building initiatives, advocating for or funding policy and
+infrastructure improvements, engaging in practices that reduce vulnerability
+or improve governance/economic stability in affected regions, or otherwise
+contributing resources, expertise, or influence toward genuinely lowering
+climate risk.
+
+Respond ONLY in concise bullet points (3-5 bullets, one short actionable
+sentence each). Be specific to this audience and grounded in the data
+below. No preamble, no closing remarks.
 
 Dashboard summary: {dashboard_summary}
 Driving factors: {driver_summary}"""
