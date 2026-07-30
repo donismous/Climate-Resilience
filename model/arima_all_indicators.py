@@ -120,10 +120,10 @@ def extend_with_forecast(
 
 
 if __name__ == "__main__":
-    from model.old_models.composite_risk_score import get_composite_risk
+    df = pd.read_csv(ROOT / "data" / "data_preprocessed" / "processed_data.csv")
 
-    combined = extend_with_forecast(get_composite_risk(), end_year=2030)
-    print("Actuals + forecasts to 2030 (all countries, all indicators):")
+    combined = extend_with_forecast(df, end_year=2040)
+    print("Actuals + forecasts to 2040 (all countries, all indicators):")
     print(combined.tail(12))
 
     output_path = ROOT / "data" / "outputs" / "all_indicators_with_forecast.csv"
