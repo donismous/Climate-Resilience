@@ -22,8 +22,8 @@ MODEL_NAME = "mistral-small-latest"
 
 # Max output tokens per function. Kept small
 MAX_TOKENS_DASHBOARD_SUMMARY = 200
-MAX_TOKENS_WORLD_SUMMARY = 300
-MAX_TOKENS_COUNTRY_SUMMARY = 350
+MAX_TOKENS_WORLD_SUMMARY = 400
+MAX_TOKENS_COUNTRY_SUMMARY = 400
 MAX_TOKENS_DRIVERS = 250
 MAX_TOKENS_RECOMMENDATIONS = 300
 MAX_TOKENS_CHAT = 500
@@ -148,32 +148,46 @@ Driving factors: {driver_summary}"""
 
 
 def summarize_world_map(movers: dict) -> str:
-    """Narrate the world map view: current best/worst, long-term movers, and global trend."""
+    """Narrate the world map view: current best/worst, forecast trend, and
+    global indicator strengths/weaknesses.
+    """
     prompt = f"""Summarize this global climate risk picture. Start with one
 short introductory sentence, then respond in concise bullet points (max 8
-bullets, one short sentence each). No closing remarks.
+bullets, one short sentence each). Be clear that the trend figures are
+forward-looking forecasts (through {movers['forecast_target_year']}), not
+historical patterns.
 
-Countries that perform best (status quo, lowest current risk scores): {movers['best_current']}
-Countries that perform worst (status quo, highest current risk scores): {movers['worst_current']}
-Countries that improved the most long-term (trend): {movers['improved']}
-Countries that worsened the most long-term (trend): {movers['worsened']}
-Global average trend: {movers['global_direction']} (slope: {movers['global_mean_slope']:.5f}/year)"""
+Countries that perform best today: {movers['best_current']}
+Countries that perform worst today: {movers['worst_current']}
+Countries with the best forecasted trend: {movers['improved']}
+Countries with the worst forecasted trend: {movers['worsened']}
+Globally strongest indicators: {movers['best_indicators_global']}
+Globally weakest indicators: {movers['worst_indicators_global']}
+Global average forecasted trend: {movers['global_direction']} (slope: {movers['global_mean_slope']:.5f}/year)"""
     return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=MAX_TOKENS_WORLD_SUMMARY)
 
 
 def summarize_country_detail(detail: dict) -> str:
-    """Narrate a single country's performance, trend, and indicator breakdown."""
+    """Narrate a single country's performance, forecast trend, and
+    indicator breakdown.
+    """
     prompt = f"""Summarize this country's climate risk profile. Start with
 one short introductory sentence, then respond in concise bullet points (max
-6 bullets).
+8 bullets). Be clear that the trend is a forward-looking forecast, not a
+historical pattern. When referring to indicators, use just their plain
+name (e.g. "Governance", "Capacity") -- do not append category labels like
+"(readiness)" or "(vulnerability)" after the indicator name.
 
 Country: {detail['country_name']} ({detail['country']})
-Trend: {detail['trend']['direction']} (slope: {detail['trend']['slope_per_year']:.5f}/year, statistically significant: {detail['trend']['significant']})
+Latest actual risk score: {detail['trend']['latest_actual_value']:.3f} (as of {detail['trend']['latest_actual_year']})
+Forecasted trend: {detail['trend']['direction']} (projected slope: {detail['trend']['forecast_slope_per_year']:.5f}/year, forecasted risk score by 2040: {detail['trend'].get('forecast_2040_value'):.3f})
+
 Strongest indicators (most favorable): {detail['strongest_indicators']}
 Weakest indicators (least favorable): {detail['weakest_indicators']}
 
-For each weakest indicator, briefly explain in plain language why it likely
-drags down this country's risk profile."""
+For the top 3 strongest indicators, briefly note why each is a relative
+strength for this country. For the 3 weakest indicator, briefly explain in
+plain language why it likely drags down this country's risk profile."""
     return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=MAX_TOKENS_COUNTRY_SUMMARY)
 
 

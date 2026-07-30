@@ -3,12 +3,12 @@
     "country": "AFG",
     "country_name": "Afghanistan",
     "trend": {
-      "slope_per_year": -0.0022804864713031428,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00031165898304134665,
+      "direction": "worsening",
+      "latest_actual_value": 0.4891796673503997,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4944778700621026
     },
-    "risk_score_forecast_2030": 0.4895781575906248,
-    "risk_score_forecast_2040": 0.4944778700621026,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -78,12 +78,12 @@
     "country": "AGO",
     "country_name": "Angola",
     "trend": {
-      "slope_per_year": 0.0010030733340311332,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.000921270723670555,
+      "direction": "improving",
+      "latest_actual_value": 0.4685678627917033,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4529062604893039
     },
-    "risk_score_forecast_2030": 0.4597680049034948,
-    "risk_score_forecast_2040": 0.4529062604893039,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -153,12 +153,12 @@
     "country": "ALB",
     "country_name": "Albania",
     "trend": {
-      "slope_per_year": -0.0013162595520666213,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.000469560112729283,
+      "direction": "worsening",
+      "latest_actual_value": 0.3861218812828502,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.394104403199248
     },
-    "risk_score_forecast_2030": 0.3911676000777331,
-    "risk_score_forecast_2040": 0.394104403199248,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -228,12 +228,12 @@
     "country": "ARE",
     "country_name": "United Arab Emirates",
     "trend": {
-      "slope_per_year": 0.002012105194332802,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0004016419271234417,
+      "direction": "improving",
+      "latest_actual_value": 0.435600664313903,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4287727515528045
     },
-    "risk_score_forecast_2030": 0.4334999080533356,
-    "risk_score_forecast_2040": 0.4287727515528045,
     "strongest_indicators": [
       {
         "name": "Economic",
@@ -303,12 +303,12 @@
     "country": "ARG",
     "country_name": "Argentina",
     "trend": {
-      "slope_per_year": -0.00038930401399749076,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0004581308641119007,
+      "direction": "worsening",
+      "latest_actual_value": 0.3878648624395213,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3956530871294236
     },
-    "risk_score_forecast_2030": 0.3932466829478262,
-    "risk_score_forecast_2040": 0.3956530871294236,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -378,12 +378,12 @@
     "country": "ARM",
     "country_name": "Armenia",
     "trend": {
-      "slope_per_year": 0.00043006825724496044,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00032834723497101003,
+      "direction": "improving",
+      "latest_actual_value": 0.4005411035391035,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3949592005445963
     },
-    "risk_score_forecast_2030": 0.3962489270337318,
-    "risk_score_forecast_2040": 0.3949592005445963,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -453,12 +453,12 @@
     "country": "ATG",
     "country_name": "Antigua and Barbuda",
     "trend": {
-      "slope_per_year": -0.0008732126953599848,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.000768012180267622,
+      "direction": "worsening",
+      "latest_actual_value": 0.4622650574619229,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4753212645264725
     },
-    "risk_score_forecast_2030": 0.470284790690616,
-    "risk_score_forecast_2040": 0.4753212645264725,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -528,12 +528,12 @@
     "country": "AUS",
     "country_name": "Australia",
     "trend": {
-      "slope_per_year": 0.0006813083425928618,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -2.4035078191623792e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.4164665352894532,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4160579389601956
     },
-    "risk_score_forecast_2030": 0.4177212161431904,
-    "risk_score_forecast_2040": 0.4160579389601956,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -603,12 +603,12 @@
     "country": "AUT",
     "country_name": "Austria",
     "trend": {
-      "slope_per_year": 0.00021454233540759405,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.000196482980969333,
+      "direction": "improving",
+      "latest_actual_value": 0.3814733630037029,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3781331523272242
     },
-    "risk_score_forecast_2030": 0.3810250670347491,
-    "risk_score_forecast_2040": 0.3781331523272242,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -678,12 +678,12 @@
     "country": "AZE",
     "country_name": "Azerbaijan",
     "trend": {
-      "slope_per_year": -0.00018790359534227578,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 5.305565420071767e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.3998886950815018,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.400790641202914
     },
-    "risk_score_forecast_2030": 0.3997108642007142,
-    "risk_score_forecast_2040": 0.400790641202914,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -753,12 +753,12 @@
     "country": "BDI",
     "country_name": "Burundi",
     "trend": {
-      "slope_per_year": -0.0004383368817587546,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00015615563646051924,
+      "direction": "worsening",
+      "latest_actual_value": 0.4824571436924759,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4851117895123047
     },
-    "risk_score_forecast_2030": 0.4844274520568713,
-    "risk_score_forecast_2040": 0.4851117895123047,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -828,12 +828,12 @@
     "country": "BEL",
     "country_name": "Belgium",
     "trend": {
-      "slope_per_year": 7.910854066131144e-06,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -2.3368283878238645e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.380956243414408,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3805589825884779
     },
-    "risk_score_forecast_2030": 0.3806324249751099,
-    "risk_score_forecast_2040": 0.3805589825884779,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -903,12 +903,12 @@
     "country": "BEN",
     "country_name": "Benin",
     "trend": {
-      "slope_per_year": 0.0004088701535605663,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.000314637744761331,
+      "direction": "improving",
+      "latest_actual_value": 0.537341756012146,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5319929143512033
     },
-    "risk_score_forecast_2030": 0.5339908255793884,
-    "risk_score_forecast_2040": 0.5319929143512033,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -978,12 +978,12 @@
     "country": "BFA",
     "country_name": "Burkina Faso",
     "trend": {
-      "slope_per_year": -0.0026077019499070285,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006258808867993335,
+      "direction": "worsening",
+      "latest_actual_value": 0.4885013097167719,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4991412847923606
     },
-    "risk_score_forecast_2030": 0.4949805248065664,
-    "risk_score_forecast_2040": 0.4991412847923606,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -1053,12 +1053,12 @@
     "country": "BGD",
     "country_name": "Bangladesh",
     "trend": {
-      "slope_per_year": -0.0014802508056168287,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0008041846969474723,
+      "direction": "worsening",
+      "latest_actual_value": 0.4950949733814705,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5087661132295775
     },
-    "risk_score_forecast_2030": 0.506443087144993,
-    "risk_score_forecast_2040": 0.5087661132295775,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -1128,12 +1128,12 @@
     "country": "BGR",
     "country_name": "Bulgaria",
     "trend": {
-      "slope_per_year": -0.0004452651482384931,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.0001335026192610944,
+      "direction": "improving",
+      "latest_actual_value": 0.3775700204839747,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3753004759565361
     },
-    "risk_score_forecast_2030": 0.3746890894578484,
-    "risk_score_forecast_2040": 0.3753004759565361,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -1203,12 +1203,12 @@
     "country": "BHR",
     "country_name": "Bahrain",
     "trend": {
-      "slope_per_year": 0.0007015455210201741,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0006646431021639643,
+      "direction": "improving",
+      "latest_actual_value": 0.4419130961939199,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4306141634571325
     },
-    "risk_score_forecast_2030": 0.4326671693129568,
-    "risk_score_forecast_2040": 0.4306141634571325,
     "strongest_indicators": [
       {
         "name": "Economic",
@@ -1278,12 +1278,12 @@
     "country": "BHS",
     "country_name": "Bahamas",
     "trend": {
-      "slope_per_year": -0.00042723388114296654,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00031763489552801574,
+      "direction": "worsening",
+      "latest_actual_value": 0.4412942601493263,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4466940533733026
     },
-    "risk_score_forecast_2030": 0.4457097463805949,
-    "risk_score_forecast_2040": 0.4466940533733026,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -1353,12 +1353,12 @@
     "country": "BIH",
     "country_name": "Bosnia and Herzegovina",
     "trend": {
-      "slope_per_year": -0.0014713502750846048,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006625737907605416,
+      "direction": "worsening",
+      "latest_actual_value": 0.3575426406716303,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3688063951145595
     },
-    "risk_score_forecast_2030": 0.365480149661053,
-    "risk_score_forecast_2040": 0.3688063951145595,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -1428,12 +1428,12 @@
     "country": "BLR",
     "country_name": "Belarus",
     "trend": {
-      "slope_per_year": 0.000313912825690878,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.00012608230377781783,
+      "direction": "worsening",
+      "latest_actual_value": 0.3545385840693411,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.356681983233564
     },
-    "risk_score_forecast_2030": 0.3561671109615619,
-    "risk_score_forecast_2040": 0.356681983233564,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -1503,12 +1503,12 @@
     "country": "BLZ",
     "country_name": "Belize",
     "trend": {
-      "slope_per_year": -0.0014329753006876186,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0004075561911431651,
+      "direction": "worsening",
+      "latest_actual_value": 0.4333977449143323,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4403262001637661
     },
-    "risk_score_forecast_2030": 0.4376120998744939,
-    "risk_score_forecast_2040": 0.4403262001637661,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -1578,12 +1578,12 @@
     "country": "BOL",
     "country_name": "Bolivia, Plurinational State of",
     "trend": {
-      "slope_per_year": -0.0011337869218659997,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006925030054161949,
+      "direction": "worsening",
+      "latest_actual_value": 0.4214156088679762,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4331881599600515
     },
-    "risk_score_forecast_2030": 0.4296133974812071,
-    "risk_score_forecast_2040": 0.4331881599600515,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -1653,12 +1653,12 @@
     "country": "BRA",
     "country_name": "Brazil",
     "trend": {
-      "slope_per_year": -0.0013197055474656557,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0007738259578147352,
+      "direction": "worsening",
+      "latest_actual_value": 0.3715314409027463,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3846864821855968
     },
-    "risk_score_forecast_2030": 0.3833432574670646,
-    "risk_score_forecast_2040": 0.3846864821855968,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -1728,12 +1728,12 @@
     "country": "BRB",
     "country_name": "Barbados",
     "trend": {
-      "slope_per_year": 0.0015481615608629656,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0003874246631443423,
+      "direction": "improving",
+      "latest_actual_value": 0.4493355570076028,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.442749337734149
     },
-    "risk_score_forecast_2030": 0.4476230238126416,
-    "risk_score_forecast_2040": 0.442749337734149,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -1803,12 +1803,12 @@
     "country": "BRN",
     "country_name": "Brunei Darussalam",
     "trend": {
-      "slope_per_year": 0.0005011481286729988,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0008244610505749349,
+      "direction": "improving",
+      "latest_actual_value": 0.4460558910053467,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4320400531455728
     },
-    "risk_score_forecast_2030": 0.4338807104583927,
-    "risk_score_forecast_2040": 0.4320400531455728,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -1878,12 +1878,12 @@
     "country": "BTN",
     "country_name": "Bhutan",
     "trend": {
-      "slope_per_year": 0.00040253680287243444,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0008115733045638382,
+      "direction": "improving",
+      "latest_actual_value": 0.5117560589543981,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4979593127768129
     },
-    "risk_score_forecast_2030": 0.5041180083511018,
-    "risk_score_forecast_2040": 0.4979593127768129,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -1953,12 +1953,12 @@
     "country": "BWA",
     "country_name": "Botswana",
     "trend": {
-      "slope_per_year": -0.0015195171958223307,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006801322332151335,
+      "direction": "worsening",
+      "latest_actual_value": 0.4454222775035077,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.456984525468165
     },
-    "risk_score_forecast_2030": 0.4532755984613383,
-    "risk_score_forecast_2040": 0.456984525468165,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -2028,12 +2028,12 @@
     "country": "CAF",
     "country_name": "Central African Republic",
     "trend": {
-      "slope_per_year": -0.0007743393098715234,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005818260968952052,
+      "direction": "worsening",
+      "latest_actual_value": 0.4712957369960533,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4811867806432718
     },
-    "risk_score_forecast_2030": 0.4786993980044606,
-    "risk_score_forecast_2040": 0.4811867806432718,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2103,12 +2103,12 @@
     "country": "CAN",
     "country_name": "Canada",
     "trend": {
-      "slope_per_year": 0.00021180899222437554,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.00015214645225907665,
+      "direction": "worsening",
+      "latest_actual_value": 0.3818041619894132,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3843906516778175
     },
-    "risk_score_forecast_2030": 0.3842522471127023,
-    "risk_score_forecast_2040": 0.3843906516778175,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2178,12 +2178,12 @@
     "country": "CHE",
     "country_name": "Switzerland",
     "trend": {
-      "slope_per_year": -0.00018381872557793737,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0003041529267891474,
+      "direction": "worsening",
+      "latest_actual_value": 0.3609785925958733,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3661491923512888
     },
-    "risk_score_forecast_2030": 0.3638134554302701,
-    "risk_score_forecast_2040": 0.3661491923512888,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -2253,12 +2253,12 @@
     "country": "CHL",
     "country_name": "Chile",
     "trend": {
-      "slope_per_year": -6.556194650420602e-05,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00039350157970783603,
+      "direction": "worsening",
+      "latest_actual_value": 0.3867855582450669,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3934750851001001
     },
-    "risk_score_forecast_2030": 0.393091646731953,
-    "risk_score_forecast_2040": 0.3934750851001001,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2328,12 +2328,12 @@
     "country": "CHN",
     "country_name": "China",
     "trend": {
-      "slope_per_year": 0.00107281969346045,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -3.0756291422929335e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.4325535072933225,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4320306503391327
     },
-    "risk_score_forecast_2030": 0.429112918596553,
-    "risk_score_forecast_2040": 0.4320306503391327,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2403,12 +2403,12 @@
     "country": "CIV",
     "country_name": "Cote d'Ivoire",
     "trend": {
-      "slope_per_year": -0.00011730952978229927,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.0006793121656411647,
+      "direction": "improving",
+      "latest_actual_value": 0.469905991509972,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4583576846940722
     },
-    "risk_score_forecast_2030": 0.4609695629261342,
-    "risk_score_forecast_2040": 0.4583576846940722,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2478,12 +2478,12 @@
     "country": "CMR",
     "country_name": "Cameroon",
     "trend": {
-      "slope_per_year": -0.00038385431600029,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -8.865349991805856e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.4459457039276339,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4444385944290269
     },
-    "risk_score_forecast_2030": 0.4445493618131952,
-    "risk_score_forecast_2040": 0.4444385944290269,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2553,12 +2553,12 @@
     "country": "COD",
     "country_name": "Congo, the Democratic Republic of",
     "trend": {
-      "slope_per_year": -0.00032571329690203637,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00022865596232964324,
+      "direction": "improving",
+      "latest_actual_value": 0.5249962209238779,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5211090695642739
     },
-    "risk_score_forecast_2030": 0.5211794441610474,
-    "risk_score_forecast_2040": 0.5211090695642739,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2628,12 +2628,12 @@
     "country": "COG",
     "country_name": "Congo",
     "trend": {
-      "slope_per_year": -0.0019404754564007695,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006820592915176951,
+      "direction": "worsening",
+      "latest_actual_value": 0.4659444375694043,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4775394455252051
     },
-    "risk_score_forecast_2030": 0.4737315865870913,
-    "risk_score_forecast_2040": 0.4775394455252051,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2703,12 +2703,12 @@
     "country": "COL",
     "country_name": "Colombia",
     "trend": {
-      "slope_per_year": -0.00027889886244780856,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -1.2597423434630309e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.4082018624153531,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4079877062169644
     },
-    "risk_score_forecast_2030": 0.4080668567708946,
-    "risk_score_forecast_2040": 0.4079877062169644,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -2778,12 +2778,12 @@
     "country": "COM",
     "country_name": "Comoros",
     "trend": {
-      "slope_per_year": -0.0005677789889144216,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0002797464256942468,
+      "direction": "worsening",
+      "latest_actual_value": 0.4637931502168794,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4685488394536816
     },
-    "risk_score_forecast_2030": 0.4687920054815654,
-    "risk_score_forecast_2040": 0.4685488394536816,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -2853,12 +2853,12 @@
     "country": "CPV",
     "country_name": "Cape Verde",
     "trend": {
-      "slope_per_year": 0.00010708607062097983,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0003343442056672768,
+      "direction": "improving",
+      "latest_actual_value": 0.4468629247705595,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4411790732742158
     },
-    "risk_score_forecast_2030": 0.4427609502436762,
-    "risk_score_forecast_2040": 0.4411790732742158,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -2928,12 +2928,12 @@
     "country": "CRI",
     "country_name": "Costa Rica",
     "trend": {
-      "slope_per_year": -0.0009093077176772122,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0002137802092162881,
+      "direction": "worsening",
+      "latest_actual_value": 0.4025561027376336,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4061903662943105
     },
-    "risk_score_forecast_2030": 0.4028430683858522,
-    "risk_score_forecast_2040": 0.4061903662943105,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -3003,12 +3003,12 @@
     "country": "CUB",
     "country_name": "Cuba",
     "trend": {
-      "slope_per_year": 0.0002543765873299404,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00019015781318943535,
+      "direction": "improving",
+      "latest_actual_value": 0.4232833026015698,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4200506197773494
     },
-    "risk_score_forecast_2030": 0.4208995909033644,
-    "risk_score_forecast_2040": 0.4200506197773494,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -3078,12 +3078,12 @@
     "country": "CYP",
     "country_name": "Cyprus",
     "trend": {
-      "slope_per_year": 3.4884472633925697e-05,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.00017561954235017073,
+      "direction": "worsening",
+      "latest_actual_value": 0.3900910358763652,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3930765680963181
     },
-    "risk_score_forecast_2030": 0.3937886028805003,
-    "risk_score_forecast_2040": 0.3930765680963181,
     "strongest_indicators": [
       {
         "name": "Food",
@@ -3153,12 +3153,12 @@
     "country": "CZE",
     "country_name": "Czech Republic",
     "trend": {
-      "slope_per_year": 0.0010035699709738768,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0006207373085325478,
+      "direction": "improving",
+      "latest_actual_value": 0.3342283356634224,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3236758014183691
     },
-    "risk_score_forecast_2030": 0.3267082966453817,
-    "risk_score_forecast_2040": 0.3236758014183691,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -3228,12 +3228,12 @@
     "country": "DEU",
     "country_name": "Germany",
     "trend": {
-      "slope_per_year": 0.00037102634218037724,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": 7.198224727798551e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.3929207226495586,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3941444208532843
     },
-    "risk_score_forecast_2030": 0.3949289858316904,
-    "risk_score_forecast_2040": 0.3941444208532843,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -3303,12 +3303,12 @@
     "country": "DJI",
     "country_name": "Djibouti",
     "trend": {
-      "slope_per_year": -0.00034006467446304493,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00015090308369802852,
+      "direction": "worsening",
+      "latest_actual_value": 0.4732310986936035,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.47579645111647
     },
-    "risk_score_forecast_2030": 0.4740462283410239,
-    "risk_score_forecast_2040": 0.47579645111647,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -3378,12 +3378,12 @@
     "country": "DMA",
     "country_name": "Dominica",
     "trend": {
-      "slope_per_year": -0.0010954776744605598,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.000691910828658826,
+      "direction": "worsening",
+      "latest_actual_value": 0.4273433982740282,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4391058823612282
     },
-    "risk_score_forecast_2030": 0.4354288164716552,
-    "risk_score_forecast_2040": 0.4391058823612282,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -3453,12 +3453,12 @@
     "country": "DNK",
     "country_name": "Denmark",
     "trend": {
-      "slope_per_year": 0.0014543271810184527,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0006168073693511513,
+      "direction": "improving",
+      "latest_actual_value": 0.4398464749592785,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4293607496803089
     },
-    "risk_score_forecast_2030": 0.4334739022916596,
-    "risk_score_forecast_2040": 0.4293607496803089,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -3528,12 +3528,12 @@
     "country": "DOM",
     "country_name": "Dominican Republic",
     "trend": {
-      "slope_per_year": -2.238910101893875e-06,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00022035274163193769,
+      "direction": "improving",
+      "latest_actual_value": 0.4118942863081366,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4081482897003937
     },
-    "risk_score_forecast_2030": 0.4109646639236693,
-    "risk_score_forecast_2040": 0.4081482897003937,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -3603,12 +3603,12 @@
     "country": "DZA",
     "country_name": "Algeria",
     "trend": {
-      "slope_per_year": -0.000639760558390651,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005783952140587833,
+      "direction": "worsening",
+      "latest_actual_value": 0.3758697437387601,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3857024623777594
     },
-    "risk_score_forecast_2030": 0.382360647823213,
-    "risk_score_forecast_2040": 0.3857024623777594,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -3678,12 +3678,12 @@
     "country": "ECU",
     "country_name": "Ecuador",
     "trend": {
-      "slope_per_year": -0.0002945770089974938,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0002298626566748997,
+      "direction": "worsening",
+      "latest_actual_value": 0.4366787080070856,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4405863731705589
     },
-    "risk_score_forecast_2030": 0.4391490506589051,
-    "risk_score_forecast_2040": 0.4405863731705589,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -3753,12 +3753,12 @@
     "country": "EGY",
     "country_name": "Egypt",
     "trend": {
-      "slope_per_year": -0.0011900666157305295,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006204424142417998,
+      "direction": "worsening",
+      "latest_actual_value": 0.3895675007449816,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4001150217870922
     },
-    "risk_score_forecast_2030": 0.3972348654417273,
-    "risk_score_forecast_2040": 0.4001150217870922,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -3828,12 +3828,12 @@
     "country": "ERI",
     "country_name": "Eritrea",
     "trend": {
-      "slope_per_year": -0.0012546583912905849,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 9.816953170499138e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.5143286179560951,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5159974999950799
     },
-    "risk_score_forecast_2030": 0.5151103385167458,
-    "risk_score_forecast_2040": 0.5159974999950799,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -3903,12 +3903,12 @@
     "country": "ESP",
     "country_name": "Spain",
     "trend": {
-      "slope_per_year": -0.00029876684239615447,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0001445221805147958,
+      "direction": "worsening",
+      "latest_actual_value": 0.3542514541496817,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3567083312184332
     },
-    "risk_score_forecast_2030": 0.3563134825892567,
-    "risk_score_forecast_2040": 0.3567083312184332,
     "strongest_indicators": [
       {
         "name": "Capacity",
@@ -3978,12 +3978,12 @@
     "country": "EST",
     "country_name": "Estonia",
     "trend": {
-      "slope_per_year": 0.001882811508907279,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0005665798209617675,
+      "direction": "improving",
+      "latest_actual_value": 0.4117206533763064,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4020887964199564
     },
-    "risk_score_forecast_2030": 0.4073972927636394,
-    "risk_score_forecast_2040": 0.4020887964199564,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -4053,12 +4053,12 @@
     "country": "ETH",
     "country_name": "Ethiopia",
     "trend": {
-      "slope_per_year": -0.0013274069829334345,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0008374325453411716,
+      "direction": "worsening",
+      "latest_actual_value": 0.4989762465819048,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5132125998527047
     },
-    "risk_score_forecast_2030": 0.5080610300304578,
-    "risk_score_forecast_2040": 0.5132125998527047,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -4128,12 +4128,12 @@
     "country": "FIN",
     "country_name": "Finland",
     "trend": {
-      "slope_per_year": 0.0007291710615496359,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00024248539627572935,
+      "direction": "improving",
+      "latest_actual_value": 0.4078976665844454,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.403775414847758
     },
-    "risk_score_forecast_2030": 0.4067036061314341,
-    "risk_score_forecast_2040": 0.403775414847758,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -4203,12 +4203,12 @@
     "country": "FJI",
     "country_name": "Fiji",
     "trend": {
-      "slope_per_year": -0.0005942009074644881,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0001028489423966625,
+      "direction": "worsening",
+      "latest_actual_value": 0.4698052073456792,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4715536393664225
     },
-    "risk_score_forecast_2030": 0.4695352678661312,
-    "risk_score_forecast_2040": 0.4715536393664225,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -4278,12 +4278,12 @@
     "country": "FRA",
     "country_name": "France",
     "trend": {
-      "slope_per_year": 0.0006767343965670318,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -5.016948694745482e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.3910886660446141,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3902357847665074
     },
-    "risk_score_forecast_2030": 0.3920913073273597,
-    "risk_score_forecast_2040": 0.3902357847665074,
     "strongest_indicators": [
       {
         "name": "Capacity",
@@ -4353,12 +4353,12 @@
     "country": "FSM",
     "country_name": "Micronesia, Federated States of",
     "trend": {
-      "slope_per_year": -0.00013177793692419708,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.0002464082369117405,
+      "direction": "improving",
+      "latest_actual_value": 0.4898173535843442,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4856284135568446
     },
-    "risk_score_forecast_2030": 0.4850169134577229,
-    "risk_score_forecast_2040": 0.4856284135568446,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -4428,12 +4428,12 @@
     "country": "GAB",
     "country_name": "Gabon",
     "trend": {
-      "slope_per_year": -0.0012628166785466765,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0004937918842721408,
+      "direction": "worsening",
+      "latest_actual_value": 0.4115170852628044,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4199115472954308
     },
-    "risk_score_forecast_2030": 0.4177732005944353,
-    "risk_score_forecast_2040": 0.4199115472954308,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -4503,12 +4503,12 @@
     "country": "GBR",
     "country_name": "United Kingdom",
     "trend": {
-      "slope_per_year": 0.0011041974430467446,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00037759735212979995,
+      "direction": "improving",
+      "latest_actual_value": 0.3834130221564136,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.376993867170207
     },
-    "risk_score_forecast_2030": 0.3779620168675842,
-    "risk_score_forecast_2040": 0.376993867170207,
     "strongest_indicators": [
       {
         "name": "Food",
@@ -4578,12 +4578,12 @@
     "country": "GEO",
     "country_name": "Georgia",
     "trend": {
-      "slope_per_year": 0.002629498334966676,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0002832631435094797,
+      "direction": "improving",
+      "latest_actual_value": 0.443255707696559,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4384402342568978
     },
-    "risk_score_forecast_2030": 0.4454845903994572,
-    "risk_score_forecast_2040": 0.4384402342568978,
     "strongest_indicators": [
       {
         "name": "Economic",
@@ -4653,12 +4653,12 @@
     "country": "GHA",
     "country_name": "Ghana",
     "trend": {
-      "slope_per_year": -0.0015384973432960637,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0008117719684784416,
+      "direction": "worsening",
+      "latest_actual_value": 0.44023334484659,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4540334683107235
     },
-    "risk_score_forecast_2030": 0.4488934887607869,
-    "risk_score_forecast_2040": 0.4540334683107235,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -4728,12 +4728,12 @@
     "country": "GIN",
     "country_name": "Guinea",
     "trend": {
-      "slope_per_year": -0.0008071814186596583,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00010745017905351298,
+      "direction": "worsening",
+      "latest_actual_value": 0.4712480940257215,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4730747470696312
     },
-    "risk_score_forecast_2030": 0.4731505239838653,
-    "risk_score_forecast_2040": 0.4730747470696312,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -4803,12 +4803,12 @@
     "country": "GMB",
     "country_name": "Gambia",
     "trend": {
-      "slope_per_year": -0.0015651159214726252,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005971844328691774,
+      "direction": "worsening",
+      "latest_actual_value": 0.4811315086448989,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4912836440036749
     },
-    "risk_score_forecast_2030": 0.4860500535906341,
-    "risk_score_forecast_2040": 0.4912836440036749,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -4878,12 +4878,12 @@
     "country": "GNB",
     "country_name": "Guinea-Bissau",
     "trend": {
-      "slope_per_year": -0.002061397182969628,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.001080283822760963,
+      "direction": "worsening",
+      "latest_actual_value": 0.5146268696440506,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.532991694630987
     },
-    "risk_score_forecast_2030": 0.5256785309358982,
-    "risk_score_forecast_2040": 0.532991694630987,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -4953,12 +4953,12 @@
     "country": "GNQ",
     "country_name": "Equatorial Guinea",
     "trend": {
-      "slope_per_year": -0.001436522930431868,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0009424035784695991,
+      "direction": "worsening",
+      "latest_actual_value": 0.3782817407683051,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3943026016022883
     },
-    "risk_score_forecast_2030": 0.3896954798758912,
-    "risk_score_forecast_2040": 0.3943026016022883,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -5028,12 +5028,12 @@
     "country": "GRC",
     "country_name": "Greece",
     "trend": {
-      "slope_per_year": 0.0005367900544895423,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0001658013570761478,
+      "direction": "improving",
+      "latest_actual_value": 0.3703630118512478,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3675443887809533
     },
-    "risk_score_forecast_2030": 0.3693442901650055,
-    "risk_score_forecast_2040": 0.3675443887809533,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -5103,12 +5103,12 @@
     "country": "GRD",
     "country_name": "Grenada",
     "trend": {
-      "slope_per_year": -0.0003902278951552544,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -8.783335750255818e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.4371912459424896,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4356980788649461
     },
-    "risk_score_forecast_2030": 0.4400666783311298,
-    "risk_score_forecast_2040": 0.4356980788649461,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -5178,12 +5178,12 @@
     "country": "GTM",
     "country_name": "Guatemala",
     "trend": {
-      "slope_per_year": -0.0011499189096126348,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0008826174032778268,
+      "direction": "worsening",
+      "latest_actual_value": 0.4037887708626384,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4187932667183615
     },
-    "risk_score_forecast_2030": 0.4134409265098291,
-    "risk_score_forecast_2040": 0.4187932667183615,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -5253,12 +5253,12 @@
     "country": "GUY",
     "country_name": "Guyana",
     "trend": {
-      "slope_per_year": -0.0014102210603544826,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006218517318652646,
+      "direction": "worsening",
+      "latest_actual_value": 0.4179528860302596,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4285243654719691
     },
-    "risk_score_forecast_2030": 0.4273173570330627,
-    "risk_score_forecast_2040": 0.4285243654719691,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -5328,12 +5328,12 @@
     "country": "HND",
     "country_name": "Honduras",
     "trend": {
-      "slope_per_year": -0.00048578938446786405,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0007508908781644766,
+      "direction": "worsening",
+      "latest_actual_value": 0.4023828247707482,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4151479696995443
     },
-    "risk_score_forecast_2030": 0.4118855232885935,
-    "risk_score_forecast_2040": 0.4151479696995443,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -5403,12 +5403,12 @@
     "country": "HRV",
     "country_name": "Croatia",
     "trend": {
-      "slope_per_year": 0.00024447198875925927,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0002785219336419633,
+      "direction": "improving",
+      "latest_actual_value": 0.4030513578227988,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3983164849508854
     },
-    "risk_score_forecast_2030": 0.3991484891639889,
-    "risk_score_forecast_2040": 0.3983164849508854,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -5478,12 +5478,12 @@
     "country": "HTI",
     "country_name": "Haiti",
     "trend": {
-      "slope_per_year": -0.0008333295884881133,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005729920407094596,
+      "direction": "worsening",
+      "latest_actual_value": 0.4501877042439389,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4599285689359997
     },
-    "risk_score_forecast_2030": 0.4572145043976665,
-    "risk_score_forecast_2040": 0.4599285689359997,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -5553,12 +5553,12 @@
     "country": "HUN",
     "country_name": "Hungary",
     "trend": {
-      "slope_per_year": -0.0009102070538253128,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00021056506459687604,
+      "direction": "worsening",
+      "latest_actual_value": 0.375265581225294,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3788451873234409
     },
-    "risk_score_forecast_2030": 0.3765286844127055,
-    "risk_score_forecast_2040": 0.3788451873234409,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -5628,12 +5628,12 @@
     "country": "IDN",
     "country_name": "Indonesia",
     "trend": {
-      "slope_per_year": -0.0007977334607647416,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0010426498418782699,
+      "direction": "worsening",
+      "latest_actual_value": 0.4216317743623321,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4393568216742627
     },
-    "risk_score_forecast_2030": 0.4356540112687591,
-    "risk_score_forecast_2040": 0.4393568216742627,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -5703,12 +5703,12 @@
     "country": "IND",
     "country_name": "India",
     "trend": {
-      "slope_per_year": -0.0017875900762331083,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0007571182615447118,
+      "direction": "worsening",
+      "latest_actual_value": 0.4733224757945601,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4861934862408202
     },
-    "risk_score_forecast_2030": 0.4834518726471179,
-    "risk_score_forecast_2040": 0.4861934862408202,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -5778,12 +5778,12 @@
     "country": "IRL",
     "country_name": "Ireland",
     "trend": {
-      "slope_per_year": 0.00019236534676044854,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -8.9355932350109e-06,
+      "direction": "improving",
+      "latest_actual_value": 0.3786874686704897,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3785355635854945
     },
-    "risk_score_forecast_2030": 0.378656980170893,
-    "risk_score_forecast_2040": 0.3785355635854945,
     "strongest_indicators": [
       {
         "name": "Food",
@@ -5853,12 +5853,12 @@
     "country": "IRN",
     "country_name": "Iran, Islamic Republic of",
     "trend": {
-      "slope_per_year": -4.1005016951088426e-05,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.000358999747291866,
+      "direction": "worsening",
+      "latest_actual_value": 0.3920026316778033,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.398105627381765
     },
-    "risk_score_forecast_2030": 0.3947682840737375,
-    "risk_score_forecast_2040": 0.398105627381765,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -5928,12 +5928,12 @@
     "country": "IRQ",
     "country_name": "Iraq",
     "trend": {
-      "slope_per_year": -0.0003872252122100537,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00016752252471381653,
+      "direction": "worsening",
+      "latest_actual_value": 0.4122297796004417,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4150776625205766
     },
-    "risk_score_forecast_2030": 0.4141688717372246,
-    "risk_score_forecast_2040": 0.4150776625205766,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6003,12 +6003,12 @@
     "country": "ISL",
     "country_name": "Iceland",
     "trend": {
-      "slope_per_year": 0.00028563486751306594,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.00017100627146583315,
+      "direction": "worsening",
+      "latest_actual_value": 0.4170859256462797,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4199930322611989
     },
-    "risk_score_forecast_2030": 0.4187092345846886,
-    "risk_score_forecast_2040": 0.4199930322611989,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -6078,12 +6078,12 @@
     "country": "ISR",
     "country_name": "Israel",
     "trend": {
-      "slope_per_year": -0.0009092755815322681,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00022952820295070044,
+      "direction": "worsening",
+      "latest_actual_value": 0.353747548303052,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3576495277532139
     },
-    "risk_score_forecast_2030": 0.355076098295663,
-    "risk_score_forecast_2040": 0.3576495277532139,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6153,12 +6153,12 @@
     "country": "ITA",
     "country_name": "Italy",
     "trend": {
-      "slope_per_year": 0.0005806247641499614,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0004949207857474344,
+      "direction": "improving",
+      "latest_actual_value": 0.3821410586560502,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3737274052983438
     },
-    "risk_score_forecast_2030": 0.3770402065152784,
-    "risk_score_forecast_2040": 0.3737274052983438,
     "strongest_indicators": [
       {
         "name": "Capacity",
@@ -6228,12 +6228,12 @@
     "country": "JAM",
     "country_name": "Jamaica",
     "trend": {
-      "slope_per_year": -0.00027367150735228466,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00021176460581919537,
+      "direction": "improving",
+      "latest_actual_value": 0.4163951889432066,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4127951906442803
     },
-    "risk_score_forecast_2030": 0.4123387786675909,
-    "risk_score_forecast_2040": 0.4127951906442803,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -6303,12 +6303,12 @@
     "country": "JOR",
     "country_name": "Jordan",
     "trend": {
-      "slope_per_year": -0.0006643601955783004,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005534286021779117,
+      "direction": "worsening",
+      "latest_actual_value": 0.3789601516260291,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3883684378630536
     },
-    "risk_score_forecast_2030": 0.3862033306051119,
-    "risk_score_forecast_2040": 0.3883684378630536,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6378,12 +6378,12 @@
     "country": "JPN",
     "country_name": "Japan",
     "trend": {
-      "slope_per_year": 0.001390455959241555,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00027760145036005956,
+      "direction": "improving",
+      "latest_actual_value": 0.4328620431532026,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4281428184970816
     },
-    "risk_score_forecast_2030": 0.4311067773530396,
-    "risk_score_forecast_2040": 0.4281428184970816,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -6453,12 +6453,12 @@
     "country": "KAZ",
     "country_name": "Kazakhstan",
     "trend": {
-      "slope_per_year": 0.0009318982210676924,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0003726707748557937,
+      "direction": "improving",
+      "latest_actual_value": 0.3709576688539828,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3646222656814343
     },
-    "risk_score_forecast_2030": 0.3695364184109491,
-    "risk_score_forecast_2040": 0.3646222656814343,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6528,12 +6528,12 @@
     "country": "KEN",
     "country_name": "Kenya",
     "trend": {
-      "slope_per_year": -0.0008142395501013029,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0003040409808051843,
+      "direction": "worsening",
+      "latest_actual_value": 0.4654805269643087,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4706492236379968
     },
-    "risk_score_forecast_2030": 0.4693374574987704,
-    "risk_score_forecast_2040": 0.4706492236379968,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6603,12 +6603,12 @@
     "country": "KGZ",
     "country_name": "Kyrgyzstan",
     "trend": {
-      "slope_per_year": -0.001059532765960132,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005660697070983593,
+      "direction": "worsening",
+      "latest_actual_value": 0.334405443526552,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3440286285472241
     },
-    "risk_score_forecast_2030": 0.3407087463586791,
-    "risk_score_forecast_2040": 0.3440286285472241,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6678,12 +6678,12 @@
     "country": "KHM",
     "country_name": "Cambodia",
     "trend": {
-      "slope_per_year": -0.0019532921118700147,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0010872871496964568,
+      "direction": "worsening",
+      "latest_actual_value": 0.4321635882015539,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4506474697463937
     },
-    "risk_score_forecast_2030": 0.4447861110732305,
-    "risk_score_forecast_2040": 0.4506474697463937,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6753,12 +6753,12 @@
     "country": "KIR",
     "country_name": "Kiribati",
     "trend": {
-      "slope_per_year": -0.00082640944298738,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 5.8445402823283004e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.4875552030199078,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4885487748679036
     },
-    "risk_score_forecast_2030": 0.4884522079817519,
-    "risk_score_forecast_2040": 0.4885487748679036,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -6828,12 +6828,12 @@
     "country": "KNA",
     "country_name": "Saint Kitts and Nevis",
     "trend": {
-      "slope_per_year": 0.0011536598359614485,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.0003401633237510598,
+      "direction": "worsening",
+      "latest_actual_value": 0.4668495417887068,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4726323182924748
     },
-    "risk_score_forecast_2030": 0.4710035038534337,
-    "risk_score_forecast_2040": 0.4726323182924748,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -6903,12 +6903,12 @@
     "country": "KOR",
     "country_name": "Korea, Republic of",
     "trend": {
-      "slope_per_year": 0.0012081456484541717,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0005845812991890451,
+      "direction": "improving",
+      "latest_actual_value": 0.4400237300233842,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4300858479371704
     },
-    "risk_score_forecast_2030": 0.4349772977706215,
-    "risk_score_forecast_2040": 0.4300858479371704,
     "strongest_indicators": [
       {
         "name": "Social",
@@ -6978,12 +6978,12 @@
     "country": "KWT",
     "country_name": "Kuwait",
     "trend": {
-      "slope_per_year": -0.0007189452969932936,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -4.103849988919517e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.3860871301319285,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3853894756338122
     },
-    "risk_score_forecast_2030": 0.3864887590768193,
-    "risk_score_forecast_2040": 0.3853894756338122,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -7053,12 +7053,12 @@
     "country": "LAO",
     "country_name": "Lao People's Democratic Republic",
     "trend": {
-      "slope_per_year": -0.001990482501273384,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00039113821439218377,
+      "direction": "worsening",
+      "latest_actual_value": 0.4573903701730714,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4640397198177385
     },
-    "risk_score_forecast_2030": 0.4607779116045034,
-    "risk_score_forecast_2040": 0.4640397198177385,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -7128,12 +7128,12 @@
     "country": "LBN",
     "country_name": "Lebanon",
     "trend": {
-      "slope_per_year": -0.0018607967456600284,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.000997592580266872,
+      "direction": "worsening",
+      "latest_actual_value": 0.3679868737215244,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3849459475860612
     },
-    "risk_score_forecast_2030": 0.3812833377255325,
-    "risk_score_forecast_2040": 0.3849459475860612,
     "strongest_indicators": [
       {
         "name": "Food",
@@ -7203,12 +7203,12 @@
     "country": "LBR",
     "country_name": "Liberia",
     "trend": {
-      "slope_per_year": -5.056327236844e-05,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00040824591656108506,
+      "direction": "worsening",
+      "latest_actual_value": 0.4873486219976251,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4942888025791635
     },
-    "risk_score_forecast_2030": 0.4933720101751334,
-    "risk_score_forecast_2040": 0.4942888025791635,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -7278,12 +7278,12 @@
     "country": "LBY",
     "country_name": "Libyan Arab Jamahiriya",
     "trend": {
-      "slope_per_year": 0.0002753306920418185,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.00011321570607345771,
+      "direction": "worsening",
+      "latest_actual_value": 0.4048544355663417,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4067791025695905
     },
-    "risk_score_forecast_2030": 0.4079203463975586,
-    "risk_score_forecast_2040": 0.4067791025695905,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -7353,12 +7353,12 @@
     "country": "LCA",
     "country_name": "Saint Lucia",
     "trend": {
-      "slope_per_year": 0.00016914618166804325,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00023821347762664757,
+      "direction": "improving",
+      "latest_actual_value": 0.4166151978894216,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4125655687697686
     },
-    "risk_score_forecast_2030": 0.4100771592532617,
-    "risk_score_forecast_2040": 0.4125655687697686,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -7428,12 +7428,12 @@
     "country": "LKA",
     "country_name": "Sri Lanka",
     "trend": {
-      "slope_per_year": 0.0001617735643287507,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00023733941096005338,
+      "direction": "improving",
+      "latest_actual_value": 0.4572327295187083,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4531979595323874
     },
-    "risk_score_forecast_2030": 0.4531222756933617,
-    "risk_score_forecast_2040": 0.4531979595323874,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -7503,12 +7503,12 @@
     "country": "LSO",
     "country_name": "Lesotho",
     "trend": {
-      "slope_per_year": -0.0009355082581442042,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006830874549993068,
+      "direction": "worsening",
+      "latest_actual_value": 0.4254692735382027,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4370817602731909
     },
-    "risk_score_forecast_2030": 0.4325865613237194,
-    "risk_score_forecast_2040": 0.4370817602731909,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -7578,12 +7578,12 @@
     "country": "LTU",
     "country_name": "Lithuania",
     "trend": {
-      "slope_per_year": 0.0007290765098597925,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00039642253000673545,
+      "direction": "improving",
+      "latest_actual_value": 0.4120187992176862,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4052796162075717
     },
-    "risk_score_forecast_2030": 0.4069517410673279,
-    "risk_score_forecast_2040": 0.4052796162075717,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -7653,12 +7653,12 @@
     "country": "LUX",
     "country_name": "Luxembourg",
     "trend": {
-      "slope_per_year": 0.0013985240872080311,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0006238653757434866,
+      "direction": "improving",
+      "latest_actual_value": 0.3924525859276586,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3818468745400193
     },
-    "risk_score_forecast_2030": 0.3848597093345386,
-    "risk_score_forecast_2040": 0.3818468745400193,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -7728,12 +7728,12 @@
     "country": "LVA",
     "country_name": "Latvia",
     "trend": {
-      "slope_per_year": 0.0008624881547443201,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0004513080716243698,
+      "direction": "improving",
+      "latest_actual_value": 0.4055032052682634,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3978309680506491
     },
-    "risk_score_forecast_2030": 0.4011564441222666,
-    "risk_score_forecast_2040": 0.3978309680506491,
     "strongest_indicators": [
       {
         "name": "Food",
@@ -7803,12 +7803,12 @@
     "country": "MAR",
     "country_name": "Morocco",
     "trend": {
-      "slope_per_year": -0.0013928291288753238,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0007679763106506035,
+      "direction": "worsening",
+      "latest_actual_value": 0.3854849000838587,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.398540497364919
     },
-    "risk_score_forecast_2030": 0.3939851797045589,
-    "risk_score_forecast_2040": 0.398540497364919,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -7878,12 +7878,12 @@
     "country": "MDA",
     "country_name": "Moldova, Republic of",
     "trend": {
-      "slope_per_year": -0.0015971285651028553,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 3.880852452645297e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.4097514206616263,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.410411165578576
     },
-    "risk_score_forecast_2030": 0.406813246170476,
-    "risk_score_forecast_2040": 0.410411165578576,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -7953,12 +7953,12 @@
     "country": "MDG",
     "country_name": "Madagascar",
     "trend": {
-      "slope_per_year": -0.0008536564848108203,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00032203828846297407,
+      "direction": "worsening",
+      "latest_actual_value": 0.5072036273110779,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5126782782149485
     },
-    "risk_score_forecast_2030": 0.5091989795033204,
-    "risk_score_forecast_2040": 0.5126782782149485,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -8028,12 +8028,12 @@
     "country": "MDV",
     "country_name": "Maldives",
     "trend": {
-      "slope_per_year": -0.001245579225537808,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00047659656493378836,
+      "direction": "worsening",
+      "latest_actual_value": 0.4861965751405647,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4942987167444391
     },
-    "risk_score_forecast_2030": 0.4909956030564996,
-    "risk_score_forecast_2040": 0.4942987167444391,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -8103,12 +8103,12 @@
     "country": "MEX",
     "country_name": "Mexico",
     "trend": {
-      "slope_per_year": -0.0011321290672828299,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0010887997842334001,
+      "direction": "worsening",
+      "latest_actual_value": 0.3736125016718226,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3921220980037904
     },
-    "risk_score_forecast_2030": 0.3859783549924336,
-    "risk_score_forecast_2040": 0.3921220980037904,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -8178,12 +8178,12 @@
     "country": "MHL",
     "country_name": "Marshall Islands",
     "trend": {
-      "slope_per_year": 0.0008321944239368064,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.001355436637718183,
+      "direction": "improving",
+      "latest_actual_value": 0.475186601542463,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4521441787012539
     },
-    "risk_score_forecast_2030": 0.4647966677916181,
-    "risk_score_forecast_2040": 0.4521441787012539,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -8253,12 +8253,12 @@
     "country": "MKD",
     "country_name": "Macedonia",
     "trend": {
-      "slope_per_year": 0.0007755292127463693,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00045063517372827673,
+      "direction": "improving",
+      "latest_actual_value": 0.3983444931587944,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3906836952054137
     },
-    "risk_score_forecast_2030": 0.3938173549463177,
-    "risk_score_forecast_2040": 0.3906836952054137,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -8328,12 +8328,12 @@
     "country": "MLI",
     "country_name": "Mali",
     "trend": {
-      "slope_per_year": -0.001208153193552341,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0009882687819526576,
+      "direction": "worsening",
+      "latest_actual_value": 0.4976687765724359,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5144693458656311
     },
-    "risk_score_forecast_2030": 0.5110572989029599,
-    "risk_score_forecast_2040": 0.5144693458656311,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -8403,12 +8403,12 @@
     "country": "MLT",
     "country_name": "Malta",
     "trend": {
-      "slope_per_year": 0.0002577670322835741,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.0010226146311318463,
+      "direction": "worsening",
+      "latest_actual_value": 0.3362547408867369,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3536391896159783
     },
-    "risk_score_forecast_2030": 0.350183073612375,
-    "risk_score_forecast_2040": 0.3536391896159783,
     "strongest_indicators": [
       {
         "name": "Food",
@@ -8478,12 +8478,12 @@
     "country": "MMR",
     "country_name": "Myanmar",
     "trend": {
-      "slope_per_year": -0.00015897514867483994,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005243282709056822,
+      "direction": "worsening",
+      "latest_actual_value": 0.4629529776979443,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4718665583033409
     },
-    "risk_score_forecast_2030": 0.4709044306845186,
-    "risk_score_forecast_2040": 0.4718665583033409,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -8553,12 +8553,12 @@
     "country": "MNE",
     "country_name": "Montenegro",
     "trend": {
-      "slope_per_year": -0.0009668667190321285,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006953689360520922,
+      "direction": "worsening",
+      "latest_actual_value": 0.3976330812022109,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4094543531150965
     },
-    "risk_score_forecast_2030": 0.4017279341992759,
-    "risk_score_forecast_2040": 0.4094543531150965,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -8628,12 +8628,12 @@
     "country": "MNG",
     "country_name": "Mongolia",
     "trend": {
-      "slope_per_year": -0.001989602158075655,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0002494693600394775,
+      "direction": "worsening",
+      "latest_actual_value": 0.3997644838380378,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4040054629587089
     },
-    "risk_score_forecast_2030": 0.4003778155533987,
-    "risk_score_forecast_2040": 0.4040054629587089,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -8703,12 +8703,12 @@
     "country": "MOZ",
     "country_name": "Mozambique",
     "trend": {
-      "slope_per_year": -0.0007890428351366497,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0004563428381240882,
+      "direction": "worsening",
+      "latest_actual_value": 0.4519183234671099,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4596761517152194
     },
-    "risk_score_forecast_2030": 0.456293157938323,
-    "risk_score_forecast_2040": 0.4596761517152194,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -8778,12 +8778,12 @@
     "country": "MRT",
     "country_name": "Mauritania",
     "trend": {
-      "slope_per_year": -0.0005094606703545597,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00044403365874976116,
+      "direction": "improving",
+      "latest_actual_value": 0.5245754295320593,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5170268573333133
     },
-    "risk_score_forecast_2030": 0.5180699665933345,
-    "risk_score_forecast_2040": 0.5170268573333133,
     "strongest_indicators": [
       {
         "name": "Exposure",
@@ -8853,12 +8853,12 @@
     "country": "MUS",
     "country_name": "Mauritius",
     "trend": {
-      "slope_per_year": 0.0006896755029776507,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": 1.4767494618421881e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.4500200028309676,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4502710502394808
     },
-    "risk_score_forecast_2030": 0.4500195142771162,
-    "risk_score_forecast_2040": 0.4502710502394808,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -8928,12 +8928,12 @@
     "country": "MWI",
     "country_name": "Malawi",
     "trend": {
-      "slope_per_year": -0.0022651286300613537,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.001105973482816586,
+      "direction": "worsening",
+      "latest_actual_value": 0.4780658059070895,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4968673551149715
     },
-    "risk_score_forecast_2030": 0.4850825816324148,
-    "risk_score_forecast_2040": 0.4968673551149715,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9003,12 +9003,12 @@
     "country": "MYS",
     "country_name": "Malaysia",
     "trend": {
-      "slope_per_year": 0.00013928925314241948,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00019515225542239475,
+      "direction": "improving",
+      "latest_actual_value": 0.4018162909449377,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.398498702602757
     },
-    "risk_score_forecast_2030": 0.3997102399903484,
-    "risk_score_forecast_2040": 0.398498702602757,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -9078,12 +9078,12 @@
     "country": "NAM",
     "country_name": "Namibia",
     "trend": {
-      "slope_per_year": -0.0014225425015165377,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0009906586122775428,
+      "direction": "worsening",
+      "latest_actual_value": 0.4466279499636679,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4634691463723861
     },
-    "risk_score_forecast_2030": 0.4582867188483984,
-    "risk_score_forecast_2040": 0.4634691463723861,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9153,12 +9153,12 @@
     "country": "NER",
     "country_name": "Niger",
     "trend": {
-      "slope_per_year": 0.00016473963107618646,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.000406279095633824,
+      "direction": "improving",
+      "latest_actual_value": 0.5749188030964538,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5680120584706788
     },
-    "risk_score_forecast_2030": 0.5696831424296187,
-    "risk_score_forecast_2040": 0.5680120584706788,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9228,12 +9228,12 @@
     "country": "NGA",
     "country_name": "Nigeria",
     "trend": {
-      "slope_per_year": -0.0020549053222252284,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0013188183674625402,
+      "direction": "worsening",
+      "latest_actual_value": 0.4420516560085726,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4644715682554358
     },
-    "risk_score_forecast_2030": 0.4579333406083415,
-    "risk_score_forecast_2040": 0.4644715682554358,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9303,12 +9303,12 @@
     "country": "NIC",
     "country_name": "Nicaragua",
     "trend": {
-      "slope_per_year": -0.0016599112268465763,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0015586194541291,
+      "direction": "worsening",
+      "latest_actual_value": 0.4070852588881872,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4335817896083819
     },
-    "risk_score_forecast_2030": 0.4239126003129851,
-    "risk_score_forecast_2040": 0.4335817896083819,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -9378,12 +9378,12 @@
     "country": "NLD",
     "country_name": "Netherlands",
     "trend": {
-      "slope_per_year": 0.0011614008564659148,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0003779146149049656,
+      "direction": "improving",
+      "latest_actual_value": 0.4092767182447261,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4028521697913417
     },
-    "risk_score_forecast_2030": 0.4062617625842871,
-    "risk_score_forecast_2040": 0.4028521697913417,
     "strongest_indicators": [
       {
         "name": "Food",
@@ -9453,12 +9453,12 @@
     "country": "NOR",
     "country_name": "Norway",
     "trend": {
-      "slope_per_year": 0.0010227621261310125,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00045256194020960465,
+      "direction": "improving",
+      "latest_actual_value": 0.3969996707289944,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3893061177454311
     },
-    "risk_score_forecast_2030": 0.3924072611406793,
-    "risk_score_forecast_2040": 0.3893061177454311,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -9528,12 +9528,12 @@
     "country": "NPL",
     "country_name": "Nepal",
     "trend": {
-      "slope_per_year": -0.002154848227762604,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006430916254555999,
+      "direction": "worsening",
+      "latest_actual_value": 0.4715649399809991,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4824974976137443
     },
-    "risk_score_forecast_2030": 0.4789784656157865,
-    "risk_score_forecast_2040": 0.4824974976137443,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9603,12 +9603,12 @@
     "country": "NZL",
     "country_name": "New Zealand",
     "trend": {
-      "slope_per_year": 0.00019327559508027948,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.0004451356774319162,
+      "direction": "worsening",
+      "latest_actual_value": 0.4064677160644265,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4140350225807691
     },
-    "risk_score_forecast_2030": 0.4125786564290605,
-    "risk_score_forecast_2040": 0.4140350225807691,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -9678,12 +9678,12 @@
     "country": "OMN",
     "country_name": "Oman",
     "trend": {
-      "slope_per_year": 0.00040114596811809345,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00020108457984124208,
+      "direction": "improving",
+      "latest_actual_value": 0.4526982393278922,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4492798014705911
     },
-    "risk_score_forecast_2030": 0.4536078432096728,
-    "risk_score_forecast_2040": 0.4492798014705911,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9753,12 +9753,12 @@
     "country": "PAK",
     "country_name": "Pakistan",
     "trend": {
-      "slope_per_year": -0.001404472912199753,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0008141344767268596,
+      "direction": "worsening",
+      "latest_actual_value": 0.4700631113038447,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4839033974082013
     },
-    "risk_score_forecast_2030": 0.4797229212078772,
-    "risk_score_forecast_2040": 0.4839033974082013,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9828,12 +9828,12 @@
     "country": "PAN",
     "country_name": "Panama",
     "trend": {
-      "slope_per_year": -0.0005888149486394926,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0004193142147625026,
+      "direction": "worsening",
+      "latest_actual_value": 0.3906583719779347,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3977867136288972
     },
-    "risk_score_forecast_2030": 0.3945163782694049,
-    "risk_score_forecast_2040": 0.3977867136288972,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -9903,12 +9903,12 @@
     "country": "PER",
     "country_name": "Peru",
     "trend": {
-      "slope_per_year": -0.0011037942931139578,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00042261066828741534,
+      "direction": "worsening",
+      "latest_actual_value": 0.4062894704261236,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4134738517870097
     },
-    "risk_score_forecast_2030": 0.4105940018074815,
-    "risk_score_forecast_2040": 0.4134738517870097,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -9978,12 +9978,12 @@
     "country": "PHL",
     "country_name": "Philippines",
     "trend": {
-      "slope_per_year": -0.0010475336680269207,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0008522072005297957,
+      "direction": "worsening",
+      "latest_actual_value": 0.4154432405118781,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4299307629208846
     },
-    "risk_score_forecast_2030": 0.4239611692033644,
-    "risk_score_forecast_2040": 0.4299307629208846,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10053,12 +10053,12 @@
     "country": "PLW",
     "country_name": "Palau",
     "trend": {
-      "slope_per_year": -4.4451202176604666e-05,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00026932173736939313,
+      "direction": "improving",
+      "latest_actual_value": 0.4612410278259197,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.45666255829064
     },
-    "risk_score_forecast_2030": 0.4559698144743325,
-    "risk_score_forecast_2040": 0.45666255829064,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -10128,12 +10128,12 @@
     "country": "PNG",
     "country_name": "Papua New Guinea",
     "trend": {
-      "slope_per_year": 0.0001759661695404665,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00033764006880114306,
+      "direction": "improving",
+      "latest_actual_value": 0.506190066710637,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5004501855410176
     },
-    "risk_score_forecast_2030": 0.5007397365486036,
-    "risk_score_forecast_2040": 0.5004501855410176,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -10203,12 +10203,12 @@
     "country": "POL",
     "country_name": "Poland",
     "trend": {
-      "slope_per_year": 0.0007422830353377306,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00022103589927253566,
+      "direction": "improving",
+      "latest_actual_value": 0.3600282386930862,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3562706284054531
     },
-    "risk_score_forecast_2030": 0.3573171934715047,
-    "risk_score_forecast_2040": 0.3562706284054531,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10278,12 +10278,12 @@
     "country": "PRK",
     "country_name": "Korea, Democratic People's Republic",
     "trend": {
-      "slope_per_year": -0.0013675742691936386,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005253447350432055,
+      "direction": "worsening",
+      "latest_actual_value": 0.4434691344975787,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4523999949933132
     },
-    "risk_score_forecast_2030": 0.4503133910984581,
-    "risk_score_forecast_2040": 0.4523999949933132,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10353,12 +10353,12 @@
     "country": "PRT",
     "country_name": "Portugal",
     "trend": {
-      "slope_per_year": 6.170913285888901e-06,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.00039210953321603667,
+      "direction": "worsening",
+      "latest_actual_value": 0.375915301003961,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3825811630686336
     },
-    "risk_score_forecast_2030": 0.3768663351408274,
-    "risk_score_forecast_2040": 0.3825811630686336,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -10428,12 +10428,12 @@
     "country": "PRY",
     "country_name": "Paraguay",
     "trend": {
-      "slope_per_year": -0.00023411349266167116,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00012285233825644256,
+      "direction": "worsening",
+      "latest_actual_value": 0.3643745694042696,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3664630591546291
     },
-    "risk_score_forecast_2030": 0.3647439611339441,
-    "risk_score_forecast_2040": 0.3664630591546291,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10503,12 +10503,12 @@
     "country": "QAT",
     "country_name": "Qatar",
     "trend": {
-      "slope_per_year": 0.0008373293985895652,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00023891960079183542,
+      "direction": "improving",
+      "latest_actual_value": 0.3947675738713461,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3907059406578849
     },
-    "risk_score_forecast_2030": 0.3892171756779756,
-    "risk_score_forecast_2040": 0.3907059406578849,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -10578,12 +10578,12 @@
     "country": "ROU",
     "country_name": "Romania",
     "trend": {
-      "slope_per_year": -0.00048528448466565515,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -6.723765884068566e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.4172870772383034,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4161440370380117
     },
-    "risk_score_forecast_2030": 0.4151734272057905,
-    "risk_score_forecast_2040": 0.4161440370380117,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -10653,12 +10653,12 @@
     "country": "RUS",
     "country_name": "Russian Federation",
     "trend": {
-      "slope_per_year": 0.00047790248688382866,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": 4.500818176151758e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.3662711358597992,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.367036274949745
     },
-    "risk_score_forecast_2030": 0.366912978123472,
-    "risk_score_forecast_2040": 0.367036274949745,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10728,12 +10728,12 @@
     "country": "RWA",
     "country_name": "Rwanda",
     "trend": {
-      "slope_per_year": 0.00026380472088319805,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.00013564903753507222,
+      "direction": "worsening",
+      "latest_actual_value": 0.532387317753452,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5346933513915483
     },
-    "risk_score_forecast_2030": 0.5277188662137018,
-    "risk_score_forecast_2040": 0.5346933513915483,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10803,12 +10803,12 @@
     "country": "SAU",
     "country_name": "Saudi Arabia",
     "trend": {
-      "slope_per_year": 0.0015995961176750778,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0008493910642973649,
+      "direction": "improving",
+      "latest_actual_value": 0.4586563015308114,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4442166534377562
     },
-    "risk_score_forecast_2030": 0.4524582668952416,
-    "risk_score_forecast_2040": 0.4442166534377562,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10878,12 +10878,12 @@
     "country": "SDN",
     "country_name": "Sudan",
     "trend": {
-      "slope_per_year": -0.0007549765278454051,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00021533941529300652,
+      "direction": "worsening",
+      "latest_actual_value": 0.5340275057000154,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5376882757599966
     },
-    "risk_score_forecast_2030": 0.534927785696527,
-    "risk_score_forecast_2040": 0.5376882757599966,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -10953,12 +10953,12 @@
     "country": "SEN",
     "country_name": "Senegal",
     "trend": {
-      "slope_per_year": -0.00046397087340397606,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00019494061663737807,
+      "direction": "improving",
+      "latest_actual_value": 0.5056417355239591,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5023277450411237
     },
-    "risk_score_forecast_2030": 0.5030828423176956,
-    "risk_score_forecast_2040": 0.5023277450411237,
     "strongest_indicators": [
       {
         "name": "Ecosystems",
@@ -11028,12 +11028,12 @@
     "country": "SGP",
     "country_name": "Singapore",
     "trend": {
-      "slope_per_year": 0.002022362644301308,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0004558122503083132,
+      "direction": "improving",
+      "latest_actual_value": 0.47755487093045,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4698060626752087
     },
-    "risk_score_forecast_2030": 0.4744397821201884,
-    "risk_score_forecast_2040": 0.4698060626752087,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -11103,12 +11103,12 @@
     "country": "SLB",
     "country_name": "Solomon Islands",
     "trend": {
-      "slope_per_year": 1.69991989512188e-05,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -6.284910499103755e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.5383654821267685,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5372970473419209
     },
-    "risk_score_forecast_2030": 0.540437850289192,
-    "risk_score_forecast_2040": 0.5372970473419209,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -11178,12 +11178,12 @@
     "country": "SLE",
     "country_name": "Sierra Leone",
     "trend": {
-      "slope_per_year": -0.0002657750511956243,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -7.402683104695829e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.5120848323508451,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5108263762230468
     },
-    "risk_score_forecast_2030": 0.5107140630162215,
-    "risk_score_forecast_2040": 0.5108263762230468,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -11253,12 +11253,12 @@
     "country": "SLV",
     "country_name": "El Salvador",
     "trend": {
-      "slope_per_year": -0.00038508836901162,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00012459124334244167,
+      "direction": "worsening",
+      "latest_actual_value": 0.4100277691901698,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4121458203269913
     },
-    "risk_score_forecast_2030": 0.4113379438400397,
-    "risk_score_forecast_2040": 0.4121458203269913,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -11328,12 +11328,12 @@
     "country": "SOM",
     "country_name": "Somalia",
     "trend": {
-      "slope_per_year": -0.00014978014786892112,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0001641349361727525,
+      "direction": "worsening",
+      "latest_actual_value": 0.5754005508725962,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.578190844787533
     },
-    "risk_score_forecast_2030": 0.5780934793077918,
-    "risk_score_forecast_2040": 0.578190844787533,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -11403,12 +11403,12 @@
     "country": "SRB",
     "country_name": "Serbia",
     "trend": {
-      "slope_per_year": 0.0009244392399093049,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0006074613744555176,
+      "direction": "improving",
+      "latest_actual_value": 0.4229307979760461,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4126039546103023
     },
-    "risk_score_forecast_2030": 0.415730120142764,
-    "risk_score_forecast_2040": 0.4126039546103023,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -11478,12 +11478,12 @@
     "country": "STP",
     "country_name": "Sao Tome and Principe",
     "trend": {
-      "slope_per_year": -0.000355811376455146,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00018024900215863436,
+      "direction": "improving",
+      "latest_actual_value": 0.498238159470706,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4951739264340092
     },
-    "risk_score_forecast_2030": 0.4968396504511643,
-    "risk_score_forecast_2040": 0.4951739264340092,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -11553,12 +11553,12 @@
     "country": "SUR",
     "country_name": "Suriname",
     "trend": {
-      "slope_per_year": -0.0014637616776459125,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006447863654223248,
+      "direction": "worsening",
+      "latest_actual_value": 0.3923203315185862,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4032816997307657
     },
-    "risk_score_forecast_2030": 0.3990673816749949,
-    "risk_score_forecast_2040": 0.4032816997307657,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -11628,12 +11628,12 @@
     "country": "SVK",
     "country_name": "Slovakia",
     "trend": {
-      "slope_per_year": 0.00036062330901413326,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00019808793577440607,
+      "direction": "improving",
+      "latest_actual_value": 0.3903928590059882,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3870253640978233
     },
-    "risk_score_forecast_2030": 0.3879467499950315,
-    "risk_score_forecast_2040": 0.3870253640978233,
     "strongest_indicators": [
       {
         "name": "Ecosystems",
@@ -11703,12 +11703,12 @@
     "country": "SVN",
     "country_name": "Slovenia",
     "trend": {
-      "slope_per_year": -0.00013103431143390187,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0002732902777924471,
+      "direction": "worsening",
+      "latest_actual_value": 0.3820906594164371,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3867365941389087
     },
-    "risk_score_forecast_2030": 0.3829063622475365,
-    "risk_score_forecast_2040": 0.3867365941389087,
     "strongest_indicators": [
       {
         "name": "Health",
@@ -11778,12 +11778,12 @@
     "country": "SWE",
     "country_name": "Sweden",
     "trend": {
-      "slope_per_year": 0.0010108780826759971,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00033503220192635126,
+      "direction": "improving",
+      "latest_actual_value": 0.423190167497099,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.417494620064351
     },
-    "risk_score_forecast_2030": 0.4218757952380403,
-    "risk_score_forecast_2040": 0.417494620064351,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -11853,12 +11853,12 @@
     "country": "SWZ",
     "country_name": "Swaziland",
     "trend": {
-      "slope_per_year": -0.0021205291536146495,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0011014996013409828,
+      "direction": "worsening",
+      "latest_actual_value": 0.4298368250686036,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4485623182914003
     },
-    "risk_score_forecast_2030": 0.4406237798710273,
-    "risk_score_forecast_2040": 0.4485623182914003,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -11928,12 +11928,12 @@
     "country": "SYC",
     "country_name": "Seychelles",
     "trend": {
-      "slope_per_year": 0.0001349489902901806,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0002723176374307249,
+      "direction": "improving",
+      "latest_actual_value": 0.4623920359600206,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4577626361236983
     },
-    "risk_score_forecast_2030": 0.457685217217243,
-    "risk_score_forecast_2040": 0.4577626361236983,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -12003,12 +12003,12 @@
     "country": "SYR",
     "country_name": "Syrian Arab Republic",
     "trend": {
-      "slope_per_year": 0.0005122583852396606,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0008370311108157074,
+      "direction": "improving",
+      "latest_actual_value": 0.4340749878307905,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4198454589469235
     },
-    "risk_score_forecast_2030": 0.4249263177108449,
-    "risk_score_forecast_2040": 0.4198454589469235,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12078,12 +12078,12 @@
     "country": "TCD",
     "country_name": "Chad",
     "trend": {
-      "slope_per_year": -0.0009745886642350469,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0002177322302173712,
+      "direction": "worsening",
+      "latest_actual_value": 0.5117180982129339,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5154195461266292
     },
-    "risk_score_forecast_2030": 0.5123647783892998,
-    "risk_score_forecast_2040": 0.5154195461266292,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12153,12 +12153,12 @@
     "country": "TGO",
     "country_name": "Togo",
     "trend": {
-      "slope_per_year": -0.0004739218184212466,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.0007227430275304546,
+      "direction": "improving",
+      "latest_actual_value": 0.4832750600822076,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4709884286141899
     },
-    "risk_score_forecast_2030": 0.4727138136893181,
-    "risk_score_forecast_2040": 0.4709884286141899,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12228,12 +12228,12 @@
     "country": "THA",
     "country_name": "Thailand",
     "trend": {
-      "slope_per_year": 0.0004481418844925339,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": 1.0515725916978644e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.4343807354316265,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4345595027722151
     },
-    "risk_score_forecast_2030": 0.4357913395837223,
-    "risk_score_forecast_2040": 0.4345595027722151,
     "strongest_indicators": [
       {
         "name": "Habitat",
@@ -12303,12 +12303,12 @@
     "country": "TJK",
     "country_name": "Tajikistan",
     "trend": {
-      "slope_per_year": -0.0016612172250997407,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0007158775744632633,
+      "direction": "worsening",
+      "latest_actual_value": 0.36070521482894,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3728751335948155
     },
-    "risk_score_forecast_2030": 0.3681216170540108,
-    "risk_score_forecast_2040": 0.3728751335948155,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12378,12 +12378,12 @@
     "country": "TKM",
     "country_name": "Turkmenistan",
     "trend": {
-      "slope_per_year": -0.0006201862760849057,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0001811290437977061,
+      "direction": "worsening",
+      "latest_actual_value": 0.3533914085082583,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3564706022528193
     },
-    "risk_score_forecast_2030": 0.3563057185363807,
-    "risk_score_forecast_2040": 0.3564706022528193,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12453,12 +12453,12 @@
     "country": "TLS",
     "country_name": "Timor-Leste",
     "trend": {
-      "slope_per_year": 0.00020129300112279095,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.0003389599337538469,
+      "direction": "worsening",
+      "latest_actual_value": 0.4904872990626843,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4962496179364997
     },
-    "risk_score_forecast_2030": 0.4956682241413998,
-    "risk_score_forecast_2040": 0.4962496179364997,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -12528,12 +12528,12 @@
     "country": "TON",
     "country_name": "Tonga",
     "trend": {
-      "slope_per_year": 0.0015040806145936835,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00029576664901365774,
+      "direction": "improving",
+      "latest_actual_value": 0.5294850730584025,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5244570400251704
     },
-    "risk_score_forecast_2030": 0.5301218606417204,
-    "risk_score_forecast_2040": 0.5244570400251704,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -12603,12 +12603,12 @@
     "country": "TTO",
     "country_name": "Trinidad and Tobago",
     "trend": {
-      "slope_per_year": -0.0017535960279365815,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005658306550127131,
+      "direction": "worsening",
+      "latest_actual_value": 0.3684069837287528,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3780261048639689
     },
-    "risk_score_forecast_2030": 0.3736106091488677,
-    "risk_score_forecast_2040": 0.3780261048639689,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12678,12 +12678,12 @@
     "country": "TUN",
     "country_name": "Tunisia",
     "trend": {
-      "slope_per_year": 0.0008378672614821984,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0001422524896621078,
+      "direction": "improving",
+      "latest_actual_value": 0.3891892491778812,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3867709568536254
     },
-    "risk_score_forecast_2030": 0.3900524406155007,
-    "risk_score_forecast_2040": 0.3867709568536254,
     "strongest_indicators": [
       {
         "name": "Exposure",
@@ -12753,12 +12753,12 @@
     "country": "TUR",
     "country_name": "Turkey",
     "trend": {
-      "slope_per_year": 0.00013319653646477734,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.0007348888155851637,
+      "direction": "worsening",
+      "latest_actual_value": 0.3955078099217988,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4080009197867466
     },
-    "risk_score_forecast_2030": 0.4017723188503154,
-    "risk_score_forecast_2040": 0.4080009197867466,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -12828,12 +12828,12 @@
     "country": "TZA",
     "country_name": "Tanzania, United Republic of",
     "trend": {
-      "slope_per_year": -0.0014943424369858222,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0002963148465765965,
+      "direction": "worsening",
+      "latest_actual_value": 0.4852565454235764,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4902938978153785
     },
-    "risk_score_forecast_2030": 0.4868192226536879,
-    "risk_score_forecast_2040": 0.4902938978153785,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12903,12 +12903,12 @@
     "country": "UGA",
     "country_name": "Uganda",
     "trend": {
-      "slope_per_year": -0.0015733901145515634,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0006195366566346182,
+      "direction": "worsening",
+      "latest_actual_value": 0.4843843339316728,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4949164570944613
     },
-    "risk_score_forecast_2030": 0.4920178136518994,
-    "risk_score_forecast_2040": 0.4949164570944613,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -12978,12 +12978,12 @@
     "country": "UKR",
     "country_name": "Ukraine",
     "trend": {
-      "slope_per_year": -0.0007436534039511984,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.00046794324448735854,
+      "direction": "improving",
+      "latest_actual_value": 0.3768759422297485,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3689209070734634
     },
-    "risk_score_forecast_2030": 0.3679821507550754,
-    "risk_score_forecast_2040": 0.3689209070734634,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -13053,12 +13053,12 @@
     "country": "URY",
     "country_name": "Uruguay",
     "trend": {
-      "slope_per_year": -6.034026481583373e-06,
-      "significant": false,
-      "direction": "improving"
+      "forecast_slope_per_year": -0.000230942537914029,
+      "direction": "improving",
+      "latest_actual_value": 0.4246179648280024,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4206919416834639
     },
-    "risk_score_forecast_2030": 0.4212014332651071,
-    "risk_score_forecast_2040": 0.4206919416834639,
     "strongest_indicators": [
       {
         "name": "Governance",
@@ -13128,12 +13128,12 @@
     "country": "USA",
     "country_name": "United States",
     "trend": {
-      "slope_per_year": 9.70153750239478e-05,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.0002511563476918336,
+      "direction": "worsening",
+      "latest_actual_value": 0.3983263141382543,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4025959720490155
     },
-    "risk_score_forecast_2030": 0.4014801250564345,
-    "risk_score_forecast_2040": 0.4025959720490155,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -13203,12 +13203,12 @@
     "country": "UZB",
     "country_name": "Uzbekistan",
     "trend": {
-      "slope_per_year": 0.0003011565367962684,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.001131553075343683,
+      "direction": "improving",
+      "latest_actual_value": 0.3733420876613192,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3541056853804766
     },
-    "risk_score_forecast_2030": 0.3618459370551816,
-    "risk_score_forecast_2040": 0.3541056853804766,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -13278,12 +13278,12 @@
     "country": "VCT",
     "country_name": "Saint Vincent and the Grenadines",
     "trend": {
-      "slope_per_year": 0.0006004656000403221,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": 0.0003331511179083845,
+      "direction": "worsening",
+      "latest_actual_value": 0.4450709136348914,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4507344826393339
     },
-    "risk_score_forecast_2030": 0.4510062326346367,
-    "risk_score_forecast_2040": 0.4507344826393339,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -13353,12 +13353,12 @@
     "country": "VEN",
     "country_name": "Venezuela, Bolivarian Republic of",
     "trend": {
-      "slope_per_year": -0.000982811298471981,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0004156087470906527,
+      "direction": "worsening",
+      "latest_actual_value": 0.3437704060469352,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.3508357547474763
     },
-    "risk_score_forecast_2030": 0.3476214118889967,
-    "risk_score_forecast_2040": 0.3508357547474763,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -13428,12 +13428,12 @@
     "country": "VNM",
     "country_name": "Viet Nam",
     "trend": {
-      "slope_per_year": -0.0012111410438470477,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 8.75628666544657e-05,
+      "direction": "worsening",
+      "latest_actual_value": 0.441044734215295,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4425333029484209
     },
-    "risk_score_forecast_2030": 0.4408224749303323,
-    "risk_score_forecast_2040": 0.4425333029484209,
     "strongest_indicators": [
       {
         "name": "Sensitivity",
@@ -13503,12 +13503,12 @@
     "country": "VUT",
     "country_name": "Vanuatu",
     "trend": {
-      "slope_per_year": -0.0005086987728510936,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.00041748427179408786,
+      "direction": "worsening",
+      "latest_actual_value": 0.4967084327917723,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.5038056654122718
     },
-    "risk_score_forecast_2030": 0.5007873712568881,
-    "risk_score_forecast_2040": 0.5038056654122718,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -13578,12 +13578,12 @@
     "country": "WSM",
     "country_name": "Samoa",
     "trend": {
-      "slope_per_year": 0.0016036308851593696,
-      "significant": true,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.0009001926444980421,
+      "direction": "improving",
+      "latest_actual_value": 0.4967177647056986,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4814144897492319
     },
-    "risk_score_forecast_2030": 0.4858556606534097,
-    "risk_score_forecast_2040": 0.4814144897492319,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -13653,12 +13653,12 @@
     "country": "YEM",
     "country_name": "Yemen",
     "trend": {
-      "slope_per_year": -0.00045171513406238494,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": -4.7199825102040016e-05,
+      "direction": "improving",
+      "latest_actual_value": 0.498700583721655,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4978981866949203
     },
-    "risk_score_forecast_2030": 0.4976006217447213,
-    "risk_score_forecast_2040": 0.4978981866949203,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -13728,12 +13728,12 @@
     "country": "ZAF",
     "country_name": "South Africa",
     "trend": {
-      "slope_per_year": -0.0012286658967686503,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0005070837343689934,
+      "direction": "worsening",
+      "latest_actual_value": 0.3949440729169673,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4035644964012402
     },
-    "risk_score_forecast_2030": 0.3998340964464756,
-    "risk_score_forecast_2040": 0.4035644964012402,
     "strongest_indicators": [
       {
         "name": "Infrastructure",
@@ -13803,12 +13803,12 @@
     "country": "ZMB",
     "country_name": "Zambia",
     "trend": {
-      "slope_per_year": 3.885637324446853e-06,
-      "significant": false,
-      "direction": "worsening"
+      "forecast_slope_per_year": -0.00013601519016961122,
+      "direction": "improving",
+      "latest_actual_value": 0.4622045556952708,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.4598922974623874
     },
-    "risk_score_forecast_2030": 0.4593725251744791,
-    "risk_score_forecast_2040": 0.4598922974623874,
     "strongest_indicators": [
       {
         "name": "Water",
@@ -13878,12 +13878,12 @@
     "country": "ZWE",
     "country_name": "Zimbabwe",
     "trend": {
-      "slope_per_year": -0.0009843482519756338,
-      "significant": true,
-      "direction": "improving"
+      "forecast_slope_per_year": 0.0004923708402893121,
+      "direction": "worsening",
+      "latest_actual_value": 0.4397839188188837,
+      "latest_actual_year": 2023,
+      "forecast_2040_value": 0.448154223103802
     },
-    "risk_score_forecast_2030": 0.4444792111945558,
-    "risk_score_forecast_2040": 0.448154223103802,
     "strongest_indicators": [
       {
         "name": "Infrastructure",

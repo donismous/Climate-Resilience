@@ -58,28 +58,40 @@ def load_shap_data() -> dict | None:
 
 def generate_world_movers(long_df: pd.DataFrame, country_names: dict) -> dict:
     risk_actual = long_df[(long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "actual")]
+    risk_forecast = long_df[(long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "forecast")]
 
+    FORECAST_TARGET_YEAR = 2040
+
+    # Trend = projected rate of change from latest actual value to the
+    # forecast target year (not a historical regression -- forecast curves
+    # are deterministic, so a p-value test on them wouldn't mean much).
     trends = []
     for country in risk_actual["country"].unique():
-        sub = risk_actual[risk_actual["country"] == country].sort_values("year")
-        if len(sub) < 4:
+        sub_actual = risk_actual[risk_actual["country"] == country].sort_values("year")
+        if sub_actual.empty:
             continue
-        slope, intercept, r_value, p_value, std_err = linregress(
-            sub["year"].values.astype(float), sub["value"].values.astype(float)
-        )
+        latest_year = sub_actual["year"].max()
+        latest_value = float(sub_actual[sub_actual["year"] == latest_year]["value"].iloc[0])
+
+        forecast_row = risk_forecast[
+            (risk_forecast["country"] == country) & (risk_forecast["year"] == FORECAST_TARGET_YEAR)
+        ]
+        if forecast_row.empty or FORECAST_TARGET_YEAR <= latest_year:
+            continue
+        forecast_value = float(forecast_row["value"].iloc[0])
+
+        forecast_slope = (forecast_value - latest_value) / (FORECAST_TARGET_YEAR - latest_year)
         trends.append({
             "country": country,
             "country_name": country_names.get(country),
-            "slope_per_year": float(slope),
-            "significant": bool(p_value < 0.05),
-            "direction": "improving" if slope < 0 else "worsening",
+            "forecast_slope_per_year": forecast_slope,
+            "direction": "improving" if forecast_slope < 0 else "worsening",
         })
 
-    significant_trends = [t for t in trends if t["significant"]]
-    trends_sorted = sorted(significant_trends, key=lambda t: t["slope_per_year"])
+    trends_sorted = sorted(trends, key=lambda t: t["forecast_slope_per_year"])
     improved = trends_sorted[:TOP_N]
     worsened = list(reversed(trends_sorted[-TOP_N:]))
-    global_mean_slope = float(np.mean([t["slope_per_year"] for t in significant_trends])) if significant_trends else None
+    global_mean_slope = float(np.mean([t["forecast_slope_per_year"] for t in trends])) if trends else None
 
     latest_year = risk_actual["year"].max()
     latest = risk_actual[risk_actual["year"] == latest_year][["country", "value"]].sort_values("value")
@@ -93,11 +105,38 @@ def generate_world_movers(long_df: pd.DataFrame, country_names: dict) -> dict:
         for _, row in latest.tail(TOP_N).iloc[::-1].iterrows()
     ]
 
+    # Global average per indicator (latest actual year), to surface which
+    # factors tend to be strongest/weakest across all countries.
+    all_indicators = READINESS_INDICATORS + VULNERABILITY_INDICATORS
+    indicator_averages = []
+    for name in all_indicators:
+        is_readiness = name in READINESS_INDICATORS
+        rows = long_df[
+            (long_df["indicator"] == name) & (long_df["year"] == latest_year) & (long_df["source"] == "actual")
+        ]
+        if rows.empty:
+            continue
+        mean_value = float(rows["value"].mean())
+        favorable_score = mean_value if is_readiness else 1 - mean_value
+        indicator_averages.append({
+            "name": name,
+            "category": "readiness" if is_readiness else "vulnerability",
+            "global_mean_value": mean_value,
+            "favorable_score": favorable_score,
+        })
+
+    indicator_averages.sort(key=lambda i: i["favorable_score"], reverse=True)
+    best_indicators_global = indicator_averages[:3]
+    worst_indicators_global = indicator_averages[-3:]
+
     return {
         "improved": improved,
         "worsened": worsened,
         "best_current": best_current,
         "worst_current": worst_current,
+        "best_indicators_global": best_indicators_global,
+        "worst_indicators_global": worst_indicators_global,
+        "forecast_target_year": FORECAST_TARGET_YEAR,
         "global_mean_slope": global_mean_slope,
         "global_direction": "improving" if (global_mean_slope or 0) < 0 else "worsening",
     }
@@ -108,24 +147,33 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
     local_shap = shap_data["local_shap"] if shap_data else {}
     importance_order = sorted(global_importance, key=global_importance.get, reverse=True) if global_importance else []
 
+    FORECAST_TARGET_YEAR = 2040
+
     details = {}
     for country in long_df["country"].unique():
         country_df = long_df[long_df["country"] == country]
         risk_rows = country_df[(country_df["indicator"] == COMPOSITE_LABEL) & (country_df["source"] == "actual")]
-        if risk_rows.empty or len(risk_rows) < 4:
+        if risk_rows.empty:
             continue
         risk_rows = risk_rows.sort_values("year")
 
-        slope, intercept, r_value, p_value, std_err = linregress(
-            risk_rows["year"].values.astype(float), risk_rows["value"].values.astype(float)
-        )
+        latest_year = risk_rows["year"].max()
+        latest_actual_value = float(risk_rows[risk_rows["year"] == latest_year]["value"].iloc[0])
+
+        forecast_target_value = get_indicator_forecast(country_df, country, COMPOSITE_LABEL, FORECAST_TARGET_YEAR)
+        if forecast_target_value is not None and FORECAST_TARGET_YEAR > latest_year:
+            forecast_slope = (forecast_target_value - latest_actual_value) / (FORECAST_TARGET_YEAR - latest_year)
+        else:
+            forecast_slope = None
+
         trend = {
-            "slope_per_year": float(slope),
-            "significant": bool(p_value < 0.05),
-            "direction": "improving" if slope < 0 else "worsening",
+            "forecast_slope_per_year": forecast_slope,
+            "direction": "improving" if (forecast_slope or 0) < 0 else "worsening",
+            "latest_actual_value": latest_actual_value,
+            "latest_actual_year": int(latest_year),
+            f"forecast_{FORECAST_TARGET_YEAR}_value": forecast_target_value,
         }
 
-        latest_year = risk_rows["year"].max()
         country_shap = local_shap.get(country, {})
 
         indicators = []
@@ -155,8 +203,6 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
             "country": country,
             "country_name": country_names.get(country),
             "trend": trend,
-            "risk_score_forecast_2030": get_indicator_forecast(country_df, country, COMPOSITE_LABEL, 2030),
-            "risk_score_forecast_2040": get_indicator_forecast(country_df, country, COMPOSITE_LABEL, 2040),
             "strongest_indicators": indicators[:3],
             "weakest_indicators": indicators[-3:],
         }

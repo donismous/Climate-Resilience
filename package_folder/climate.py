@@ -154,10 +154,12 @@ def get_global_movers(top_n: int = 5) -> dict:
         "worsened": data["worsened"][:top_n],
         "best_current": data["best_current"][:top_n],
         "worst_current": data["worst_current"][:top_n],
+        "best_indicators_global": data.get("best_indicators_global", []),
+        "worst_indicators_global": data.get("worst_indicators_global", []),
+        "forecast_target_year": data.get("forecast_target_year"),
         "global_mean_slope": data["global_mean_slope"],
         "global_direction": data["global_direction"],
     }
-
 
 def get_country_detail(country: str) -> dict:
     """Return precomputed detail for one country."""
