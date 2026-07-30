@@ -1,0 +1,252 @@
+{
+  "improved": [
+    {
+      "country": "BFA",
+      "country_name": "Burkina Faso",
+      "slope_per_year": -0.0026077019499070285,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "AFG",
+      "country_name": "Afghanistan",
+      "slope_per_year": -0.0022804864713031428,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "MWI",
+      "country_name": "Malawi",
+      "slope_per_year": -0.0022651286300613537,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "NPL",
+      "country_name": "Nepal",
+      "slope_per_year": -0.002154848227762604,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "SWZ",
+      "country_name": "Swaziland",
+      "slope_per_year": -0.0021205291536146495,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "GNB",
+      "country_name": "Guinea-Bissau",
+      "slope_per_year": -0.002061397182969628,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "NGA",
+      "country_name": "Nigeria",
+      "slope_per_year": -0.0020549053222252284,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "LAO",
+      "country_name": "Lao People's Democratic Republic",
+      "slope_per_year": -0.001990482501273384,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "MNG",
+      "country_name": "Mongolia",
+      "slope_per_year": -0.001989602158075655,
+      "significant": true,
+      "direction": "improving"
+    },
+    {
+      "country": "KHM",
+      "country_name": "Cambodia",
+      "slope_per_year": -0.0019532921118700147,
+      "significant": true,
+      "direction": "improving"
+    }
+  ],
+  "worsened": [
+    {
+      "country": "GEO",
+      "country_name": "Georgia",
+      "slope_per_year": 0.002629498334966676,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "SGP",
+      "country_name": "Singapore",
+      "slope_per_year": 0.002022362644301308,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "ARE",
+      "country_name": "United Arab Emirates",
+      "slope_per_year": 0.002012105194332802,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "EST",
+      "country_name": "Estonia",
+      "slope_per_year": 0.001882811508907279,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "WSM",
+      "country_name": "Samoa",
+      "slope_per_year": 0.0016036308851593696,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "SAU",
+      "country_name": "Saudi Arabia",
+      "slope_per_year": 0.0015995961176750778,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "BRB",
+      "country_name": "Barbados",
+      "slope_per_year": 0.0015481615608629656,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "TON",
+      "country_name": "Tonga",
+      "slope_per_year": 0.0015040806145936835,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "DNK",
+      "country_name": "Denmark",
+      "slope_per_year": 0.0014543271810184527,
+      "significant": true,
+      "direction": "worsening"
+    },
+    {
+      "country": "LUX",
+      "country_name": "Luxembourg",
+      "slope_per_year": 0.0013985240872080311,
+      "significant": true,
+      "direction": "worsening"
+    }
+  ],
+  "best_current": [
+    {
+      "country": "CZE",
+      "country_name": "Czech Republic",
+      "risk_score": 0.3342283356634224
+    },
+    {
+      "country": "KGZ",
+      "country_name": "Kyrgyzstan",
+      "risk_score": 0.334405443526552
+    },
+    {
+      "country": "MLT",
+      "country_name": "Malta",
+      "risk_score": 0.3362547408867369
+    },
+    {
+      "country": "VEN",
+      "country_name": "Venezuela, Bolivarian Republic of",
+      "risk_score": 0.3437704060469352
+    },
+    {
+      "country": "TKM",
+      "country_name": "Turkmenistan",
+      "risk_score": 0.3533914085082583
+    },
+    {
+      "country": "ISR",
+      "country_name": "Israel",
+      "risk_score": 0.353747548303052
+    },
+    {
+      "country": "ESP",
+      "country_name": "Spain",
+      "risk_score": 0.3542514541496817
+    },
+    {
+      "country": "BLR",
+      "country_name": "Belarus",
+      "risk_score": 0.3545385840693411
+    },
+    {
+      "country": "BIH",
+      "country_name": "Bosnia and Herzegovina",
+      "risk_score": 0.3575426406716303
+    },
+    {
+      "country": "POL",
+      "country_name": "Poland",
+      "risk_score": 0.3600282386930862
+    }
+  ],
+  "worst_current": [
+    {
+      "country": "SOM",
+      "country_name": "Somalia",
+      "risk_score": 0.5754005508725962
+    },
+    {
+      "country": "NER",
+      "country_name": "Niger",
+      "risk_score": 0.5749188030964538
+    },
+    {
+      "country": "SLB",
+      "country_name": "Solomon Islands",
+      "risk_score": 0.5383654821267685
+    },
+    {
+      "country": "BEN",
+      "country_name": "Benin",
+      "risk_score": 0.537341756012146
+    },
+    {
+      "country": "SDN",
+      "country_name": "Sudan",
+      "risk_score": 0.5340275057000154
+    },
+    {
+      "country": "RWA",
+      "country_name": "Rwanda",
+      "risk_score": 0.532387317753452
+    },
+    {
+      "country": "TON",
+      "country_name": "Tonga",
+      "risk_score": 0.5294850730584025
+    },
+    {
+      "country": "COD",
+      "country_name": "Congo, the Democratic Republic of",
+      "risk_score": 0.5249962209238779
+    },
+    {
+      "country": "MRT",
+      "country_name": "Mauritania",
+      "risk_score": 0.5245754295320593
+    },
+    {
+      "country": "GNB",
+      "country_name": "Guinea-Bissau",
+      "risk_score": 0.5146268696440506
+    }
+  ],
+  "global_mean_slope": -0.0004057640103359673,
+  "global_direction": "improving"
+}

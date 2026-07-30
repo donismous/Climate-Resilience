@@ -1,19 +1,14 @@
 import os
-import numpy as np
+import json
 import pandas as pd
 from functools import lru_cache
-from scipy.stats import linregress
 
 
 ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
 FORECAST_PATH = os.path.join(ROOT_PATH, "data", "outputs", "risk_score_with_forecast.csv")
-PROCESSED_DATA_PATH = os.path.join(ROOT_PATH, "data", "data_preprocessed", "processed_data.csv")
-
-READINESS_INDICATORS = ["Economic", "Governance", "Social"]
-VULNERABILITY_INDICATORS = [
-    "Exposure", "Sensitivity", "Capacity", "Food", "Water",
-    "Health", "Ecosystems", "Habitat", "Infrastructure",
-]
+LLM_CACHE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "llm_summaries_cache.csv")
+WORLD_MOVERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "world_movers.json")
+COUNTRY_DETAILS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_details.json")
 
 # Load country names
 COUNTRY_NAMES_PATH = os.path.join(ROOT_PATH, "config", "iso3_to_country_name.csv")
@@ -50,6 +45,22 @@ def _load_country_names() -> dict:
     names_df = pd.read_csv(COUNTRY_NAMES_PATH, sep=";", usecols=["ISO3", "Name"])
     return dict(zip(names_df["ISO3"], names_df["Name"]))
 
+
+@lru_cache(maxsize=1)
+def _load_llm_cache() -> pd.DataFrame:
+    """Load precomputed LLM summaries, or an empty frame if none exist yet."""
+    if not os.path.exists(LLM_CACHE_PATH):
+        return pd.DataFrame(columns=["scope", "summary"])
+    return pd.read_csv(LLM_CACHE_PATH)
+
+
+def get_cached_summary(scope: str) -> str | None:
+    """Look up a precomputed summary by scope ('world' or an ISO3 code)."""
+    df = _load_llm_cache()
+    match = df[df["scope"] == scope]
+    return None if match.empty else match.iloc[0]["summary"]
+
+
 def prediction_function(country: str, year: int) -> dict:
     """Look up the risk score for a country/year from the precomputed data.
 
@@ -84,6 +95,7 @@ def prediction_function(country: str, year: int) -> dict:
         "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
     }
 
+
 def all_predictions(year: int | None = None) -> list[dict]:
     """Return every country/year row from the precomputed data.
 
@@ -113,99 +125,44 @@ def all_predictions(year: int | None = None) -> list[dict]:
         })
     return records
 
-@lru_cache(maxsize=1)
-def _load_processed_data() -> pd.DataFrame:
-    """Load the real historical (non-forecast) preprocessed dataset."""
-    if not os.path.exists(PROCESSED_DATA_PATH):
-        raise FileNotFoundError(f"Processed data not found at {PROCESSED_DATA_PATH!r}.")
-    return pd.read_csv(PROCESSED_DATA_PATH)
 
-def _country_trend(df: pd.DataFrame, country: str) -> dict:
-    """Real historical trend for one country (not a forecast)."""
-    sub = df[df["Country"] == country].sort_values("Year")
-    slope, intercept, r_value, p_value, std_err = linregress(
-        sub["Year"].values.astype(float), sub["risk_score"].values.astype(float)
-    )
-    return {
-        "country": country,
-        "country_name": _load_country_names().get(country),
-        "slope_per_year": float(slope),
-        "significant": bool(p_value < 0.05),
-        "direction": "improving" if slope < 0 else "worsening",
-    }
+@lru_cache(maxsize=1)
+def _load_world_movers() -> dict:
+    if not os.path.exists(WORLD_MOVERS_PATH):
+        raise FileNotFoundError(
+            f"{WORLD_MOVERS_PATH!r} not found. Run `python model/generate_dashboard_data.py` first."
+        )
+    with open(WORLD_MOVERS_PATH) as f:
+        return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def _load_country_details() -> dict:
+    if not os.path.exists(COUNTRY_DETAILS_PATH):
+        raise FileNotFoundError(
+            f"{COUNTRY_DETAILS_PATH!r} not found. Run `python model/generate_dashboard_data.py` first."
+        )
+    with open(COUNTRY_DETAILS_PATH) as f:
+        return json.load(f)
+
 
 def get_global_movers(top_n: int = 5) -> dict:
-    """Countries that improved/worsened the most long-term, plus global trend.
-
-    Returns:
-        dict with ``improved`` (list of top_n dicts, most negative slope),
-        ``worsened`` (top_n dicts, most positive slope), and
-        ``global_mean_slope`` (float).
-    """
-    from model.composite_risk_score import compute_composite_risk
-
-    raw = _load_processed_data()
-    risk_df = compute_composite_risk(raw)
-
-    trends = [_country_trend(risk_df, c) for c in risk_df["Country"].unique()]
-    trends = [t for t in trends if t["significant"]]  # only real trends, not noise
-
-    trends_sorted = sorted(trends, key=lambda t: t["slope_per_year"])
-    improved = trends_sorted[:top_n]           # most negative slope = most improved
-    worsened = list(reversed(trends_sorted[-top_n:]))  # most positive slope = most worsened
-
-    global_mean_slope = float(np.mean([t["slope_per_year"] for t in trends]))
-
+    """Return precomputed global movers, sliced to top_n (precomputed with TOP_N=10)."""
+    data = _load_world_movers()
     return {
-        "improved": improved,
-        "worsened": worsened,
-        "global_mean_slope": global_mean_slope,
-        "global_direction": "improving" if global_mean_slope < 0 else "worsening",
+        "improved": data["improved"][:top_n],
+        "worsened": data["worsened"][:top_n],
+        "best_current": data["best_current"][:top_n],
+        "worst_current": data["worst_current"][:top_n],
+        "global_mean_slope": data["global_mean_slope"],
+        "global_direction": data["global_direction"],
     }
+
 
 def get_country_detail(country: str) -> dict:
-    """Country-specific trend + indicator breakdown.
-
-    Returns:
-        dict with ``trend`` (from _country_trend) and ``indicators``: a list
-        of {name, latest_value, category, is_favorable} sorted so the
-        strongest (most favorable) indicators come first.
-    """
-    from model.composite_risk_score import compute_composite_risk
-
-    raw = _load_processed_data()
-    risk_df = compute_composite_risk(raw)
-
+    """Return precomputed detail for one country."""
+    data = _load_country_details()
     country = country.upper()
-    sub = risk_df[risk_df["Country"] == country]
-    if sub.empty:
-        raise ValueError(f"No data for country={country!r}.")
-
-    trend = _country_trend(risk_df, country)
-    latest = sub.sort_values("Year").iloc[-1]
-
-    indicators = []
-    for name in READINESS_INDICATORS:
-        indicators.append({
-            "name": name,
-            "category": "readiness",
-            "latest_value": float(latest[name]),
-            "favorable_score": float(latest[name]),  # higher = better, use directly
-        })
-    for name in VULNERABILITY_INDICATORS:
-        indicators.append({
-            "name": name,
-            "category": "vulnerability",
-            "latest_value": float(latest[name]),
-            "favorable_score": 1 - float(latest[name]),  # invert: higher = better
-        })
-
-    indicators.sort(key=lambda i: i["favorable_score"], reverse=True)
-
-    return {
-        "country": country,
-        "country_name": _load_country_names().get(country),
-        "trend": trend,
-        "strongest_indicators": indicators[:3],
-        "weakest_indicators": indicators[-3:],
-    }
+    if country not in data:
+        raise ValueError(f"No detail for country={country!r}.")
+    return data[country]

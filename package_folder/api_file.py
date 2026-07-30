@@ -89,7 +89,8 @@ def predict_all(year: int | None = None):
     records = all_predictions(year)
     return {"count": len(records), "data": records}
 
-# LLM-powered endpoints
+# ------- LLM-powered endpoints -------
+
 class SummarizeRequest(BaseModel):
     countries: list[str] | None = None  # None = all countries
     year_min: int | None = None
@@ -165,17 +166,21 @@ def chat_message(request: ChatMessageRequest):
 
 @app.get("/world-summary")
 def world_summary(top_n: int = 5):
-    movers = get_global_movers(top_n=top_n)
-    return {"movers": movers, "summary": summarize_world_map(movers)}
+    movers = get_global_movers(top_n=top_n)  # unchanged, still computed live
+    cached = get_cached_summary("world")
+    summary = cached if cached is not None else summarize_world_map(movers)
+    return {"movers": movers, "summary": summary}
 
 
-@app.get("/country-detail/{country}")
 def country_detail(country: str):
     country = country.upper()
     if pycountry.countries.get(alpha_3=country) is None:
         raise HTTPException(status_code=422, detail=f"{country!r} is not a valid ISO3 country code.")
     try:
-        detail = get_country_detail(country)
+        detail = get_country_detail(country)  # unchanged, still computed live
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error))
-    return {"detail": detail, "summary": summarize_country_detail(detail)}
+
+    cached = get_cached_summary(country)
+    summary = cached if cached is not None else summarize_country_detail(detail)
+    return {"detail": detail, "summary": summary}
