@@ -44,7 +44,7 @@ def calculate_composite_metrics(forecast_df, df_original, weights):
         ~forecast_df["Indicator"].isin(calculated)
     ].copy()
 
-    # Exposure (constant across years)
+    # Exposure (constant after last observed year)
     last_year = forecast_df["Year"].max()
 
     exposure = (
