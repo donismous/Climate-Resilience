@@ -1,10 +1,14 @@
 import os
+import json
+import pandas as pd
 from functools import lru_cache
 
-import pandas as pd
 
 ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
 FORECAST_PATH = os.path.join(ROOT_PATH, "data", "outputs", "risk_score_with_forecast.csv")
+LLM_CACHE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "llm_summaries_cache.csv")
+WORLD_MOVERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "world_movers.json")
+COUNTRY_DETAILS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_details.json")
 
 # Load country names
 COUNTRY_NAMES_PATH = os.path.join(ROOT_PATH, "config", "iso3_to_country_name.csv")
@@ -41,6 +45,33 @@ def _load_country_names() -> dict:
     names_df = pd.read_csv(COUNTRY_NAMES_PATH, sep=";", usecols=["ISO3", "Name"])
     return dict(zip(names_df["ISO3"], names_df["Name"]))
 
+
+@lru_cache(maxsize=1)
+def _load_llm_cache() -> pd.DataFrame:
+    """Load precomputed LLM summaries/recommendations, or an empty frame."""
+    if not os.path.exists(LLM_CACHE_PATH):
+        return pd.DataFrame(columns=["scope", "kind", "summary"])
+    return pd.read_csv(LLM_CACHE_PATH)
+
+
+def get_cached_summary(scope: str) -> str | None:
+    """Look up a precomputed dashboard/country summary by scope."""
+    df = _load_llm_cache()
+    match = df[(df["scope"] == scope) & (df["kind"] == "summary")]
+    return None if match.empty else match.iloc[0]["summary"]
+
+
+def get_cached_recommendation(scope: str, persona: str) -> str | None:
+    """Look up a precomputed recommendation by scope + persona.
+
+    Only 'individual' and 'government/institution' are ever cached, since
+    'business' varies by free-text industry and can't be precomputed.
+    """
+    df = _load_llm_cache()
+    match = df[(df["scope"] == scope) & (df["kind"] == f"recommendation_{persona}")]
+    return None if match.empty else match.iloc[0]["summary"]
+
+
 def prediction_function(country: str, year: int) -> dict:
     """Look up the risk score for a country/year from the precomputed data.
 
@@ -75,6 +106,7 @@ def prediction_function(country: str, year: int) -> dict:
         "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
     }
 
+
 def all_predictions(year: int | None = None) -> list[dict]:
     """Return every country/year row from the precomputed data.
 
@@ -103,3 +135,47 @@ def all_predictions(year: int | None = None) -> list[dict]:
             "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
         })
     return records
+
+
+@lru_cache(maxsize=1)
+def _load_world_movers() -> dict:
+    if not os.path.exists(WORLD_MOVERS_PATH):
+        raise FileNotFoundError(
+            f"{WORLD_MOVERS_PATH!r} not found. Run `python model/generate_dashboard_data.py` first."
+        )
+    with open(WORLD_MOVERS_PATH) as f:
+        return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def _load_country_details() -> dict:
+    if not os.path.exists(COUNTRY_DETAILS_PATH):
+        raise FileNotFoundError(
+            f"{COUNTRY_DETAILS_PATH!r} not found. Run `python model/generate_dashboard_data.py` first."
+        )
+    with open(COUNTRY_DETAILS_PATH) as f:
+        return json.load(f)
+
+
+def get_global_movers(top_n: int = 5) -> dict:
+    """Return precomputed global movers, sliced to top_n (precomputed with TOP_N=10)."""
+    data = _load_world_movers()
+    return {
+        "improved": data["improved"][:top_n],
+        "worsened": data["worsened"][:top_n],
+        "best_current": data["best_current"][:top_n],
+        "worst_current": data["worst_current"][:top_n],
+        "best_indicators_global": data.get("best_indicators_global", []),
+        "worst_indicators_global": data.get("worst_indicators_global", []),
+        "forecast_target_year": data.get("forecast_target_year"),
+        "global_mean_slope": data["global_mean_slope"],
+        "global_direction": data["global_direction"],
+    }
+
+def get_country_detail(country: str) -> dict:
+    """Return precomputed detail for one country."""
+    data = _load_country_details()
+    country = country.upper()
+    if country not in data:
+        raise ValueError(f"No detail for country={country!r}.")
+    return data[country]

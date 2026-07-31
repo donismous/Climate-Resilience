@@ -1,0 +1,267 @@
+{
+  "improved": [
+    {
+      "country": "MHL",
+      "country_name": "Marshall Islands",
+      "forecast_slope_per_year": -0.001355436637718183,
+      "direction": "improving"
+    },
+    {
+      "country": "UZB",
+      "country_name": "Uzbekistan",
+      "forecast_slope_per_year": -0.001131553075343683,
+      "direction": "improving"
+    },
+    {
+      "country": "AGO",
+      "country_name": "Angola",
+      "forecast_slope_per_year": -0.000921270723670555,
+      "direction": "improving"
+    },
+    {
+      "country": "WSM",
+      "country_name": "Samoa",
+      "forecast_slope_per_year": -0.0009001926444980421,
+      "direction": "improving"
+    },
+    {
+      "country": "SAU",
+      "country_name": "Saudi Arabia",
+      "forecast_slope_per_year": -0.0008493910642973649,
+      "direction": "improving"
+    },
+    {
+      "country": "SYR",
+      "country_name": "Syrian Arab Republic",
+      "forecast_slope_per_year": -0.0008370311108157074,
+      "direction": "improving"
+    },
+    {
+      "country": "BRN",
+      "country_name": "Brunei Darussalam",
+      "forecast_slope_per_year": -0.0008244610505749349,
+      "direction": "improving"
+    },
+    {
+      "country": "BTN",
+      "country_name": "Bhutan",
+      "forecast_slope_per_year": -0.0008115733045638382,
+      "direction": "improving"
+    },
+    {
+      "country": "TGO",
+      "country_name": "Togo",
+      "forecast_slope_per_year": -0.0007227430275304546,
+      "direction": "improving"
+    },
+    {
+      "country": "CIV",
+      "country_name": "Cote d'Ivoire",
+      "forecast_slope_per_year": -0.0006793121656411647,
+      "direction": "improving"
+    }
+  ],
+  "worsened": [
+    {
+      "country": "NIC",
+      "country_name": "Nicaragua",
+      "forecast_slope_per_year": 0.0015586194541291,
+      "direction": "worsening"
+    },
+    {
+      "country": "NGA",
+      "country_name": "Nigeria",
+      "forecast_slope_per_year": 0.0013188183674625402,
+      "direction": "worsening"
+    },
+    {
+      "country": "MWI",
+      "country_name": "Malawi",
+      "forecast_slope_per_year": 0.001105973482816586,
+      "direction": "worsening"
+    },
+    {
+      "country": "SWZ",
+      "country_name": "Swaziland",
+      "forecast_slope_per_year": 0.0011014996013409828,
+      "direction": "worsening"
+    },
+    {
+      "country": "MEX",
+      "country_name": "Mexico",
+      "forecast_slope_per_year": 0.0010887997842334001,
+      "direction": "worsening"
+    },
+    {
+      "country": "KHM",
+      "country_name": "Cambodia",
+      "forecast_slope_per_year": 0.0010872871496964568,
+      "direction": "worsening"
+    },
+    {
+      "country": "GNB",
+      "country_name": "Guinea-Bissau",
+      "forecast_slope_per_year": 0.001080283822760963,
+      "direction": "worsening"
+    },
+    {
+      "country": "IDN",
+      "country_name": "Indonesia",
+      "forecast_slope_per_year": 0.0010426498418782699,
+      "direction": "worsening"
+    },
+    {
+      "country": "MLT",
+      "country_name": "Malta",
+      "forecast_slope_per_year": 0.0010226146311318463,
+      "direction": "worsening"
+    },
+    {
+      "country": "LBN",
+      "country_name": "Lebanon",
+      "forecast_slope_per_year": 0.000997592580266872,
+      "direction": "worsening"
+    }
+  ],
+  "best_current": [
+    {
+      "country": "CZE",
+      "country_name": "Czech Republic",
+      "risk_score": 0.3342283356634224
+    },
+    {
+      "country": "KGZ",
+      "country_name": "Kyrgyzstan",
+      "risk_score": 0.334405443526552
+    },
+    {
+      "country": "MLT",
+      "country_name": "Malta",
+      "risk_score": 0.3362547408867369
+    },
+    {
+      "country": "VEN",
+      "country_name": "Venezuela, Bolivarian Republic of",
+      "risk_score": 0.3437704060469352
+    },
+    {
+      "country": "TKM",
+      "country_name": "Turkmenistan",
+      "risk_score": 0.3533914085082583
+    },
+    {
+      "country": "ISR",
+      "country_name": "Israel",
+      "risk_score": 0.353747548303052
+    },
+    {
+      "country": "ESP",
+      "country_name": "Spain",
+      "risk_score": 0.3542514541496817
+    },
+    {
+      "country": "BLR",
+      "country_name": "Belarus",
+      "risk_score": 0.3545385840693411
+    },
+    {
+      "country": "BIH",
+      "country_name": "Bosnia and Herzegovina",
+      "risk_score": 0.3575426406716303
+    },
+    {
+      "country": "POL",
+      "country_name": "Poland",
+      "risk_score": 0.3600282386930862
+    }
+  ],
+  "worst_current": [
+    {
+      "country": "SOM",
+      "country_name": "Somalia",
+      "risk_score": 0.5754005508725962
+    },
+    {
+      "country": "NER",
+      "country_name": "Niger",
+      "risk_score": 0.5749188030964538
+    },
+    {
+      "country": "SLB",
+      "country_name": "Solomon Islands",
+      "risk_score": 0.5383654821267685
+    },
+    {
+      "country": "BEN",
+      "country_name": "Benin",
+      "risk_score": 0.537341756012146
+    },
+    {
+      "country": "SDN",
+      "country_name": "Sudan",
+      "risk_score": 0.5340275057000154
+    },
+    {
+      "country": "RWA",
+      "country_name": "Rwanda",
+      "risk_score": 0.532387317753452
+    },
+    {
+      "country": "TON",
+      "country_name": "Tonga",
+      "risk_score": 0.5294850730584025
+    },
+    {
+      "country": "COD",
+      "country_name": "Congo, the Democratic Republic of",
+      "risk_score": 0.5249962209238779
+    },
+    {
+      "country": "MRT",
+      "country_name": "Mauritania",
+      "risk_score": 0.5245754295320593
+    },
+    {
+      "country": "GNB",
+      "country_name": "Guinea-Bissau",
+      "risk_score": 0.5146268696440506
+    }
+  ],
+  "best_indicators_global": [
+    {
+      "name": "Capacity",
+      "category": "vulnerability",
+      "mean_shap_contribution": -0.0027450422062850594
+    },
+    {
+      "name": "Food",
+      "category": "vulnerability",
+      "mean_shap_contribution": -0.0021811007599948176
+    },
+    {
+      "name": "Infrastructure",
+      "category": "vulnerability",
+      "mean_shap_contribution": -0.0009137605536666391
+    }
+  ],
+  "worst_indicators_global": [
+    {
+      "name": "Exposure",
+      "category": "vulnerability",
+      "mean_shap_contribution": 0.0011368454969680137
+    },
+    {
+      "name": "Economic",
+      "category": "readiness",
+      "mean_shap_contribution": 0.0006553399058624279
+    },
+    {
+      "name": "Social",
+      "category": "readiness",
+      "mean_shap_contribution": 0.0004942477730433379
+    }
+  ],
+  "forecast_target_year": 2040,
+  "global_mean_slope": 0.00014308171442693385,
+  "global_direction": "worsening"
+}
