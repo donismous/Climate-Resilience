@@ -229,42 +229,36 @@
   ],
   "best_indicators_global": [
     {
+      "name": "Capacity",
+      "category": "vulnerability",
+      "mean_shap_contribution": -0.0027450422062850594
+    },
+    {
+      "name": "Food",
+      "category": "vulnerability",
+      "mean_shap_contribution": -0.0021811007599948176
+    },
+    {
       "name": "Infrastructure",
       "category": "vulnerability",
-      "global_mean_value": 0.29613473493975906,
-      "favorable_score": 0.7038652650602409
-    },
-    {
-      "name": "Sensitivity",
-      "category": "vulnerability",
-      "global_mean_value": 0.3351321813186813,
-      "favorable_score": 0.6648678186813187
-    },
-    {
-      "name": "Water",
-      "category": "vulnerability",
-      "global_mean_value": 0.36332329999999996,
-      "favorable_score": 0.6366767
+      "mean_shap_contribution": -0.0009137605536666391
     }
   ],
   "worst_indicators_global": [
     {
-      "name": "Economic",
-      "category": "readiness",
-      "global_mean_value": 0.42674168852459016,
-      "favorable_score": 0.42674168852459016
+      "name": "Exposure",
+      "category": "vulnerability",
+      "mean_shap_contribution": 0.0011368454969680137
     },
     {
-      "name": "Governance",
+      "name": "Economic",
       "category": "readiness",
-      "global_mean_value": 0.4048752131147541,
-      "favorable_score": 0.4048752131147541
+      "mean_shap_contribution": 0.0006553399058624279
     },
     {
       "name": "Social",
       "category": "readiness",
-      "global_mean_value": 0.36403336263736263,
-      "favorable_score": 0.36403336263736263
+      "mean_shap_contribution": 0.0004942477730433379
     }
   ],
   "forecast_target_year": 2040,

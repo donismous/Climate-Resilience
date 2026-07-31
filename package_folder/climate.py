@@ -48,16 +48,27 @@ def _load_country_names() -> dict:
 
 @lru_cache(maxsize=1)
 def _load_llm_cache() -> pd.DataFrame:
-    """Load precomputed LLM summaries, or an empty frame if none exist yet."""
+    """Load precomputed LLM summaries/recommendations, or an empty frame."""
     if not os.path.exists(LLM_CACHE_PATH):
-        return pd.DataFrame(columns=["scope", "summary"])
+        return pd.DataFrame(columns=["scope", "kind", "summary"])
     return pd.read_csv(LLM_CACHE_PATH)
 
 
 def get_cached_summary(scope: str) -> str | None:
-    """Look up a precomputed summary by scope ('world' or an ISO3 code)."""
+    """Look up a precomputed dashboard/country summary by scope."""
     df = _load_llm_cache()
-    match = df[df["scope"] == scope]
+    match = df[(df["scope"] == scope) & (df["kind"] == "summary")]
+    return None if match.empty else match.iloc[0]["summary"]
+
+
+def get_cached_recommendation(scope: str, persona: str) -> str | None:
+    """Look up a precomputed recommendation by scope + persona.
+
+    Only 'individual' and 'government/institution' are ever cached, since
+    'business' varies by free-text industry and can't be precomputed.
+    """
+    df = _load_llm_cache()
+    match = df[(df["scope"] == scope) & (df["kind"] == f"recommendation_{persona}")]
     return None if match.empty else match.iloc[0]["summary"]
 
 

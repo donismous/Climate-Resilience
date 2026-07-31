@@ -18,7 +18,7 @@ from mistralai.client.errors import SDKError
 
 client = Mistral(api_key=os.environ["MISTRAL_API_KEY"])
 
-MODEL_NAME = "mistral-small-latest"
+MODEL_NAME = "mistral-small-2506"
 
 # Max output tokens per function. Kept small
 MAX_TOKENS_DASHBOARD_SUMMARY = 200
@@ -153,16 +153,18 @@ def summarize_world_map(movers: dict) -> str:
     """
     prompt = f"""Summarize this global climate risk picture. Start with one
 short introductory sentence, then respond in concise bullet points (max 8
-bullets, one short sentence each). Be clear that the trend figures are
+bullets, one short sentence each). Be aware that the trend figures are
 forward-looking forecasts (through {movers['forecast_target_year']}), not
-historical patterns.
+historical patterns. When referring to indicators, use just their plain
+name (e.g. "Governance", "Water") -- do not append category labels like
+"(readiness)" or "(vulnerability)" after the indicator name.
 
 Countries that perform best today: {movers['best_current']}
 Countries that perform worst today: {movers['worst_current']}
 Countries with the best forecasted trend: {movers['improved']}
 Countries with the worst forecasted trend: {movers['worsened']}
-Globally strongest indicators: {movers['best_indicators_global']}
-Globally weakest indicators: {movers['worst_indicators_global']}
+Indicators that most reduce risk globally: {movers['best_indicators_global']}
+Indicators that most increase risk globally: {movers['worst_indicators_global']}
 Global average forecasted trend: {movers['global_direction']} (slope: {movers['global_mean_slope']:.5f}/year)"""
     return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=MAX_TOKENS_WORLD_SUMMARY)
 
@@ -173,7 +175,7 @@ def summarize_country_detail(detail: dict) -> str:
     """
     prompt = f"""Summarize this country's climate risk profile. Start with
 one short introductory sentence, then respond in concise bullet points (max
-8 bullets). Be clear that the trend is a forward-looking forecast, not a
+8 bullets). Be aware that the trend is a forward-looking forecast, not a
 historical pattern. When referring to indicators, use just their plain
 name (e.g. "Governance", "Capacity") -- do not append category labels like
 "(readiness)" or "(vulnerability)" after the indicator name.
@@ -182,12 +184,13 @@ Country: {detail['country_name']} ({detail['country']})
 Latest actual risk score: {detail['trend']['latest_actual_value']:.3f} (as of {detail['trend']['latest_actual_year']})
 Forecasted trend: {detail['trend']['direction']} (projected slope: {detail['trend']['forecast_slope_per_year']:.5f}/year, forecasted risk score by 2040: {detail['trend'].get('forecast_2040_value'):.3f})
 
-Strongest indicators (most favorable): {detail['strongest_indicators']}
-Weakest indicators (least favorable): {detail['weakest_indicators']}
+Indicators that most reduce this country's risk score: {detail['strongest_indicators']}
+Indicators that most increase this country's risk score: {detail['weakest_indicators']}
 
-For the top 3 strongest indicators, briefly note why each is a relative
-strength for this country. For the 3 weakest indicator, briefly explain in
-plain language why it likely drags down this country's risk profile."""
+For the top 3 risk-reducing indicators, briefly note why each helps this particular
+country while considering their values. For the most 3 risk-increasing indicator, briefly explain in plain
+language why it likely drags down this particular country's risk profile while considerin their values."""
+
     return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=MAX_TOKENS_COUNTRY_SUMMARY)
 
 

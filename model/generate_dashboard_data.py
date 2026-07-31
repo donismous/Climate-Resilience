@@ -56,15 +56,12 @@ def load_shap_data() -> dict | None:
         return json.load(f)
 
 
-def generate_world_movers(long_df: pd.DataFrame, country_names: dict) -> dict:
+def generate_world_movers(long_df: pd.DataFrame, country_names: dict, shap_data: dict | None) -> dict:
     risk_actual = long_df[(long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "actual")]
     risk_forecast = long_df[(long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "forecast")]
 
     FORECAST_TARGET_YEAR = 2040
 
-    # Trend = projected rate of change from latest actual value to the
-    # forecast target year (not a historical regression -- forecast curves
-    # are deterministic, so a p-value test on them wouldn't mean much).
     trends = []
     for country in risk_actual["country"].unique():
         sub_actual = risk_actual[risk_actual["country"] == country].sort_values("year")
@@ -105,29 +102,47 @@ def generate_world_movers(long_df: pd.DataFrame, country_names: dict) -> dict:
         for _, row in latest.tail(TOP_N).iloc[::-1].iterrows()
     ]
 
-    # Global average per indicator (latest actual year), to surface which
-    # factors tend to be strongest/weakest across all countries.
+    # Global strongest/weakest indicators: signed average SHAP contribution
+    # across all countries. Negative = pulls risk down (a global strength);
+    # positive = pushes risk up (a global weakness). Falls back to raw
+    # favorable-value averaging if SHAP data isn't available yet.
     all_indicators = READINESS_INDICATORS + VULNERABILITY_INDICATORS
-    indicator_averages = []
-    for name in all_indicators:
-        is_readiness = name in READINESS_INDICATORS
-        rows = long_df[
-            (long_df["indicator"] == name) & (long_df["year"] == latest_year) & (long_df["source"] == "actual")
-        ]
-        if rows.empty:
-            continue
-        mean_value = float(rows["value"].mean())
-        favorable_score = mean_value if is_readiness else 1 - mean_value
-        indicator_averages.append({
-            "name": name,
-            "category": "readiness" if is_readiness else "vulnerability",
-            "global_mean_value": mean_value,
-            "favorable_score": favorable_score,
-        })
+    local_shap = shap_data["local_shap"] if shap_data else {}
 
-    indicator_averages.sort(key=lambda i: i["favorable_score"], reverse=True)
-    best_indicators_global = indicator_averages[:3]
-    worst_indicators_global = indicator_averages[-3:]
+    if local_shap:
+        indicator_shap_avgs = []
+        for name in all_indicators:
+            values = [country_shap[name] for country_shap in local_shap.values() if name in country_shap]
+            if not values:
+                continue
+            indicator_shap_avgs.append({
+                "name": name,
+                "category": "readiness" if name in READINESS_INDICATORS else "vulnerability",
+                "mean_shap_contribution": float(np.mean(values)),
+            })
+        indicator_shap_avgs.sort(key=lambda i: i["mean_shap_contribution"])
+        best_indicators_global = indicator_shap_avgs[:3]
+        worst_indicators_global = list(reversed(indicator_shap_avgs[-3:]))
+    else:
+        indicator_averages = []
+        for name in all_indicators:
+            is_readiness = name in READINESS_INDICATORS
+            rows = long_df[
+                (long_df["indicator"] == name) & (long_df["year"] == latest_year) & (long_df["source"] == "actual")
+            ]
+            if rows.empty:
+                continue
+            mean_value = float(rows["value"].mean())
+            favorable_score = mean_value if is_readiness else 1 - mean_value
+            indicator_averages.append({
+                "name": name,
+                "category": "readiness" if is_readiness else "vulnerability",
+                "global_mean_value": mean_value,
+                "favorable_score": favorable_score,
+            })
+        indicator_averages.sort(key=lambda i: i["favorable_score"], reverse=True)
+        best_indicators_global = indicator_averages[:3]
+        worst_indicators_global = indicator_averages[-3:]
 
     return {
         "improved": improved,
@@ -183,6 +198,7 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
             if latest_value is None:
                 continue
             favorable_score = latest_value if is_readiness else 1 - latest_value
+            shap_value = country_shap.get(name)
 
             indicators.append({
                 "name": name,
@@ -191,20 +207,35 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
                 "favorable_score": favorable_score,
                 "forecast_2030": get_indicator_forecast(country_df, country, name, 2030),
                 "forecast_2040": get_indicator_forecast(country_df, country, name, 2040),
-                "shap_contribution": country_shap.get(name),
+                "shap_contribution": shap_value,
                 "global_importance_rank": importance_order.index(name) + 1 if name in importance_order else None,
             })
 
         if not indicators:
             continue
-        indicators.sort(key=lambda i: i["favorable_score"], reverse=True)
+
+        # Only rank by SHAP among indicators that actually have a SHAP
+        # value; if SHAP data isn't available yet, fall back to
+        # favorable_score so the pipeline still produces useful output.
+        has_shap = any(i["shap_contribution"] is not None for i in indicators)
+        if has_shap:
+            with_shap = [i for i in indicators if i["shap_contribution"] is not None]
+            # Strongest = most negative SHAP (biggest downward pull on risk)
+            # Weakest = most positive SHAP (biggest upward pull on risk)
+            with_shap.sort(key=lambda i: i["shap_contribution"])
+            strongest = with_shap[:3]
+            weakest = list(reversed(with_shap[-3:]))
+        else:
+            indicators.sort(key=lambda i: i["favorable_score"], reverse=True)
+            strongest = indicators[:3]
+            weakest = indicators[-3:]
 
         details[country] = {
             "country": country,
             "country_name": country_names.get(country),
             "trend": trend,
-            "strongest_indicators": indicators[:3],
-            "weakest_indicators": indicators[-3:],
+            "strongest_indicators": strongest,
+            "weakest_indicators": weakest,
         }
 
     return details
@@ -218,7 +249,7 @@ if __name__ == "__main__":
     country_names = load_country_names()
     shap_data = load_shap_data()
 
-    world_movers = generate_world_movers(long_df, country_names)
+    world_movers = generate_world_movers(long_df, country_names, shap_data)
     world_movers_path = ROOT / "data" / "outputs" / "world_movers.json"
     with open(world_movers_path, "w") as f:
         json.dump(world_movers, f, indent=2)
