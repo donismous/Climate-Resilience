@@ -108,7 +108,7 @@ def get_composite_risk() -> pd.DataFrame:
     if PROCESSED_PATH.exists():
         df = pd.read_csv(PROCESSED_PATH)
     else:
-        from data.preprocessing.pipeline import preprocess
+        from utils.preprocessing.pipeline import preprocess
 
         raw = pd.read_csv(ROOT / "data" / "inputs" / "fetch" / "ndgain_raw.csv")
         df = preprocess(raw)
@@ -130,7 +130,7 @@ if __name__ == "__main__":
     if PROCESSED_PATH.exists():
         df = pd.read_csv(PROCESSED_PATH)
     else:
-        from data.preprocessing.pipeline import preprocess
+        from utils.preprocessing.pipeline import preprocess
 
         df = preprocess(
             pd.read_csv(ROOT / "data" / "inputs" / "fetch" / "ndgain_raw.csv")

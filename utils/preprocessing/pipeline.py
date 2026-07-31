@@ -5,11 +5,11 @@
 import pandas as pd
 
 
-from data.preprocessing.filter import filter_indicators
-from data.preprocessing.clean import clean_data
-from data.preprocessing.validate import validate
-from data.preprocessing.prepare import prepare_for_model
-from data.preprocessing.save import save_processed
+from utils.preprocessing.filter import filter_indicators
+from utils.preprocessing.clean import clean_data
+from utils.preprocessing.validate import validate
+from utils.preprocessing.prepare import prepare_for_model
+from utils.preprocessing.save import save_processed
 
 
 def preprocess(df):
