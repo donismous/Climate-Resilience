@@ -29,7 +29,7 @@ from model.feature_importance.feature_importance import (
 )
 
 
-OUTPUT_DIR = Path("data/outputs/feature_attribution")
+OUTPUT_DIR = Path("data/outputs")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 ROOT_OUTPUT_DIR = Path("data/outputs")
 ROOT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -84,17 +84,10 @@ def main():
     )
 
     print("Saving outputs...")
-    # Save to OUTPUT_DIR (data/outputs/feature_attribution)
-    importance.to_csv(OUTPUT_DIR / "feature_importance.csv", index=False)
-    shap_long.to_csv(OUTPUT_DIR / "shap_values.csv", index=False)
+    # Save to OUTPUT_DIR (data/outputs)
     country_attribution.to_csv(OUTPUT_DIR / "country_feature_attribution.csv", index=False)
     global_importance.to_csv(OUTPUT_DIR / "global_feature_importance.csv", index=False)
     feature_dependence.to_csv(OUTPUT_DIR / "feature_dependence.csv", index=False)
-
-    # Save to ROOT_OUTPUT_DIR (data/outputs) for dashboard / convert_shap_pca compatibility
-    country_attribution.to_csv(ROOT_OUTPUT_DIR / "country_feature_attribution.csv", index=False)
-    global_importance.to_csv(ROOT_OUTPUT_DIR / "global_feature_importance.csv", index=False)
-    feature_dependence.to_csv(ROOT_OUTPUT_DIR / "feature_dependence.csv", index=False)
 
     print("Done!")
 
