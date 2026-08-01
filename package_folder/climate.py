@@ -5,7 +5,7 @@ from functools import lru_cache
 
 
 ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
-FORECAST_PATH = os.path.join(ROOT_PATH, "data", "outputs", "all_indicators_ets_forecast.csv")
+FORECAST_PATH = os.path.join(ROOT_PATH, "data", "outputs", "all_indicator_values.csv")
 LLM_CACHE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "llm_summaries_cache.csv")
 WORLD_MOVERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "world_movers.json")
 COUNTRY_DETAILS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_details.json")
@@ -105,9 +105,7 @@ def _format_record(row: pd.Series, country_names: dict) -> dict:
         "sub_region": country_info.get("sub_region"),
         "year": int(row["year"]),
         "value": float(row["value"]),
-        "source": row["source"],
-        "lower": None if pd.isna(row.get("lower")) else float(row["lower"]),
-        "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
+        "source": row["source"]
     }
 
 

@@ -24,8 +24,8 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-INDICATORS_PATH = ROOT / "data" / "outputs" / "all_indicators_with_forecast.csv"
-COUNTRY_NAMES_PATH = ROOT / "config" / "iso3_to_country_name.csv"
+INDICATORS_PATH = ROOT / "data" / "outputs" / "all_indicator_values.csv"
+COUNTRY_NAMES_PATH = ROOT / "config" / "iso3_to_region_name.csv"
 OUTPUT_PATH = ROOT / "data" / "outputs" / "country_tiers.json"
 
 TIERS = {
@@ -49,7 +49,7 @@ def assign_tier(vulnerability: float, readiness: float, vuln_median: float, read
 
 
 def load_country_names() -> dict:
-    names_df = pd.read_csv(COUNTRY_NAMES_PATH, sep=";", usecols=["ISO3", "Name"])
+    names_df = pd.read_csv(COUNTRY_NAMES_PATH, sep=",", usecols=["ISO3", "Name"])
     return dict(zip(names_df["ISO3"], names_df["Name"]))
 
 
