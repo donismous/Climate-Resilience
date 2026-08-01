@@ -2,7 +2,7 @@ build_container_local:
 	docker build --tag=${IMAGE}:dev .
 
 run_container_local:
-	docker run -it -e PORT=8000 -p 8080:8000 ${IMAGE}:dev
+	docker run -it --env-file .env -e PORT=8000 -p 8080:8000 ${IMAGE}:dev
 
 build_for_production:
 	docker build \
