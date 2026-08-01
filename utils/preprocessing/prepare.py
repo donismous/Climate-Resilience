@@ -74,3 +74,14 @@ def add_country_names(df: pd.DataFrame) -> pd.DataFrame:
     value=df["Country"].map(country_map)
     )
     return df
+
+
+def add_region_names(df: pd.DataFrame, country_col: str = "Country") -> pd.DataFrame:
+    region_names = pd.read_csv("config/iso3_to_region_name.csv")
+    region_map = region_names.set_index("alpha-3")["sub-region"]
+    df.insert(
+        loc=df.columns.get_loc(country_col) + 1,
+        column="Region",
+        value=df[country_col].map(region_map),
+    )
+    return df
