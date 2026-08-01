@@ -120,9 +120,10 @@ def fit_arima_candidate(series_logit: pd.Series):
     return best_m, m_mean, m_scale
 
 
-def forecast_ensemble(series: pd.Series, steps: int = 15) -> np.ndarray:
-    """Forecast future values using an ensemble of ETS and ARIMA on logit-transformed series."""
+def forecast_ensemble(series: pd.Series, steps: int = 15, ets_weight: float = 0.6) -> np.ndarray:
+    """Forecast future values using a weighted ensemble of ETS (default 60%) and ARIMA (default 40%) on logit-transformed series."""
     logit_series = logit_transform(series)
+    arima_weight = 1.0 - ets_weight
 
     # 1. ETS Forecast
     ets_pred = None
@@ -145,7 +146,7 @@ def forecast_ensemble(series: pd.Series, steps: int = 15) -> np.ndarray:
 
     # 3. Combine Predictions
     if ets_pred is not None and arima_pred is not None:
-        ensemble_pred = 0.5 * ets_pred + 0.5 * arima_pred
+        ensemble_pred = ets_weight * ets_pred + arima_weight * arima_pred
     elif ets_pred is not None:
         ensemble_pred = ets_pred
     elif arima_pred is not None:
@@ -155,6 +156,7 @@ def forecast_ensemble(series: pd.Series, steps: int = 15) -> np.ndarray:
         ensemble_pred = np.repeat(series.iloc[-1], steps)
 
     return np.clip(ensemble_pred, 0.0, 1.0)
+
 
 
 def extend_with_forecast(
@@ -248,5 +250,3 @@ if __name__ == "__main__":
         intermediate_dir / "forecast.parquet",
         index=False,
     )
-
-
