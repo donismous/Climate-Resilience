@@ -10,9 +10,25 @@ def prepare_for_model(df: pd.DataFrame) -> pd.DataFrame:
     df = pivot_indicators(df)
     df = drop_countries(df)
     df = impute_missing(df)
+    df = reverse_readiness_indicators(df)
     df = sort_time_series(df)
 
     return df
+
+
+def reverse_readiness_indicators(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Reverse the scale of readiness indicators (Economic, Governance, Social) using (1 - value).
+
+    In the raw ND-GAIN dataset, higher readiness values represent higher adaptive capacity (lower risk).
+    Reversing the scale with (1 - value) converts them into lack-of-readiness metrics, so that across all
+    indicators, higher values consistently represent higher risk contribution.
+    """
+    readiness_cols = [col for col in ["Economic", "Governance", "Social"] if col in df.columns]
+    if readiness_cols:
+        df[readiness_cols] = 1 - df[readiness_cols]
+    return df
+
 
 
 def pivot_indicators(df: pd.DataFrame) -> pd.DataFrame:

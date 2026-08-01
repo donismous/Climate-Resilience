@@ -1,18 +1,12 @@
 """
-Data Loading and Preprocessing Utilities.
+Data Loading Utilities.
 
 This module provides reusable functions for loading and preparing the modelling
 dataset used in the Random Forest feature attribution workflow.
 
-The preprocessing steps include:
-    - extracting the Composite Risk target,
-    - reshaping indicator values into feature columns,
-    - reversing readiness component scales where required,
-    - removing composite indicators that would introduce target leakage,
-    - returning predictor and target datasets ready for modelling.
-
-Separating data preparation from model training improves readability,
-maintainability, and reuse across multiple analysis pipelines.
+Note: Readiness indicators (Economic, Governance, Social) are centrally reversed
+(1 - value) in the preprocessing pipeline (utils/preprocessing/prepare.py) so that
+higher values consistently represent higher risk contribution.
 """
 
 import pandas as pd
@@ -30,9 +24,6 @@ def load_data(filepath="data/outputs/all_indicator_values.csv"):
         Composite Risk score.
     """
 
-    print("NEW load_data() is running")
-
-
     df = pd.read_csv(filepath)
 
     target = (
@@ -49,10 +40,6 @@ def load_data(filepath="data/outputs/all_indicator_values.csv"):
               values="value",
           )
           .reset_index()
-    )
-
-    features[["Economic", "Governance", "Social"]] = (
-        1 - features[["Economic", "Governance", "Social"]]
     )
 
     dataset = (

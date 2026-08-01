@@ -21,11 +21,18 @@ import pandas as pd
 from utils.data_loader import load_data
 from model.feature_importance.random_forest import train_random_forest
 from model.feature_importance.shap_analysis import calculate_shap_values
-from model.feature_importance.feature_importance import create_importance_table
+from model.feature_importance.feature_importance import (
+    create_importance_table,
+    create_country_feature_attribution,
+    create_global_feature_importance,
+    create_feature_dependence,
+)
 
 
 OUTPUT_DIR = Path("data/outputs/feature_attribution")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+ROOT_OUTPUT_DIR = Path("data/outputs")
+ROOT_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def main():
@@ -41,10 +48,8 @@ def main():
     print("Creating SHAP attribution table...")
     shap_long = (
         shap_df
-        .assign(
-            Country=df["Country"],
-            Year=df["Year"]
-        )
+        .reset_index()
+        .rename(columns={"country": "Country", "year": "Year"})
         .melt(
             id_vars=["Country", "Year"],
             var_name="Feature",
@@ -52,9 +57,23 @@ def main():
         )
     )
 
+    print("Creating country feature attribution table...")
+    country_attribution = create_country_feature_attribution(shap_df)
+
+    print("Creating global feature importance table...")
+    global_importance = create_global_feature_importance(rf, shap_df)
+
+    print("Creating feature dependence table...")
+    feature_dependence = create_feature_dependence(X, country_attribution)
+
     print("Loading PCA weights...")
-    pca_weights = pd.read_csv(
-        OUTPUT_DIR / "risk_score_weights.csv"
+    pca_weights_path = Path("config/risk_score_weights.csv")
+    if not pca_weights_path.exists():
+        pca_weights_path = OUTPUT_DIR / "risk_score_weights.csv"
+
+    pca_weights = (
+        pd.read_csv(pca_weights_path)
+        .rename(columns={"Unnamed: 0": "Feature", "PC1": "PCA_Weight"})
     )
 
     print("Creating feature importance table...")
@@ -65,17 +84,20 @@ def main():
     )
 
     print("Saving outputs...")
-    importance.to_csv(
-        OUTPUT_DIR / "feature_importance.csv",
-        index=False,
-    )
+    # Save to OUTPUT_DIR (data/outputs/feature_attribution)
+    importance.to_csv(OUTPUT_DIR / "feature_importance.csv", index=False)
+    shap_long.to_csv(OUTPUT_DIR / "shap_values.csv", index=False)
+    country_attribution.to_csv(OUTPUT_DIR / "country_feature_attribution.csv", index=False)
+    global_importance.to_csv(OUTPUT_DIR / "global_feature_importance.csv", index=False)
+    feature_dependence.to_csv(OUTPUT_DIR / "feature_dependence.csv", index=False)
 
-    shap_long.to_csv(
-        OUTPUT_DIR / "shap_values.csv",
-        index=False,
-    )
+    # Save to ROOT_OUTPUT_DIR (data/outputs) for dashboard / convert_shap_pca compatibility
+    country_attribution.to_csv(ROOT_OUTPUT_DIR / "country_feature_attribution.csv", index=False)
+    global_importance.to_csv(ROOT_OUTPUT_DIR / "global_feature_importance.csv", index=False)
+    feature_dependence.to_csv(ROOT_OUTPUT_DIR / "feature_dependence.csv", index=False)
 
     print("Done!")
+
 
 
 if __name__ == "__main__":
