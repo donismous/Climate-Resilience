@@ -17,15 +17,15 @@ COUNTRY_NAMES_PATH = os.path.join(ROOT_PATH, "config", "iso3_to_region_name.csv"
 
 @lru_cache(maxsize=1)
 def _load_forecast() -> pd.DataFrame:
-    """Load the precomputed actual + forecast risk scores from disk.
+    """Load the precomputed actual + forecast indicator values from disk.
 
     Cached after the first call so the CSV is only read once per running
     container, not once per request.
 
     Returns:
-        DataFrame with columns ``country``, ``year``, ``risk_score``,
-        ``source``, ``lower``, ``upper`` (see
-        ``model.basic_arima_model.extend_with_forecast``).
+        Long-format DataFrame with columns ``country``, ``indicator``,
+        ``year``, ``value``, ``source``, ``lower``, ``upper`` -- one row
+        per country/indicator/year.
 
     Raises:
         FileNotFoundError: If the forecast CSV hasn't been generated /
@@ -33,9 +33,9 @@ def _load_forecast() -> pd.DataFrame:
     """
     if not os.path.exists(FORECAST_PATH):
         raise FileNotFoundError(
-            f"Forecast data not found at {FORECAST_PATH!r}. Run "
-            "`python model/basic_arima_model.py` and make sure the output "
-            "CSV is copied into the image as data/outputs/risk_score_with_forecast.csv."
+            f"Forecast data not found at {FORECAST_PATH!r}. Generate it and "
+            "make sure the output CSV is copied into the image as "
+            "data/outputs/all_indicators_ets_forecast.csv."
         )
     return pd.read_csv(FORECAST_PATH)
 
@@ -90,8 +90,29 @@ def get_cached_recommendation(scope: str, persona: str) -> str | None:
     return None if match.empty else match.iloc[0]["summary"]
 
 
-def prediction_function(country: str, year: int) -> dict:
-    """Look up the risk score for a country/year from the precomputed data.
+def _format_record(row: pd.Series, country_names: dict) -> dict:
+    """Shape one row of the long-format forecast data into an API record.
+
+    Shared by prediction_function() and all_predictions() so /predict and
+    /predict_all always return identically-shaped records.
+    """
+    country_info = country_names.get(row["country"], {})
+    return {
+        "country": row["country"],
+        "indicator": row["indicator"],
+        "country_name": country_info.get("Name"),
+        "region": country_info.get("region"),
+        "sub_region": country_info.get("sub_region"),
+        "year": int(row["year"]),
+        "value": float(row["value"]),
+        "source": row["source"],
+        "lower": None if pd.isna(row.get("lower")) else float(row["lower"]),
+        "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
+    }
+
+
+def prediction_function(country: str, year: int) -> list[dict]:
+    """Look up every indicator's value for a country/year from the precomputed data.
 
     Args:
         country: ISO3 country code, e.g. "FRA".
@@ -99,13 +120,15 @@ def prediction_function(country: str, year: int) -> dict:
             available up to the horizon baked into the CSV).
 
     Returns:
-        A dict with ``risk_score``, ``source`` ("actual" or "forecast"),
-        and ``lower``/``upper`` confidence bounds (``None`` for actual rows).
+        A list of dicts, one per ND-GAIN indicator, shaped identically to
+        all_predictions()'s records (country, indicator, country_name,
+        region, sub_region, year, value, source, lower, upper).
 
     Raises:
         ValueError: If there's no row for that country/year combination.
     """
     df = _load_forecast()
+    country_names = _load_country_names()
     match = df[(df["country"] == country.upper()) & (df["year"] == year)]
 
     if match.empty:
@@ -115,18 +138,11 @@ def prediction_function(country: str, year: int) -> dict:
             f"Available years for {country.upper()}: {available or 'none'}."
         )
 
-    row = match.iloc[0]
-    return {
-        "country_name": _load_country_names().get(country.upper()),
-        "risk_score": float(row["risk_score"]),
-        "source": row["source"],
-        "lower": None if pd.isna(row.get("lower")) else float(row["lower"]),
-        "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
-    }
+    return [_format_record(row, country_names) for _, row in match.iterrows()]
 
 
 def all_predictions(year: int | None = None) -> list[dict]:
-    """Return every country/year row from the precomputed data.
+    """Return every country/year/indicator row from the precomputed data.
 
     Args:
         year: If given, restrict to this calendar year (still all countries).
@@ -134,7 +150,8 @@ def all_predictions(year: int | None = None) -> list[dict]:
 
     Returns:
         A list of dicts, each shaped like the /predict response: country,
-        year, risk_score, source, lower, upper.
+        indicator, country_name, region, sub_region, year, value, source,
+        lower, upper.
     """
     df = _load_forecast()
     country_names = _load_country_names()
@@ -142,29 +159,7 @@ def all_predictions(year: int | None = None) -> list[dict]:
     if year is not None:
         df = df[df["year"] == year]
 
-    records = []
-    for _, row in df.iterrows():
-
-        # Input has changed, so rewiring how we get this data
-        country_info = country_names.get(row["country"], {})
-
-        records.append({
-            "country": row["country"],
-            "indicator": row["indicator"],
-
-            # Adding new regions and sub-regions
-            "country_name": country_info.get("Name"),
-            "region": country_info.get("region"),
-            "sub_region": country_info.get("sub_region"),
-
-
-            "year": int(row["year"]),
-            "value": float(row["value"]),
-            "source": row["source"],
-            "lower": None if pd.isna(row.get("lower")) else float(row["lower"]),
-            "upper": None if pd.isna(row.get("upper")) else float(row["upper"])
-        })
-    return records
+    return [_format_record(row, country_names) for _, row in df.iterrows()]
 
 
 @lru_cache(maxsize=1)

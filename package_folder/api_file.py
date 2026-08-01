@@ -60,7 +60,10 @@ def predict(
     ),
     year: int = Query(..., description="Calendar year"),
 ):
-    """Return the composite climate risk score for a country and year.
+    """Return every ND-GAIN indicator's value for a country and year.
+
+    Shaped identically to /predict_all: {"count": N, "data": [...]}, where
+    each record has the same fields as a /predict_all row.
 
     Args:
         country: ISO3 country code, e.g. "FRA". Must be a real ISO 3166-1
@@ -76,13 +79,13 @@ def predict(
         )
 
     try:
-        result = prediction_function(country, year)
+        records = prediction_function(country, year)
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error))
     except FileNotFoundError as error:
         raise HTTPException(status_code=500, detail=str(error))
 
-    return {"country": country.upper(), "year": year, **result}
+    return {"count": len(records), "data": records}
 
 
 # All-countries endpoint
