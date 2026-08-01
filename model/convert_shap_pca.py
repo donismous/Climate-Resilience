@@ -59,9 +59,14 @@ if __name__ == "__main__":
         "global_importance": build_global_importance(),
         "local_shap": build_local_shap(),
         "_caveat": (
-            "SHAP computed against a PCA-weighted CompositeRisk, not the "
-            "ND-GAIN-based risk_score currently forecast/served elsewhere "
-            "in this project. See module docstring."
+            "STALE: these SHAP values were fit against the old PCA-weighted "
+            "CompositeRisk formula. CompositeRisk now uses the same "
+            "0.6*Vulnerability + 0.4*(1-Readiness) formula as risk_score "
+            "everywhere else (see model/second_arima/save_outputs.py). "
+            "Re-run the SHAP training step in random_forest.ipynb against "
+            "the corrected CompositeRisk and regenerate "
+            "global_feature_importance.csv / country_feature_attribution.csv "
+            "before trusting these numbers."
         ),
     }
     shap_output_path = ROOT / "data" / "outputs" / "shap_analysis.json"

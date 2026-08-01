@@ -18,7 +18,7 @@ from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler()
 
 
-def calculate_composite_metrics(forecast_df, df_original, weights):
+def calculate_composite_metrics(forecast_df, df_original):
     print(forecast_df["Year"].min(), forecast_df["Year"].max())
     print(sorted(forecast_df["Year"].unique())[-10:])
 
@@ -95,9 +95,12 @@ def calculate_composite_metrics(forecast_df, df_original, weights):
         .mean(axis=1)
     )
 
+    # Same formula documented at the top of this module: readiness reduces
+    # risk (so it enters inverted), vulnerability increases it directly.
     indicator_matrix["CompositeRisk"] = (
-        indicator_matrix[weights.index] @ weights
-    ) / weights.sum()
+        indicator_matrix["Vulnerability"] * 0.6
+        + (1 - indicator_matrix["Readiness"]) * 0.4
+    )
 
     summary = (
         indicator_matrix[
@@ -167,13 +170,8 @@ def main():
     forecast_df = pd.read_parquet("data/intermediate/forecast.parquet")
     df_original = pd.read_parquet("data/intermediate/df_original.parquet")
 
-    weights = pd.read_csv("config/risk_score_weights.csv")
-    weights = weights.rename(columns={"Unnamed: 0": "Indicator"})
-    weights = weights.set_index("Indicator")
-    weights = weights["PC1"]
-
     # Post-process
-    forecast_df, summary = calculate_composite_metrics(forecast_df, df_original, weights)
+    forecast_df, summary = calculate_composite_metrics(forecast_df, df_original)
     add_source(forecast_df)
     change_column_names(forecast_df)
 

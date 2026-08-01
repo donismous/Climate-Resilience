@@ -16,6 +16,7 @@ from package_folder.climate import (
     get_country_detail,
     get_cached_recommendation,
     get_cached_summary,
+    get_country_tiers,
 )
 
 from package_folder.llm_integration import (
@@ -93,6 +94,18 @@ def predict_all(year: int | None = None):
         year: Optional calendar year to narrow results to (still all countries).
     """
     records = all_predictions(year)
+    return {"count": len(records), "data": records}
+
+
+# Vulnerability x Readiness tiers endpoint
+@app.get("/tiers")
+def tiers(year: int | None = None):
+    """Return every country's Vulnerability x Readiness tier assignment.
+
+    Args:
+        year: Optional calendar year to narrow results to (still all countries).
+    """
+    records = get_country_tiers(year)
     return {"count": len(records), "data": records}
 
 

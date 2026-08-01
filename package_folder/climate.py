@@ -5,13 +5,14 @@ from functools import lru_cache
 
 
 ROOT_PATH = os.path.dirname(os.path.dirname(__file__))
-FORECAST_PATH = os.path.join(ROOT_PATH, "data", "outputs", "risk_score_with_forecast.csv")
+FORECAST_PATH = os.path.join(ROOT_PATH, "data", "outputs", "all_indicators_ets_forecast.csv")
 LLM_CACHE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "llm_summaries_cache.csv")
 WORLD_MOVERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "world_movers.json")
 COUNTRY_DETAILS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_details.json")
+TIERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_tiers.json")
 
-# Load country names
-COUNTRY_NAMES_PATH = os.path.join(ROOT_PATH, "config", "iso3_to_country_name.csv")
+# Load new country names
+COUNTRY_NAMES_PATH = os.path.join(ROOT_PATH, "config", "iso3_to_region_name.csv")
 
 
 @lru_cache(maxsize=1)
@@ -42,9 +43,17 @@ def _load_forecast() -> pd.DataFrame:
 @lru_cache(maxsize=1)
 def _load_country_names() -> dict:
     """Load the ISO3 -> country name mapping, cached after first read."""
-    names_df = pd.read_csv(COUNTRY_NAMES_PATH, sep=";", usecols=["ISO3", "Name"])
-    return dict(zip(names_df["ISO3"], names_df["Name"]))
-
+    names_df = pd.read_csv(COUNTRY_NAMES_PATH, sep=",", usecols=["ISO3", "Name", "region","sub_region"])
+    # return dict(zip(names_df["ISO3"], names_df["Name"],names_df["region"],names_df["sub_region"] ))
+    return {
+        iso: {"Name": name, "region": region, "sub_region": sub_region}
+        for iso, name, region, sub_region in zip(
+            names_df["ISO3"],
+            names_df["Name"],
+            names_df["region"],
+            names_df["sub_region"]
+        )
+    }
 
 @lru_cache(maxsize=1)
 def _load_llm_cache() -> pd.DataFrame:
@@ -52,6 +61,15 @@ def _load_llm_cache() -> pd.DataFrame:
     if not os.path.exists(LLM_CACHE_PATH):
         return pd.DataFrame(columns=["scope", "kind", "summary"])
     return pd.read_csv(LLM_CACHE_PATH)
+
+@lru_cache(maxsize=1)
+def _load_tiers() -> list[dict]:
+    if not os.path.exists(TIERS_PATH):
+        raise FileNotFoundError(
+            f"{TIERS_PATH!r} not found. Run `python model/generate_tiers.py` first."
+        )
+    with open(TIERS_PATH) as f:
+        return json.load(f)
 
 
 def get_cached_summary(scope: str) -> str | None:
@@ -120,19 +138,31 @@ def all_predictions(year: int | None = None) -> list[dict]:
     """
     df = _load_forecast()
     country_names = _load_country_names()
+
     if year is not None:
         df = df[df["year"] == year]
 
     records = []
     for _, row in df.iterrows():
+
+        # Input has changed, so rewiring how we get this data
+        country_info = country_names.get(row["country"], {})
+
         records.append({
             "country": row["country"],
-            "country_name": country_names.get(row["country"]),
+            "indicator": row["indicator"],
+
+            # Adding new regions and sub-regions
+            "country_name": country_info.get("Name"),
+            "region": country_info.get("region"),
+            "sub_region": country_info.get("sub_region"),
+
+
             "year": int(row["year"]),
-            "risk_score": float(row["risk_score"]),
+            "value": float(row["value"]),
             "source": row["source"],
             "lower": None if pd.isna(row.get("lower")) else float(row["lower"]),
-            "upper": None if pd.isna(row.get("upper")) else float(row["upper"]),
+            "upper": None if pd.isna(row.get("upper")) else float(row["upper"])
         })
     return records
 
@@ -179,3 +209,18 @@ def get_country_detail(country: str) -> dict:
     if country not in data:
         raise ValueError(f"No detail for country={country!r}.")
     return data[country]
+
+
+
+
+
+def get_country_tiers(year: int | None = None) -> list[dict]:
+    """Return precomputed Vulnerability x Readiness tier assignments.
+
+    Args:
+        year: Optional calendar year to narrow results to (still all countries).
+    """
+    records = _load_tiers()
+    if year is not None:
+        records = [r for r in records if r["year"] == year]
+    return records
