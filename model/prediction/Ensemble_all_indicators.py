@@ -7,7 +7,7 @@ Enhancements:
    - Simple Exponential Smoothing (SES, no trend)
    - Damped Holt's Linear Trend
    - Undamped Holt's Linear Trend
-3. Ensemble forecasting combining ETS and ARIMA predictions via 50/50 averaging.
+3. Ensemble forecasting combining ETS and ARIMA predictions via 60/40 averaging.
 
 Usage:
     python model/prediction/ES_all_indicators.py
