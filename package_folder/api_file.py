@@ -17,6 +17,7 @@ from package_folder.climate import (
     get_cached_recommendation,
     get_cached_summary,
     get_country_tiers,
+    get_feature_importance,
 )
 
 from package_folder.llm_integration import (
@@ -110,6 +111,14 @@ def tiers(year: int | None = None):
     """
     records = get_country_tiers(year)
     return {"count": len(records), "data": records}
+
+
+@app.get("/feature-importance")
+def feature_importance():
+    """Return each ND-GAIN sub-indicator's global contribution to the
+    composite risk score, ranked by SHAP importance (highest first)."""
+    result = get_feature_importance()
+    return {"count": len(result["data"]), "data": result["data"], "caveat": result["caveat"]}
 
 
 # ------- LLM-powered endpoints -------

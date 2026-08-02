@@ -10,6 +10,17 @@ LLM_CACHE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "llm_summaries_cache
 WORLD_MOVERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "world_movers.json")
 COUNTRY_DETAILS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_details.json")
 TIERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_tiers.json")
+FEATURE_IMPORTANCE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "global_feature_importance.csv")
+
+# SHAP values behind global_feature_importance.csv were fit against an
+# earlier, PCA-weighted version of CompositeRisk, not the current
+# 0.6*Vulnerability + 0.4*(1-Readiness) risk_score. Surfaced to API
+# consumers so nobody presents these numbers as exact for the live score.
+FEATURE_IMPORTANCE_CAVEAT = (
+    "Estimated from a SHAP analysis of historical data using an earlier "
+    "version of the scoring formula. Directionally accurate, but will be "
+    "refreshed once the model is retrained on the current formula."
+)
 
 # Load new country names
 COUNTRY_NAMES_PATH = os.path.join(ROOT_PATH, "config", "iso3_to_region_name.csv")
@@ -217,3 +228,29 @@ def get_country_tiers(year: int | None = None) -> list[dict]:
     if year is not None:
         records = [r for r in records if r["year"] == year]
     return records
+
+
+@lru_cache(maxsize=1)
+def _load_feature_importance() -> pd.DataFrame:
+    if not os.path.exists(FEATURE_IMPORTANCE_PATH):
+        raise FileNotFoundError(
+            f"{FEATURE_IMPORTANCE_PATH!r} not found. Run the SHAP analysis "
+            "step (model/convert_shap_pca.py) first."
+        )
+    return pd.read_csv(FEATURE_IMPORTANCE_PATH)
+
+
+def get_feature_importance() -> dict:
+    """Return each ND-GAIN sub-indicator's global contribution to the risk
+    score, ranked by SHAP importance (highest first)."""
+    df = _load_feature_importance().sort_values("SHAP Importance (%)", ascending=False)
+    records = [
+        {
+            "indicator": row["Feature"],
+            "importance_pct": round(float(row["SHAP Importance (%)"]), 2),
+            "mean_abs_shap": float(row["Mean |SHAP|"]),
+            "rf_importance": float(row["RF Importance"]),
+        }
+        for _, row in df.iterrows()
+    ]
+    return {"data": records, "caveat": FEATURE_IMPORTANCE_CAVEAT}
