@@ -33,8 +33,10 @@ VULNERABILITY_INDICATORS = [
     "Exposure", "Sensitivity", "Capacity", "Food", "Water",
     "Health", "Ecosystems", "Habitat", "Infrastructure",
 ]
-COMPOSITE_LABEL = "CompositeRisk"  # confirm this matches the actual indicator label in the file
+COMPOSITE_LABEL = "CompositeRisk"
 TOP_N = 10
+
+SHAP_IMPORTANCE_CHANGE_THRESHOLD = 5.0  # percentage points; tune as needed
 
 
 def get_indicator_forecast(country_df: pd.DataFrame, country: str, indicator: str, year: int) -> float | None:
@@ -157,7 +159,13 @@ def generate_world_movers(long_df: pd.DataFrame, country_names: dict, shap_data:
     }
 
 
-def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_data: dict | None) -> dict:
+def generate_country_details(
+    long_df: pd.DataFrame,
+    country_names: dict,
+    shap_data: dict | None,
+    attribution_df: pd.DataFrame,
+    latest_actual_year: int,
+) -> dict:
     global_importance = shap_data["global_importance"] if shap_data else {}
     local_shap = shap_data["local_shap"] if shap_data else {}
     importance_order = sorted(global_importance, key=global_importance.get, reverse=True) if global_importance else []
@@ -230,12 +238,15 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
             strongest = indicators[:3]
             weakest = indicators[-3:]
 
+        country_shap_trend = compute_shap_importance_trend(attribution_df, latest_actual_year, target_year=2040, country=country)
+
         details[country] = {
             "country": country,
             "country_name": country_names.get(country),
             "trend": trend,
             "strongest_indicators": strongest,
             "weakest_indicators": weakest,
+            "shap_importance_trend": country_shap_trend,
         }
 
     return details
@@ -259,6 +270,44 @@ def compute_feature_dependence_correlation(attribution_df: pd.DataFrame, feature
         }
     return correlations
 
+SHAP_IMPORTANCE_CHANGE_THRESHOLD = 5.0  # percentage points; tune as needed
+
+
+def compute_shap_importance_trend(
+    attribution_df: pd.DataFrame,
+    latest_actual_year: int,
+    target_year: int = 2040,
+    country: str | None = None,
+) -> list[dict]:
+    """For each feature, compare SHAP importance (%) at the latest actual
+    year vs. the target forecast year. If country is None, averages across
+    all countries (global view); otherwise restricts to that one country.
+
+    Returns a list of dicts sorted by absolute change (largest first),
+    each with: name, latest_importance, forecast_importance, change,
+    significant, direction.
+    """
+    df = attribution_df if country is None else attribution_df[attribution_df["Country"] == country]
+
+    latest = df[df["Year"] == latest_actual_year].groupby("Feature")["SHAP Importance (%)"].mean()
+    forecast = df[df["Year"] == target_year].groupby("Feature")["SHAP Importance (%)"].mean()
+
+    results = []
+    for feature in latest.index.union(forecast.index):
+        latest_val = float(latest.get(feature, 0.0))
+        forecast_val = float(forecast.get(feature, 0.0))
+        change = forecast_val - latest_val
+        significant = abs(change) >= SHAP_IMPORTANCE_CHANGE_THRESHOLD
+        results.append({
+            "name": feature,
+            "latest_importance": latest_val,
+            "forecast_importance": forecast_val,
+            "change": change,
+            "significant": significant,
+            "direction": "increasing" if change > 0 else "decreasing" if change < 0 else "unchanged",
+        })
+
+    return sorted(results, key=lambda r: abs(r["change"]), reverse=True)
 
 if __name__ == "__main__":
     if not LONG_FORMAT_PATH.exists():
@@ -274,12 +323,19 @@ if __name__ == "__main__":
     feature_dependence = compute_feature_dependence_correlation(dependence_df)
     world_movers["feature_dependence"] = feature_dependence
 
+    attribution_df = pd.read_csv(ROOT / "data" / "outputs" / "country_feature_attribution.csv")
+    latest_actual_year = int(long_df[
+        (long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "actual")
+    ]["year"].max())
+    world_movers["global_shap_trend"] = compute_shap_importance_trend(attribution_df, latest_actual_year, target_year=2040)
+
     world_movers_path = ROOT / "data" / "outputs" / "world_movers.json"
+
     with open(world_movers_path, "w") as f:
         json.dump(world_movers, f, indent=2)
     print(f"Saved {world_movers_path} ({len(world_movers['improved'])} improved, {len(world_movers['worsened'])} worsened)")
 
-    country_details = generate_country_details(long_df, country_names, shap_data)
+    country_details = generate_country_details(long_df, country_names, shap_data, attribution_df, latest_actual_year)
     country_details_path = ROOT / "data" / "outputs" / "country_details.json"
     with open(country_details_path, "w") as f:
         json.dump(country_details, f, indent=2)

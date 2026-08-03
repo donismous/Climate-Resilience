@@ -64,6 +64,31 @@ def _generate(system_instruction: str, prompt: str, max_tokens: int) -> str:
     except Exception:
         return "Something went wrong generating this response. Please try again."
 
+def _format_shap_trend(trend: list[dict]) -> str:
+    """Format only the significant SHAP importance changes as plain text.
+    If none are significant, says so explicitly rather than listing
+    unchanged values."""
+    significant = [t for t in trend if t["significant"]]
+    if not significant:
+        return "No indicator's importance is forecasted to change significantly through 2040 -- the key drivers remain largely the same."
+    lines = [
+        f"- {t['name']}: importance {t['direction']} ({t['change']:+.1f} percentage points by 2040)"
+        for t in significant
+    ]
+    return "\n".join(lines)
+
+def _format_indicators(indicators: list[dict]) -> str:
+    lines = []
+    for ind in indicators:
+        shap = ind.get("shap_contribution")
+        effect = "reduces" if (shap is not None and shap < 0) else "increases" if shap is not None else None
+
+        favorable_pct = (1 - ind['latest_value']) * 100 if ind.get('category') == 'readiness' else (1 - ind['latest_value']) * 100
+        line = f"- {ind['name']}: {favorable_pct:.0f}% favorable"
+        if effect:
+            line += f", {effect} this country's risk score"
+        lines.append(line)
+    return "\n".join(lines)
 
 def summarize_dashboard(filtered_stats: dict) -> str:
     """Narrate the currently filtered dashboard view.
@@ -114,7 +139,8 @@ efforts, joining or supporting community climate initiatives, voting with
 climate resilience in mind and contacting local representatives, spreading
 accurate awareness among friends/family/community, or making small,
 affordable personal contributions (e.g. modest recurring donations to
-reputable, vetted climate organizations). Avoid suggesting they personally
+reputable, vetted climate organizations). Consider the specific countries income level
+and top indicators. Avoid suggesting they personally
 "fund," "mobilize capital toward," or "advocate for" large-scale international
 programs -- that is not realistic for an individual citizen.""",
         "business": f"""This is a business in the {industry} industry.
@@ -151,6 +177,10 @@ def summarize_world_map(movers: dict) -> str:
     """Narrate the world map view: current best/worst, forecast trend, and
     global indicator strengths/weaknesses.
     """
+    best_ind_text = "\n".join(f"- {i['name']}" for i in movers['best_indicators_global'])
+    worst_ind_text = "\n".join(f"- {i['name']}" for i in movers['worst_indicators_global'])
+    shap_trend_text = _format_shap_trend(movers.get('global_shap_trend', []))
+
     prompt = f"""Summarize this global climate risk picture. Start with one
 short introductory sentence, then respond in concise bullet points (max 8
 bullets, one short sentence each). Be aware that the trend figures are
@@ -165,35 +195,52 @@ Countries with the best forecasted trend: {movers['improved']}
 Countries with the worst forecasted trend: {movers['worsened']}
 Indicators that most reduce risk globally: {movers['best_indicators_global']}
 Indicators that most increase risk globally: {movers['worst_indicators_global']}
+How much each global driver's importance is forecasted to change by 2040:
+{shap_trend_text}
 Global average forecasted trend: {movers['global_direction']} (slope: {movers['global_mean_slope']:.5f}/year)"""
     return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=MAX_TOKENS_WORLD_SUMMARY)
 
 
 def summarize_country_detail(detail: dict) -> str:
-    """Narrate a single country's performance, forecast trend, and
-    indicator breakdown.
+    """Narrate a single country's performance, forecast trend, and the
+    indicators that most drive its risk score (by SHAP contribution).
     """
+    strongest_text = _format_indicators(detail['strongest_indicators'])
+    weakest_text = _format_indicators(detail['weakest_indicators'])
+    shap_trend_text = _format_shap_trend(detail.get('shap_importance_trend', []))
+
     prompt = f"""Summarize this country's climate risk profile. Start with
 one short introductory sentence, then respond in concise bullet points (max
 8 bullets). Be aware that the trend is a forward-looking forecast, not a
 historical pattern. When referring to indicators, use just their plain
 name (e.g. "Governance", "Capacity") -- do not append category labels like
-"(readiness)" or "(vulnerability)" after the indicator name.
+"(readiness)" or "(vulnerability)" after the indicator name. Use ONLY the
+value given for each indicator -- do not invert it, convert it, or compute
+any second number yourself. Do not say things like "despite its low value"
+or "high readiness offsets" -- state the value once and describe its
+effect on risk directly, without implying there is a second, different
+number behind it.
 
 Country: {detail['country_name']} ({detail['country']})
 Latest actual risk score: {detail['trend']['latest_actual_value']:.3f} (as of {detail['trend']['latest_actual_year']})
 Forecasted trend: {detail['trend']['direction']} (projected slope: {detail['trend']['forecast_slope_per_year']:.5f}/year, forecasted risk score by 2040: {detail['trend'].get('forecast_2040_value'):.3f})
 
-Indicators that most reduce this country's risk score: {detail['strongest_indicators']}
-Indicators that most increase this country's risk score: {detail['weakest_indicators']}
+Indicators that most reduce this country's risk score:
+{strongest_text}
 
-For the top 3 risk-reducing indicators, briefly note why each helps this particular
-country while considering their values. For the most 3 risk-increasing indicator, briefly explain in plain
-language why it likely drags down this particular country's risk profile while considerin their values."""
+Indicators that most increase this country's risk score:
+{weakest_text}
 
+For the top 2 risk-reducing indicators, briefly note why each helps this
+country. For each risk-increasing indicator, briefly explain in plain
+language why it likely drags down this country's risk profile.
+
+How much each indicator's importance for this country is forecasted to
+change by 2040:
+{shap_trend_text}"""
     return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=MAX_TOKENS_COUNTRY_SUMMARY)
 
-def explain_global_drivers(global_importance: dict, feature_dependence: dict) -> str:
+def explain_global_drivers(global_importance: list, feature_dependence: dict) -> str:
     """Narrate what drives global climate risk, and how consistently each
     driver behaves (based on correlation between its raw value and its
     SHAP contribution across all countries/years).
@@ -202,7 +249,7 @@ def explain_global_drivers(global_importance: dict, feature_dependence: dict) ->
 short introductory sentence, then respond in concise bullet points (max 7,
 one short sentence each).
 
-Global indicator importance (higher = matters more to the risk score): {global_importance}
+Globally most impactful indicators (on risk score): {global_importance}
 
 Consistency of each indicator's effect (correlation between the indicator's
 raw value and how much it pushes risk up or down; "consistent" means the

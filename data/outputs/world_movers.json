@@ -313,5 +313,103 @@
       "correlation": 0.4946133815627031,
       "consistency": "inconsistent"
     }
-  }
+  },
+  "global_shap_trend": [
+    {
+      "name": "Health",
+      "latest_importance": 28.572431096595707,
+      "forecast_importance": 28.004287458262947,
+      "change": -0.56814363833276,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Food",
+      "latest_importance": 4.037364559600828,
+      "forecast_importance": 4.407536771683391,
+      "change": 0.37017221208256323,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Capacity",
+      "latest_importance": 41.38306177099077,
+      "forecast_importance": 41.13007292620274,
+      "change": -0.2529888447880282,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Social",
+      "latest_importance": 2.7245311621540256,
+      "forecast_importance": 2.96145871912529,
+      "change": 0.23692755697126433,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Governance",
+      "latest_importance": 7.822998861334996,
+      "forecast_importance": 7.93649636154042,
+      "change": 0.11349750020542348,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Habitat",
+      "latest_importance": 1.041620155335473,
+      "forecast_importance": 0.9557731540214552,
+      "change": -0.08584700131401768,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Exposure",
+      "latest_importance": 2.3858614498179556,
+      "forecast_importance": 2.4594112913947255,
+      "change": 0.07354984157676991,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Water",
+      "latest_importance": 0.7118443474837622,
+      "forecast_importance": 0.7778318229983275,
+      "change": 0.0659874755145653,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Sensitivity",
+      "latest_importance": 3.6592250315917694,
+      "forecast_importance": 3.7158536645742934,
+      "change": 0.056628632982524074,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Ecosystems",
+      "latest_importance": 1.6467973742159758,
+      "forecast_importance": 1.6066285233753996,
+      "change": -0.0401688508405762,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Economic",
+      "latest_importance": 5.255257747679006,
+      "forecast_importance": 5.286012764815331,
+      "change": 0.030755017136325336,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Infrastructure",
+      "latest_importance": 0.7590064431997248,
+      "forecast_importance": 0.758636542005672,
+      "change": -0.00036990119405277966,
+      "significant": false,
+      "direction": "decreasing"
+    }
+  ]
 }
