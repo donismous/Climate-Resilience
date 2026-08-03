@@ -19,7 +19,7 @@ deploy_to_cloud_run:
 		--image ${GCP_REGION}-docker.pkg.dev/${GCP_PROJECT}/${ARTIFACTSREPO}/${IMAGE}:prod \
 		--memory ${MEMORY} \
 		--region ${GCP_REGION} \
-		--set-secrets GEMINI_API_KEY=gemini-api-key:latest
+		--set-secrets GEMINI_API_KEY=gemini-api-key:latest,MISTRAL_API_KEY=mistral-api-key:latest
 
 run_preprocess_pipeline:
 	python data/preprocessing/pipeline.py
