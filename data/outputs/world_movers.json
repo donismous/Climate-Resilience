@@ -231,34 +231,34 @@
     {
       "name": "Capacity",
       "category": "vulnerability",
-      "mean_shap_contribution": -0.0027450422062850594
-    },
-    {
-      "name": "Food",
-      "category": "vulnerability",
-      "mean_shap_contribution": -0.0021811007599948176
-    },
-    {
-      "name": "Infrastructure",
-      "category": "vulnerability",
-      "mean_shap_contribution": -0.0009137605536666391
-    }
-  ],
-  "worst_indicators_global": [
-    {
-      "name": "Exposure",
-      "category": "vulnerability",
-      "mean_shap_contribution": 0.0011368454969680137
-    },
-    {
-      "name": "Economic",
-      "category": "readiness",
-      "mean_shap_contribution": 0.0006553399058624279
+      "mean_shap_contribution": -0.013842148797189507
     },
     {
       "name": "Social",
       "category": "readiness",
-      "mean_shap_contribution": 0.0004942477730433379
+      "mean_shap_contribution": -0.0013599911621659587
+    },
+    {
+      "name": "Economic",
+      "category": "readiness",
+      "mean_shap_contribution": -0.0004626900098749246
+    }
+  ],
+  "worst_indicators_global": [
+    {
+      "name": "Health",
+      "category": "vulnerability",
+      "mean_shap_contribution": 0.001973784037348518
+    },
+    {
+      "name": "Governance",
+      "category": "readiness",
+      "mean_shap_contribution": 0.0014274960313529824
+    },
+    {
+      "name": "Food",
+      "category": "vulnerability",
+      "mean_shap_contribution": 0.0006777874244028291
     }
   ],
   "forecast_target_year": 2040,
@@ -312,6 +312,80 @@
     "Water": {
       "correlation": 0.4946133815627031,
       "consistency": "inconsistent"
+    }
+  },
+  "global_indicator_trends": {
+    "Economic": {
+      "latest_value": 0.5732583114754098,
+      "forecast_value": 0.5744845752688171,
+      "slope_per_year": 7.213316431807585e-05,
+      "direction": "worsening"
+    },
+    "Governance": {
+      "latest_value": 0.595124786885246,
+      "forecast_value": 0.5967098978494624,
+      "slope_per_year": 9.324182142449586e-05,
+      "direction": "worsening"
+    },
+    "Social": {
+      "latest_value": 0.6359666373626374,
+      "forecast_value": 0.6207108333333334,
+      "slope_per_year": -0.0008974002370178783,
+      "direction": "improving"
+    },
+    "Exposure": {
+      "latest_value": 0.43644703763440856,
+      "forecast_value": 0.43644703763440856,
+      "slope_per_year": 0.0,
+      "direction": "worsening"
+    },
+    "Sensitivity": {
+      "latest_value": 0.3351321813186813,
+      "forecast_value": 0.33507824731182795,
+      "slope_per_year": -3.1725886384311144e-06,
+      "direction": "improving"
+    },
+    "Capacity": {
+      "latest_value": 0.5197361761363637,
+      "forecast_value": 0.5116071075268818,
+      "slope_per_year": -0.0004781805064401133,
+      "direction": "improving"
+    },
+    "Food": {
+      "latest_value": 0.45844392473118273,
+      "forecast_value": 0.4595304516129033,
+      "slope_per_year": 6.391334598356247e-05,
+      "direction": "worsening"
+    },
+    "Water": {
+      "latest_value": 0.36332329999999996,
+      "forecast_value": 0.3638297956989247,
+      "slope_per_year": 2.9793864642632182e-05,
+      "direction": "worsening"
+    },
+    "Health": {
+      "latest_value": 0.4684474432432432,
+      "forecast_value": 0.46758663978494625,
+      "slope_per_year": -5.0635497546881e-05,
+      "direction": "improving"
+    },
+    "Ecosystems": {
+      "latest_value": 0.4561351722222223,
+      "forecast_value": 0.4578954408602151,
+      "slope_per_year": 0.0001035452139995785,
+      "direction": "worsening"
+    },
+    "Habitat": {
+      "latest_value": 0.5081209247311829,
+      "forecast_value": 0.5105778064516129,
+      "slope_per_year": 0.00014452245414294207,
+      "direction": "worsening"
+    },
+    "Infrastructure": {
+      "latest_value": 0.29613473493975906,
+      "forecast_value": 0.2946925860215054,
+      "slope_per_year": -8.483228930903951e-05,
+      "direction": "improving"
     }
   },
   "global_shap_trend": [

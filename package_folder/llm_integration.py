@@ -78,16 +78,23 @@ def _format_shap_trend(trend: list[dict]) -> str:
     return "\n".join(lines)
 
 def _format_indicators(indicators: list[dict]) -> str:
+    """Format indicators as a favorability percentage + qualitative bucket
+    (higher = better, for every indicator) plus its effect on risk score."""
     lines = []
     for ind in indicators:
-        shap = ind.get("shap_contribution")
-        effect = "reduces" if (shap is not None and shap < 0) else "increases" if shap is not None else None
+        favorable_pct = (1 - ind['latest_value']) * 100
+        if favorable_pct >= 66.7:
+            bucket = "high"
+        elif favorable_pct >= 33.3:
+            bucket = "moderate"
+        else:
+            bucket = "low"
 
-        favorable_pct = (1 - ind['latest_value']) * 100 if ind.get('category') == 'readiness' else (1 - ind['latest_value']) * 100
-        line = f"- {ind['name']}: {favorable_pct:.0f}% favorable"
-        if effect:
-            line += f", {effect} this country's risk score"
-        lines.append(line)
+        shap = ind.get("shap_contribution")
+        effect = ""
+        if shap is not None:
+            effect = f", {'reduces' if shap < 0 else 'increases'} this country's risk score"
+        lines.append(f"- {ind['name']}: {favorable_pct:.0f}% favorable ({bucket}){effect}")
     return "\n".join(lines)
 
 def summarize_dashboard(filtered_stats: dict) -> str:
@@ -216,24 +223,33 @@ historical pattern. When referring to indicators, use just their plain
 name (e.g. "Governance", "Capacity") -- do not append category labels like
 "(readiness)" or "(vulnerability)" after the indicator name. Use ONLY the
 value given for each indicator -- do not invert it, convert it, or compute
-any second number yourself. Do not say things like "despite its low value"
-or "high readiness offsets" -- state the value once and describe its
-effect on risk directly, without implying there is a second, different
-number behind it.
+any second number yourself.
+
+You MUST organize your response into exactly two clearly labeled sections:
+one titled "Risk-reducing indicators" covering ONLY the three indicators
+listed under "REDUCES RISK" below, and one titled "Risk-increasing
+indicators" covering ONLY the three listed under "INCREASES RISK" below.
+Never place an indicator from one list under the other section's heading.
 
 Country: {detail['country_name']} ({detail['country']})
 Latest actual risk score: {detail['trend']['latest_actual_value']:.3f} (as of {detail['trend']['latest_actual_year']})
 Forecasted trend: {detail['trend']['direction']} (projected slope: {detail['trend']['forecast_slope_per_year']:.5f}/year, forecasted risk score by 2040: {detail['trend'].get('forecast_2040_value'):.3f})
 
-Indicators that most reduce this country's risk score:
+REDUCES RISK:
 {strongest_text}
 
-Indicators that most increase this country's risk score:
+INCREASES RISK:
 {weakest_text}
 
-For the top 2 risk-reducing indicators, briefly note why each helps this
-country. For each risk-increasing indicator, briefly explain in plain
-language why it likely drags down this country's risk profile.
+For each indicator under REDUCES RISK, briefly note the mechanism by which
+it helps this country. For each indicator under INCREASES RISK, briefly
+explain the mechanism by which it likely drags down this country's risk
+profile. If an indicator has a favorable value but still appears under
+INCREASES RISK, its actual effect on risk is small -- say so plainly (e.g.
+"has only a minor negative effect despite an otherwise good score") rather
+than inventing a specific causal story to explain why a good score would
+increase risk. Do not invent specific numeric targets, dates, or
+statistics beyond what is given above.
 
 How much each indicator's importance for this country is forecasted to
 change by 2040:
@@ -308,3 +324,66 @@ paragraphs."""
 
         self.history.append({"role": "assistant", "content": answer})
         return answer
+
+def summarize_alert_tracker(alerts: list[dict]) -> str:
+    currently = [a for a in alerts if a["status"] == "currently_above_threshold"]
+    entering = [a for a in alerts if a["status"] == "forecasted_to_cross_threshold"]
+    recovering = [a for a in alerts if a["status"] == "forecasted_to_recover"]
+
+    def _format_alert(a: dict, verb: str) -> str:
+        drivers = ", ".join(d["name"] for d in a.get("top_risk_drivers", []))
+        return f"- {a['country_name']}: forecasted to {verb} in {a['crossing_year']}, driven mainly by {drivers}"
+
+    entering_sorted = sorted(entering, key=lambda a: a["crossing_year"])
+    recovering_sorted = sorted(recovering, key=lambda a: a["crossing_year"])
+
+    entering_text = "\n".join(_format_alert(a, "cross the threshold") for a in entering_sorted[:10]) or "None currently forecasted."
+    recovering_text = "\n".join(_format_alert(a, "drop back below the threshold") for a in recovering_sorted[:10]) or "None currently forecasted."
+
+    prompt = f"""Explain this climate risk alert tracker in one short
+introductory sentence describing what the alert threshold means and how
+many countries are currently flagged with no forecasted recovery
+({len(currently)} total, already shown in the accompanying table). Then
+respond in two clearly labeled sections (max 5 bullets each):
+
+1. "Newly entering the alert list" -- countries not currently flagged but
+forecasted to cross the threshold soon.
+2. "Forecasted to leave the alert list" -- countries currently flagged but
+forecasted to recover below the threshold soon.
+
+Always state the specific year given for each country, and its top
+driver(s). Do not invent specific numeric targets or dates beyond what is
+given.
+
+Countries newly entering the alert list, sorted by soonest:
+{entering_text}
+
+Countries forecasted to leave the alert list, sorted by soonest:
+{recovering_text}"""
+    return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=450)
+
+def explain_trend_comparison(countries: list[dict]) -> str:
+    """Compare 2-5 selected countries' climate risk trajectories: current
+    position, forecasted direction, and top driver behind each.
+    """
+    def _format_country(c: dict) -> str:
+        top_reducer = c["top_reducer"]["name"] if c.get("top_reducer") else "unknown"
+        top_increaser = c["top_increaser"]["name"] if c.get("top_increaser") else "unknown"
+        return (
+            f"- {c['country_name']}: risk score {c['latest_actual_value']:.3f} "
+            f"(as of {c['latest_actual_year']}), forecasted {c['direction']} "
+            f"to {c['forecast_2040_value']:.3f} by 2040. "
+            f"Top risk-reducing factor: {top_reducer}. Top risk-increasing factor: {top_increaser}."
+        )
+
+    countries_text = "\n".join(_format_country(c) for c in countries)
+
+    prompt = f"""Compare these countries' climate risk trajectories. Start
+with one short introductory sentence, then respond in bullet points (max 2
+per country): one bullet on its current position relative to the others,
+one bullet on why its forecast moves in the direction it does, based on
+its top driver given below. Do not invent specific numeric targets, dates,
+or statistics beyond what is given.
+
+{countries_text}"""
+    return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=450)

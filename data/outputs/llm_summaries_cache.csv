@@ -1,85 +1,93 @@
 scope,kind,summary
-world,summary,"The global climate risk landscape shows stark contrasts between today’s best- and worst-performing countries, alongside shifting vulnerabilities through 2040.
+world,summary,"The global climate risk landscape shows sharp contrasts between today’s leaders and laggards, but even top performers face worsening trends.
 
-- **Top performers today** (lowest risk scores) are Norway, Switzerland, Finland, Denmark, and the UK, driven by strong readiness and low vulnerability.
-- **Worst performers today** (highest risk scores) are Chad, Sudan, Eritrea, Central African Republic, and Somalia, facing extreme vulnerability across multiple indicators.
-- **Best forecasted trends** (fastest risk reduction) are in the Philippines, Nicaragua, Afghanistan, Saudi Arabia, and Namibia—all showing steady improvements.
-- **Worst forecasted trends** (fastest risk increase) are in the UK, Fiji, Palau, Russia, and Seychelles, where conditions are projected to deteriorate.
-- **Key risk reducers** globally are Capacity, Food, and Infrastructure—all vulnerability indicators highlighting systemic resilience needs.
-- **Key risk drivers** are Exposure (vulnerability) and Economic and Social factors (readiness), signaling systemic challenges in adaptation and support.
-- **No major shifts in driver importance** are expected by 2040—the same indicators will continue to dominate risk dynamics.
-- **Global outlook**: A slight improving trend (-0.00010/year) suggests marginal progress, but unevenly distributed across regions."
-world,recommendation_individual,"**Everyday choices and collective action can meaningfully reduce global climate risk—here’s how to contribute.**
+- **Current risk leaders** are high-income, temperate countries: Norway, Switzerland, Finland, Denmark, and the UK.
+- **Current risk laggards** are low-income, conflict-affected states: Chad, Sudan, Eritrea, Central African Republic, and Somalia.
+- **Best forecasted trends** (improving risk) are led by the Philippines, Nicaragua, Afghanistan, Saudi Arabia, and Namibia.
+- **Worst forecasted trends** (worsening risk) include the UK, Fiji, Palau, Russia, and Seychelles.
+- **Top risk-reducing indicators** are Capacity (vulnerability), Social (readiness), and Economic (readiness).
+- **Top risk-increasing indicators** are Health (vulnerability), Governance (readiness), and Food (vulnerability).
+- **Indicator importance** is stable through 2040—no driver shifts significantly.
+- **Global average trend** is slightly improving, with a forecast slope of –0.00010 per year."
+world,recommendation_individual,"Even though high-income countries currently face lower climate risk, every individual can still take meaningful action to reduce global climate risk and support vulnerable regions.
 
-- **Shrink your carbon footprint** by eating less meat (especially beef), reducing food waste, and choosing public transit, biking, or walking when possible—these directly lower global emissions tied to *Exposure* and *Capacity*.
-- **Support local resilience** by volunteering with disaster-preparedness groups or community gardens in your area—strengthening *Infrastructure* and *Food* systems where you live builds systemic resilience.
-- **Vote and advocate locally** by prioritizing climate-smart policies in municipal elections and contacting local leaders about green infrastructure or emergency response plans—this addresses *Economic and Social* readiness gaps.
-- **Spread accurate awareness** by sharing vetted climate information (e.g., from IPCC or ND-GAIN) with friends/family—misinformation worsens vulnerability, while informed communities drive collective action.
-- **Donate modestly but consistently** to small-scale, high-impact groups (e.g., reforestation or clean cookstove initiatives in vulnerable regions)—even small contributions help address systemic *Capacity* and *Food* challenges."
-world,recommendation_government/institution,"Governments and institutions can reduce global climate risk by addressing systemic vulnerabilities and strengthening readiness in the most exposed regions.
+- **Reduce energy use at home**: Switch to LED bulbs, unplug idle devices, and lower thermostat settings by 1–2°C to cut carbon emissions—especially impactful in high-consumption countries like the UK or Norway.
+- **Choose lower-impact foods**: Eat more plant-based meals and reduce food waste, targeting the high Food vulnerability in regions like Chad or Somalia where agricultural systems are fragile.
+- **Support local disaster resilience**: Volunteer with community emergency preparedness groups or tree-planting initiatives to strengthen local capacity—aligned with the top role of Social readiness in reducing risk.
+- **Engage politically at the local level**: Contact city councilors or attend town halls to advocate for green public transit or flood defenses, addressing Governance readiness gaps that worsen risk in places like Fiji or Palau.
+- **Donate or fundraise modestly for frontline communities**: Give small, recurring gifts to trusted organizations working in high-vulnerability regions (e.g., Chad or Central African Republic) to support adaptation efforts like clean water access or drought-resistant farming."
+world,recommendation_government/institution,"Governments and institutions can reduce global climate risk by targeting the most critical vulnerability and readiness gaps identified in the data.
 
-- **Prioritize investment in capacity-building** in the worst-performing countries (Chad, Sudan, Eritrea, CAR, Somalia) by funding education, governance reforms, and institutional strengthening to reduce vulnerability.
-- **Scale up international support for food systems** in high-risk regions by directing climate finance toward drought-resistant agriculture, supply chain resilience, and early warning systems.
-- **Accelerate infrastructure adaptation** in forecasted high-risk areas (UK, Fiji, Palau, Russia, Seychelles) by enforcing climate-resilient design standards and retrofitting critical systems.
-- **Strengthen economic and social readiness** in vulnerable nations through debt relief, trade policies, and social protection programs to enhance adaptive capacity.
-- **Foster South-South and triangular cooperation** by facilitating knowledge exchange between top performers (Norway, Switzerland, Finland) and improving countries (Philippines, Nicaragua, Afghanistan)."
-global_drivers,summary,"**Global climate risk is driven by a mix of vulnerability, exposure, and readiness factors that interact across systems.**
+- **Invest in health-system resilience** in low-income, conflict-affected states (e.g., Chad, Sudan) by funding primary care, disease surveillance, and nutrition programs to lower Health vulnerability.
+- **Strengthen governance capacity** in lagging regions by supporting anti-corruption agencies, judicial independence, and transparent public financial management to improve Governance readiness.
+- **Scale up social protection** in forecast-improving countries (e.g., Philippines, Nicaragua) to accelerate Social readiness gains and reduce inequality-driven vulnerability.
+- **Expand economic diversification** in fossil-dependent economies (e.g., Russia, Saudi Arabia) by redirecting fossil fuel subsidies to renewable energy and green industrial policy to bolster Economic readiness.
+- **Launch a global “Vulnerability Swap” fund** where high-income countries (e.g., Norway, Switzerland) finance adaptation projects in low-income states in exchange for verified risk-reduction credits, directly targeting Capacity and Food vulnerability."
+global_drivers,summary,"**Global climate risk is driven by the interplay of vulnerability, exposure, and adaptive capacity across societies and ecosystems.**
 
-- **Capacity** (highly consistent): Lower adaptive capacity (e.g., weak institutions, limited resources) increases vulnerability to climate shocks.
-- **Food systems** (inconsistent): Dependence on climate-sensitive agriculture raises risk, but effects vary by region and adaptation measures.
-- **Infrastructure** (inconsistent): Poor or aging infrastructure heightens exposure to hazards like floods or heat, but resilience investments can mitigate this.
-- **Exposure** (consistent): Higher population or asset concentration in hazard-prone areas directly amplifies risk.
-- **Economic readiness** (consistent): Stronger economies can mobilize resources for adaptation and recovery, reducing risk.
-- **Social readiness** (inconsistent): Education, equity, and health systems influence resilience, but their impact varies by context.
-- **Governance** (consistent): Effective policy and institutions consistently lower risk by enabling proactive adaptation and mitigation."
-FRA,summary,"France’s climate risk profile is moderate and projected to remain stable through 2040.
+- **Capacity** (45.5% of risk impact) is the strongest driver—national ability to adapt to climate shocks (e.g., infrastructure, institutions) most shapes overall risk.
+- **Health** (26.5%) follows closely—pre-existing health burdens amplify climate impacts like heatwaves or disease spread.
+- **Governance** (7.1%) critically determines risk outcomes—effective policy and institutional quality consistently reduce risk.
+- **Economic** (4.4%) and **Food** (4.2%) vulnerabilities compound risk when livelihoods or supply chains are fragile.
+- **Sensitivity** (3.5%) reflects how much systems (e.g., agriculture, coastal zones) are inherently exposed to harm.
+- **Exposure** (2.3%) measures direct physical presence in hazard zones (e.g., floodplains), though its effect is consistent but smaller than capacity.
+- **Ecosystems** (1.6%) and other factors (e.g., water, habitat) contribute less directly but variably—their impact on risk is inconsistent across contexts."
+alerts,summary,"**Climate Risk Alert Tracker:** The alert threshold flags countries where vulnerability exceeds adaptive capacity, with 25 currently flagged and no forecasted recovery.
 
-- **Latest actual risk score**: 0.313 (2023)
-- **Forecasted risk score by 2040**: 0.313 (no change)
+---
 
-**Top risk-reducing indicators**:
-- **Health (72% favorable)**: Strong healthcare systems improve resilience to climate-related health threats like heatwaves and disease.
-- **Capacity (74% favorable)**: High institutional and technical capacity enables effective climate adaptation and response.
+**1. Newly entering the alert list**
+- **Angola**: Forecasted to cross the threshold in **2026**, driven mainly by **Capacity, Health, Ecosystems**.
 
-**Top risk-increasing indicators**:
-- **Governance (70% favorable)**: While governance is favorable, it still contributes to risk by influencing policy effectiveness and implementation speed.
-- **Economic (57% favorable)**: Lower economic readiness increases vulnerability to climate shocks, such as infrastructure damage or trade disruptions.
-- **Social (67% favorable)**: Gaps in social cohesion or equity can slow collective adaptation efforts and increase disparities in climate impacts."
-FRA,recommendation_individual,"France’s climate risk is already moderate and projected to stay stable, so individual actions can focus on reinforcing the country’s strong health and capacity while addressing economic and social gaps.
+**2. Forecasted to leave the alert list**
+- **Zimbabwe**: Forecasted to drop back below the threshold in **2033**, driven mainly by **Health, Governance, Sensitivity**."
+FRA,summary,"France’s climate risk profile reflects a moderate overall risk with improving trends.
 
-- **Reduce energy waste**: Switch to a renewable electricity provider or install a small solar panel if feasible, cutting household emissions tied to France’s economic vulnerability.
-- **Support local food systems**: Buy seasonal produce from nearby farms to lower transport emissions and strengthen France’s social cohesion against supply chain disruptions.
-- **Join a neighborhood resilience group**: Volunteer with local disaster-preparedness teams to help bridge social gaps and bolster collective adaptation.
-- **Contact local officials**: Ask your mairie to expand green spaces or heatwave early-warning systems, leveraging France’s high institutional capacity for public good.
-- **Share trusted climate info**: Post vetted sources (e.g., Météo-France heatwave alerts) in community groups to counter misinformation and aid collective preparedness."
-FRA,recommendation_government/institution,"France can leverage its strong institutional capacity and health systems to reduce global climate risk through targeted international cooperation and policy leadership.
+**Risk-reducing indicators**
+- **Capacity**: Strong institutions and resources enable effective adaptation and response to climate impacts.
+- **Health**: High public health capacity supports resilience to heatwaves, disease vectors, and other climate-related health risks.
+- **Sensitivity**: Low economic and social sensitivity to climate shocks due to diversified and robust infrastructure.
 
-- **Expand climate finance for Least Developed Countries (LDCs)**: Allocate 0.7% of GNI to international climate funds, prioritizing adaptation projects in high-risk regions like Sub-Saharan Africa and Small Island Developing States.
-- **Strengthen EU-wide climate adaptation standards**: Advocate for mandatory climate risk assessments in EU infrastructure projects, ensuring alignment with France’s high governance capacity.
-- **Scale up global health resilience programs**: Share expertise and funding for heatwave early warning systems and vector-borne disease control in vulnerable regions.
-- **Invest in international capacity-building**: Fund twinning programs between French institutions and counterparts in at-risk countries to transfer technical and policy expertise.
-- **Promote equitable trade policies**: Push for G20 agreements that reduce economic vulnerability in low-income countries by stabilizing commodity markets and debt structures."
-SOM,summary,"Somalia faces a high but slowly improving climate risk profile.
+**Risk-increasing indicators**
+- **Governance**: Despite high favorability, it still slightly increases risk due to the complexity of coordinating climate policies across sectors and regions.
+- **Exposure**: Moderate exposure to climate hazards (e.g., coastal flooding, heat stress) has only a minor negative effect despite otherwise good preparedness.
+- **Food**: High favorability in food systems reduces risk, but agricultural sensitivity to climate variability still contributes slightly to overall risk."
+FRA,recommendation_individual,"France’s moderate climate risk profile offers clear opportunities for individuals to contribute meaningfully to global resilience.
 
-- Current risk score: 0.665 (2023), projected to fall to 0.661 by 2040.
-- Governance is only 3% favorable, the lowest of all indicators, which keeps risk elevated.
-- Infrastructure at 75% favorable helps lower risk by supporting adaptation and response.
-- Social at 36% favorable slightly increases risk by limiting community resilience.
-- Health at 13% favorable raises risk by constraining public health capacity under climate stress.
-- Food at 28% favorable increases risk due to ongoing food insecurity challenges.
-- Sensitivity at 46% favorable contributes to higher risk through exposure of sensitive sectors.
-- The forecast shows a gradual improvement trend driven by slow gains in key areas."
-SOM,recommendation_individual,"Somalia’s high climate risk is worsened by weak governance and social/health vulnerabilities, but you can help reduce these risks locally and globally.
+- **Reduce energy use**: Lower household electricity and heating demand by 10–15 % through efficient lighting, smart thermostats, and insulation upgrades.
+- **Shift transport habits**: Replace one car trip per week with walking, cycling, or public transit to cut personal emissions and ease local air-quality burdens.
+- **Support local food resilience**: Join or volunteer at a community-supported agriculture (CSA) scheme or urban garden to strengthen regional food system adaptability.
+- **Engage locally**: Attend a neighborhood climate-resilience workshop or volunteer with municipal emergency-preparedness teams to bolster community readiness.
+- **Advocate smartly**: Contact your *mairie* or departmental councillor once per year with a concise, data-backed suggestion (e.g., tree-planting in heat-vulnerable districts)."
+FRA,recommendation_government/institution,"France’s moderate climate risk profile offers a strong foundation for global risk reduction through targeted policy and institutional action.
 
-- Reduce food waste and support local farmers—donate to or volunteer with groups addressing Somalia’s 28% food vulnerability.
-- Advocate for stronger local governance by contacting community leaders about improving public health and disaster response systems.
-- Join or donate to community resilience programs, like early warning systems or water access initiatives, to bolster social and health capacities.
-- Lower your personal carbon footprint by reducing energy use and supporting clean energy where possible, easing global pressure on vulnerable regions.
-- Share accurate climate risk information with your network to raise awareness about Somalia’s challenges and solutions."
-SOM,recommendation_government/institution,"To reduce Somalia’s climate risk, prioritize governance reforms and targeted investments in public health, food security, and social resilience.
+- **Strengthen cross-sector climate governance** by establishing a national climate risk coordination council with binding mandates and regional representation to resolve policy fragmentation.
+- **Scale international adaptation finance** by increasing contributions to the Green Climate Fund and bilateral programs, prioritizing Least Developed Countries and Small Island Developing States with high vulnerability.
+- **Expand public health adaptation** by integrating climate-resilient health systems into national preparedness plans, including early warning systems for heatwaves and vector-borne diseases.
+- **Invest in climate-resilient agriculture** by funding research and extension services to develop drought-resistant crops and sustainable irrigation, reducing global food system sensitivity.
+- **Promote EU-wide climate risk transparency** by advocating for mandatory climate risk disclosure in EU financial regulations and supporting the development of standardized risk metrics for international partners."
+SOM,summary,"Somalia’s climate risk profile reflects a mix of structural strengths and deep vulnerabilities.
 
-- **Strengthen governance**: Reform institutions to improve transparency, anti-corruption measures, and policy implementation—targeting a 20% increase in governance favorability by 2035.
-- **Expand public health infrastructure**: Invest in climate-resilient healthcare systems, including early warning systems and disease surveillance, to raise health favorability from 13% to 30% by 2040.
-- **Boost food system resilience**: Scale drought-resistant agriculture, irrigation, and food distribution networks to lift food favorability from 28% to 50% by 2040.
-- **Invest in social protection**: Expand safety nets, education, and community-based adaptation programs to raise social favorability from 36% to 55% by 2040.
-- **Leverage infrastructure gains**: Use existing infrastructure (75% favorable) to support adaptation—e.g., flood defenses, water storage, and renewable energy—to further reduce sensitivity."
+**Risk-reducing indicators**
+- **Economic (62% favorable)**: Stronger economic conditions can finance adaptation measures, diversify livelihoods, and absorb climate shocks.
+- **Social (36% favorable)**: Higher social readiness supports collective action, information sharing, and community-based resilience strategies.
+- **Infrastructure (75% favorable)**: Robust infrastructure improves access to services, enables mobility during hazards, and facilitates recovery.
+
+**Risk-increasing indicators**
+- **Capacity (22% favorable)**: Low institutional capacity limits planning, coordination, and implementation of climate adaptation and disaster response.
+- **Health (13% favorable)**: Poor health conditions reduce labor productivity, increase susceptibility to climate-related diseases, and strain public health systems.
+- **Food (28% favorable)**: Limited food system resilience heightens exposure to droughts and price shocks, undermining food security."
+SOM,recommendation_individual,"Somalia’s climate risk is driven by weak institutional capacity, poor health, and fragile food systems—but you can still take meaningful local action to reduce overall risk.
+
+- **Support community health**: Volunteer with or donate to local health clinics to improve resilience against climate-related diseases like malaria or heat stress.
+- **Strengthen local food systems**: Join or donate to community gardens or food cooperatives that diversify food sources and reduce drought vulnerability.
+- **Advocate for better local planning**: Contact local leaders to push for small-scale infrastructure improvements (e.g., flood drainage, shade structures) that enhance community resilience.
+- **Share climate-smart knowledge**: Organize or join neighborhood discussions on drought-resistant farming, water conservation, or early warning systems for extreme weather.
+- **Reduce personal emissions where possible**: Minimize food waste, use energy-efficient cooking methods (e.g., solar cookers), and choose public transport or walking to lower your footprint."
+SOM,recommendation_government/institution,"Somalia’s climate risk profile demands targeted public action to reduce vulnerability and build long-term resilience.
+
+- **Strengthen institutional capacity** by investing in civil service training, inter-ministerial coordination mechanisms, and climate data systems to improve policy implementation and disaster response.
+- **Expand public health infrastructure** by funding rural clinics, disease surveillance networks, and nutrition programs to reduce climate-sensitive health risks and protect labor productivity.
+- **Invest in food system resilience** through drought-resistant crop programs, grain reserves, and market stabilization funds to buffer against climate shocks and price volatility.
+- **Leverage economic strength** by redirecting a portion of GDP growth into climate-resilient infrastructure, social protection, and local adaptation grants to vulnerable communities.
+- **Enhance regional cooperation** by partnering with IGAD and neighboring states to share early warning systems, cross-border water management, and joint disaster response capacity."
