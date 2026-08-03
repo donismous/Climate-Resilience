@@ -2,7 +2,7 @@ build_container_local:
 	docker build --tag=${IMAGE}:dev .
 
 run_container_local:
-	docker run -it -e PORT=8000 -p 8080:8000 ${IMAGE}:dev
+	docker run -it --env-file .env -e PORT=8000 -p 8080:8000 ${IMAGE}:dev
 
 build_for_production:
 	docker build \
@@ -22,4 +22,15 @@ deploy_to_cloud_run:
 		--set-secrets MISTRAL_API_KEY=mistral-api-key:latest
 
 run_preprocess_pipeline:
-	python data/preprocessing/pipeline.py
+	python utils/preprocessing/pipeline.py
+
+run_prediction_model:
+
+	python model/prediction/ES_all_indicators.py
+
+run_save_model_output:
+
+	python model/prediction/save_outputs.py
+
+run_feature_importance:
+	python model/feature_importance/random_forest_pipeline.py

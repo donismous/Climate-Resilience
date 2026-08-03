@@ -16,6 +16,8 @@ from package_folder.climate import (
     get_country_detail,
     get_cached_recommendation,
     get_cached_summary,
+    get_country_tiers,
+    get_feature_importance,
 )
 
 from package_folder.llm_integration import (
@@ -59,7 +61,10 @@ def predict(
     ),
     year: int = Query(..., description="Calendar year"),
 ):
-    """Return the composite climate risk score for a country and year.
+    """Return every ND-GAIN indicator's value for a country and year.
+
+    Shaped identically to /predict_all: {"count": N, "data": [...]}, where
+    each record has the same fields as a /predict_all row.
 
     Args:
         country: ISO3 country code, e.g. "FRA". Must be a real ISO 3166-1
@@ -75,13 +80,13 @@ def predict(
         )
 
     try:
-        result = prediction_function(country, year)
+        records = prediction_function(country, year)
     except ValueError as error:
         raise HTTPException(status_code=404, detail=str(error))
     except FileNotFoundError as error:
         raise HTTPException(status_code=500, detail=str(error))
 
-    return {"country": country.upper(), "year": year, **result}
+    return {"count": len(records), "data": records}
 
 
 # All-countries endpoint
@@ -94,6 +99,26 @@ def predict_all(year: int | None = None):
     """
     records = all_predictions(year)
     return {"count": len(records), "data": records}
+
+
+# Vulnerability x Readiness tiers endpoint
+@app.get("/tiers")
+def tiers(year: int | None = None):
+    """Return every country's Vulnerability x Readiness tier assignment.
+
+    Args:
+        year: Optional calendar year to narrow results to (still all countries).
+    """
+    records = get_country_tiers(year)
+    return {"count": len(records), "data": records}
+
+
+@app.get("/feature-importance")
+def feature_importance():
+    """Return each ND-GAIN sub-indicator's global contribution to the
+    composite risk score, ranked by SHAP importance (highest first)."""
+    result = get_feature_importance()
+    return {"count": len(result["data"]), "data": result["data"], "caveat": result["caveat"]}
 
 
 # ------- LLM-powered endpoints -------
