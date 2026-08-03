@@ -19,6 +19,7 @@ from package_folder.climate import (
     get_country_tiers,
     get_feature_importance,
     flag_url,
+    get_indicators
 )
 
 from package_folder.llm_integration import (
@@ -119,6 +120,14 @@ def feature_importance():
     """Return each ND-GAIN sub-indicator's global contribution to the
     composite risk score, ranked by SHAP importance (highest first)."""
     result = get_feature_importance()
+    return {"count": len(result["data"]), "data": result["data"], "caveat": result["caveat"]}
+
+
+@app.get("/indicators")
+def indicators():
+    """Return each ND-GAIN sub-indicator's global contribution to the
+    composite risk score, ranked by SHAP importance (highest first)."""
+    result = get_indicators()
     return {"count": len(result["data"]), "data": result["data"], "caveat": result["caveat"]}
 
 
