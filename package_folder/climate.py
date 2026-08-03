@@ -1,6 +1,7 @@
 import os
 import json
 import pandas as pd
+import pycountry
 from functools import lru_cache
 
 
@@ -101,6 +102,19 @@ def get_cached_recommendation(scope: str, persona: str) -> str | None:
     return None if match.empty else match.iloc[0]["summary"]
 
 
+@lru_cache(maxsize=None)
+def flag_url(iso3: str) -> str | None:
+    """Flag image URL (flagcdn.com) for an ISO3 code, or None if unmapped.
+
+    flagcdn addresses flags by lowercase ISO alpha-2 code, so the ISO3
+    code is converted first.
+    """
+    country = pycountry.countries.get(alpha_3=iso3)
+    if country is None:
+        return None
+    return f"https://flagcdn.com/24x18/{country.alpha_2.lower()}.png"
+
+
 def _format_record(row: pd.Series, country_names: dict) -> dict:
     """Shape one row of the long-format forecast data into an API record.
 
@@ -116,7 +130,8 @@ def _format_record(row: pd.Series, country_names: dict) -> dict:
         "sub_region": country_info.get("sub_region"),
         "year": int(row["year"]),
         "value": float(row["value"]),
-        "source": row["source"]
+        "source": row["source"],
+        "flag": flag_url(row["country"]),
     }
 
 
@@ -227,7 +242,7 @@ def get_country_tiers(year: int | None = None) -> list[dict]:
     records = _load_tiers()
     if year is not None:
         records = [r for r in records if r["year"] == year]
-    return records
+    return [{**r, "flag": flag_url(r["country"])} for r in records]
 
 
 @lru_cache(maxsize=1)
