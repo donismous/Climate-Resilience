@@ -193,6 +193,27 @@ language why it likely drags down this particular country's risk profile while c
 
     return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=MAX_TOKENS_COUNTRY_SUMMARY)
 
+def explain_global_drivers(global_importance: dict, feature_dependence: dict) -> str:
+    """Narrate what drives global climate risk, and how consistently each
+    driver behaves (based on correlation between its raw value and its
+    SHAP contribution across all countries/years).
+    """
+    prompt = f"""Explain what drives global climate risk. Start with one
+short introductory sentence, then respond in concise bullet points (max 7,
+one short sentence each).
+
+Global indicator importance (higher = matters more to the risk score): {global_importance}
+
+Consistency of each indicator's effect (correlation between the indicator's
+raw value and how much it pushes risk up or down; "consistent" means the
+indicator reliably affects risk in the same direction, "inconsistent"
+means its effect on risk varies): {feature_dependence}
+
+For indicators marked "inconsistent", note only that their effect on risk
+varies rather than describing a specific pattern -- do not invent a shape
+or threshold you cannot verify from this data."""
+    return _generate(TOPIC_SCOPE_INSTRUCTIONS, prompt, max_tokens=350)
+
 
 class ChatSession:
     """A topic-scoped chat session, gated behind a persona selection."""

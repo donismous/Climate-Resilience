@@ -19,8 +19,6 @@ sys.path.insert(0, str(ROOT))
 
 GLOBAL_IMPORTANCE_PATH = ROOT / "data" / "outputs" / "global_feature_importance.csv"
 LOCAL_ATTRIBUTION_PATH = ROOT / "data" / "outputs" / "country_feature_attribution.csv"
-PCA_PATH = ROOT / "data" / "outputs" / "PCA_explained_variation.csv"
-
 
 def build_global_importance() -> dict:
     """Global feature importance, using SHAP Importance (%) -- already
@@ -45,15 +43,6 @@ def build_local_shap() -> dict:
     return local_shap
 
 
-def build_pca_summary() -> dict:
-    """PCA explained variance per component, for explain_drivers."""
-    df = pd.read_csv(PCA_PATH)
-    return {
-        "explained_variance": dict(zip(df["PC"], df["Explained Variance"])),
-        "cumulative_variance": dict(zip(df["PC"], df["Cumulative"])),
-    }
-
-
 if __name__ == "__main__":
     shap_analysis = {
         "global_importance": build_global_importance(),
@@ -68,9 +57,3 @@ if __name__ == "__main__":
     with open(shap_output_path, "w") as f:
         json.dump(shap_analysis, f, indent=2)
     print(f"Saved {shap_output_path} ({len(shap_analysis['local_shap'])} countries)")
-
-    pca_summary = build_pca_summary()
-    pca_output_path = ROOT / "data" / "outputs" / "pca_summary.json"
-    with open(pca_output_path, "w") as f:
-        json.dump(pca_summary, f, indent=2)
-    print(f"Saved {pca_output_path}")

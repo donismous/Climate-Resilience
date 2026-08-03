@@ -18,6 +18,7 @@ from package_folder.climate import (
     get_cached_summary,
     get_country_tiers,
     get_feature_importance,
+    get_global_drivers
 )
 
 from package_folder.llm_integration import (
@@ -26,6 +27,7 @@ from package_folder.llm_integration import (
     ChatSession,
     summarize_world_map,
     summarize_country_detail,
+    explain_global_drivers
 )
 
 # FastAPI instance
@@ -214,3 +216,13 @@ def country_detail(country: str):
     cached = get_cached_summary(country)
     summary = cached if cached is not None else summarize_country_detail(detail)
     return {"detail": detail, "summary": summary}
+
+@app.get("/global-drivers")
+def global_drivers():
+    drivers = get_global_drivers()
+    cached = get_cached_summary("global_drivers")
+    explanation = cached if cached is not None else explain_global_drivers(
+        drivers["best_indicators_global"] + drivers["worst_indicators_global"],
+        drivers["feature_dependence"],
+    )
+    return {"drivers": drivers, "explanation": explanation}

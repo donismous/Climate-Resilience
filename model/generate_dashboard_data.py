@@ -133,7 +133,7 @@ def generate_world_movers(long_df: pd.DataFrame, country_names: dict, shap_data:
             if rows.empty:
                 continue
             mean_value = float(rows["value"].mean())
-            favorable_score = mean_value if is_readiness else 1 - mean_value
+            favorable_score = 1 - mean_value
             indicator_averages.append({
                 "name": name,
                 "category": "readiness" if is_readiness else "vulnerability",
@@ -197,7 +197,7 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
             latest_value = get_indicator_forecast(country_df, country, name, latest_year)
             if latest_value is None:
                 continue
-            favorable_score = latest_value if is_readiness else 1 - latest_value
+            favorable_score = 1 - latest_value
             shap_value = country_shap.get(name)
 
             indicators.append({
@@ -240,6 +240,25 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
 
     return details
 
+def compute_feature_dependence_correlation(attribution_df: pd.DataFrame, feature_col: str = "Feature Value") -> dict:
+    """For each feature, correlation between its raw value and its SHAP
+    contribution across all country-year observations. Strong negative =
+    higher values consistently reduce risk; strong positive = higher
+    values consistently increase risk; near zero = inconsistent effect.
+    """
+    correlations = {}
+    for feature, group in attribution_df.groupby("Feature"):
+        if group[feature_col].nunique() < 2:
+            continue
+        corr = group[feature_col].corr(group["SHAP Value"])
+        correlations[feature] = {
+            "correlation": float(corr) if not pd.isna(corr) else None,
+            "consistency": (
+                "consistent" if abs(corr) >= 0.5 else "inconsistent"
+            ) if not pd.isna(corr) else "unknown",
+        }
+    return correlations
+
 
 if __name__ == "__main__":
     if not LONG_FORMAT_PATH.exists():
@@ -250,6 +269,11 @@ if __name__ == "__main__":
     shap_data = load_shap_data()
 
     world_movers = generate_world_movers(long_df, country_names, shap_data)
+
+    dependence_df = pd.read_csv(ROOT / "data" / "outputs" / "feature_dependence.csv")
+    feature_dependence = compute_feature_dependence_correlation(dependence_df)
+    world_movers["feature_dependence"] = feature_dependence
+
     world_movers_path = ROOT / "data" / "outputs" / "world_movers.json"
     with open(world_movers_path, "w") as f:
         json.dump(world_movers, f, indent=2)

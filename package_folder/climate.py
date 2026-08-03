@@ -206,6 +206,15 @@ def get_global_movers(top_n: int = 5) -> dict:
         "global_direction": data["global_direction"],
     }
 
+def get_global_drivers() -> dict:
+    """Return precomputed global feature importance + dependence data."""
+    data = _load_world_movers()
+    return {
+        "best_indicators_global": data.get("best_indicators_global", []),
+        "worst_indicators_global": data.get("worst_indicators_global", []),
+        "feature_dependence": data.get("feature_dependence", {}),
+    }
+
 def get_country_detail(country: str) -> dict:
     """Return precomputed detail for one country."""
     data = _load_country_details()

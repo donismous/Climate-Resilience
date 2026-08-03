@@ -13,8 +13,8 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from package_folder.climate import get_global_movers, get_country_detail, all_predictions
-from package_folder.llm_integration import summarize_world_map, summarize_country_detail, draft_recommendations
+from package_folder.climate import get_global_movers, get_country_detail, all_predictions, get_global_drivers
+from package_folder.llm_integration import summarize_world_map, summarize_country_detail, draft_recommendations, explain_global_drivers
 
 CACHEABLE_PERSONAS = ["individual", "government/institution"]
 
@@ -52,6 +52,16 @@ for persona in CACHEABLE_PERSONAS:
     if ("world", kind) not in done:
         rec = draft_recommendations(persona=persona, industry=None, dashboard_summary=world_summary_text, driver_summary="")
         add_row("world", kind, rec)
+
+save()
+
+if ("global_drivers", "summary") not in done:
+    drivers = get_global_drivers()
+    explanation = explain_global_drivers(
+        drivers["best_indicators_global"] + drivers["worst_indicators_global"],
+        drivers["feature_dependence"],
+    )
+    add_row("global_drivers", "summary", explanation)
 
 save()
 
