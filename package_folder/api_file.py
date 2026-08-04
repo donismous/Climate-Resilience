@@ -21,6 +21,7 @@ from package_folder.climate import (
     get_global_drivers,
     get_alerts,
     get_trend_comparison_data
+    flag_url,
 )
 
 from package_folder.llm_integration import (
@@ -219,7 +220,7 @@ def country_detail(country: str):
 
     cached = get_cached_summary(country)
     summary = cached if cached is not None else summarize_country_detail(detail)
-    return {"detail": detail, "summary": summary}
+    return {"detail": detail, "summary": summary, "flag": flag_url(country)}
 
 @app.get("/global-drivers")
 def global_drivers():
