@@ -17,6 +17,9 @@ ALERTS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "alerts.json")
 
 
 
+# Adding Indicators as output for API endpoint
+INDICATORS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "all_indicator_values.csv")
+
 # SHAP values behind global_feature_importance.csv were fit against an
 # earlier, PCA-weighted version of CompositeRisk, not the current
 # 0.6*Vulnerability + 0.4*(1-Readiness) risk_score. Surfaced to API
@@ -25,6 +28,11 @@ FEATURE_IMPORTANCE_CAVEAT = (
     "Estimated from a SHAP analysis of historical data using an earlier "
     "version of the scoring formula. Directionally accurate, but will be "
     "refreshed once the model is retrained on the current formula."
+)
+
+INDICATORS_CAVEAT = (
+    "The actual data comes from ND-GAIN source data. However, the forecasted  "
+    "data is based on ensemble methods. More information in how to use this report section "
 )
 
 # Load new country names
@@ -283,6 +291,33 @@ def get_feature_importance() -> dict:
     ]
     return {"data": records, "caveat": FEATURE_IMPORTANCE_CAVEAT}
 
+
+
+@lru_cache(maxsize=1)
+def _load_indicators() -> pd.DataFrame:
+    if not os.path.exists(INDICATORS_PATH):
+        raise FileNotFoundError(
+            f"{INDICATORS_PATH!r} not found. "
+            "Run save_outputs.py first."
+        )
+    return pd.read_csv(INDICATORS_PATH)
+
+
+def get_indicators() -> dict:
+    """Return each the indicator for each country from actual to forecasted data
+    If no data is returned, please check if the file is saved correctly under outputs/all_indicator_values.csv."""
+    df = _load_indicators()
+    records = [
+        {
+            "country": row["country"],
+            "indicator": row["indicator"],
+            "year": int(row["year"]),
+            "value": float(row["value"]),
+            "source": row["source"],
+        }
+        for _, row in df.iterrows()
+    ]
+    return {"data": records, "caveat": INDICATORS_CAVEAT}
 @lru_cache(maxsize=1)
 def _load_shap_analysis() -> dict | None:
     if not os.path.exists(SHAP_ANALYSIS_PATH):
