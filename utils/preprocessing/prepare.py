@@ -9,10 +9,7 @@ def prepare_for_model(df: pd.DataFrame, imputation: str = "global") -> pd.DataFr
 
     df = pivot_indicators(df)
     df = drop_countries(df)
-    if imputation == "regional":
-        df = impute_missing_regional(df)
-    else:
-        df = impute_missing(df)
+    df = impute_missing(df)
     df = reverse_readiness_indicators(df)
     df = sort_time_series(df)
 
@@ -60,26 +57,6 @@ def impute_missing(df: pd.DataFrame) -> pd.DataFrame:
     )
 
     return df
-
-
-def impute_missing_regional(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Impute missing values with the (Year, sub-region) average instead of the
-    global (Year) average used by ``impute_missing``.
-
-    Falls back to the global Year average for cells whose whole (Year, Region)
-    group has no observation.
-    """
-    indicator_cols = df.columns.difference(["Country", "Year"])
-
-    df = add_region_names(df)
-    df[indicator_cols] = (
-        df.groupby(["Year", "Region"])[indicator_cols]
-          .transform(lambda x: x.fillna(x.mean()))
-    )
-    df = df.drop(columns=["Region"])
-
-    return impute_missing(df)
 
 
 def sort_time_series(df: pd.DataFrame) -> pd.DataFrame:

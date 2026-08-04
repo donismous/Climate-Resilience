@@ -29,7 +29,7 @@ def calculate_composite_metrics(forecast_df, df_original, weights):
     vulnerability_indicators = [
         "Food", "Water", "Health", "Habitat",
         "Infrastructure", "Ecosystems",
-        "Sensitivity", "Capacity"
+        "Sensitivity", "Capacity",
     ]
 
     readiness_indicators = [
@@ -90,7 +90,7 @@ def calculate_composite_metrics(forecast_df, df_original, weights):
     indicator_matrix["Exposure"] = exposure.loc[indicator_matrix.index]
 
     indicator_matrix["Vulnerability"] = (
-        indicator_matrix[vulnerability_indicators]
+        indicator_matrix[vulnerability_indicators + ["Exposure"]]
         .mean(axis=1)
     )
 
