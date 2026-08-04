@@ -10,17 +10,16 @@ import sys
 from pathlib import Path
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(ROOT))
-
 from package_folder.climate import get_global_movers, get_country_detail, all_predictions, get_global_drivers, get_alerts
 from package_folder.llm_integration import summarize_world_map, summarize_country_detail, draft_recommendations, explain_global_drivers, summarize_alert_tracker
 
-CACHEABLE_PERSONAS = ["individual", "government/institution"]
-
-TEST_COUNTRIES = ["FRA", "SOM"]  # set to None to run the full ~186-country batch
-
+ROOT = Path(__file__).resolve().parent.parent
 output_path = ROOT / "data" / "outputs" / "llm_summaries_cache.csv"
+sys.path.insert(0, str(ROOT))
+
+CACHEABLE_PERSONAS = ["individual", "government/institution"]
+TEST_COUNTRIES = None  # set to None to run the full ~186-country batch
+
 
 if output_path.exists():
     existing = pd.read_csv(output_path)

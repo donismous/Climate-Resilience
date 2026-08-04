@@ -272,9 +272,6 @@ def compute_feature_dependence_correlation(attribution_df: pd.DataFrame, feature
         }
     return correlations
 
-SHAP_IMPORTANCE_CHANGE_THRESHOLD = 5.0  # percentage points; tune as needed
-
-
 def compute_shap_importance_trend(
     attribution_df: pd.DataFrame,
     latest_actual_year: int,
