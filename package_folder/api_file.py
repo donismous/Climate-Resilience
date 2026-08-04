@@ -20,7 +20,7 @@ from package_folder.climate import (
     get_feature_importance,
     get_global_drivers,
     get_alerts,
-    get_trend_comparison_data
+    get_trend_comparison_data,
     flag_url,
 )
 
