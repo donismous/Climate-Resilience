@@ -33,8 +33,12 @@ VULNERABILITY_INDICATORS = [
     "Exposure", "Sensitivity", "Capacity", "Food", "Water",
     "Health", "Ecosystems", "Habitat", "Infrastructure",
 ]
-COMPOSITE_LABEL = "CompositeRisk"  # confirm this matches the actual indicator label in the file
+COMPOSITE_LABEL = "CompositeRisk"
 TOP_N = 10
+
+SHAP_IMPORTANCE_CHANGE_THRESHOLD = 5.0  # percentage points; tune as needed
+ALERT_THRESHOLD_VALUE = 0.60
+
 
 
 def get_indicator_forecast(country_df: pd.DataFrame, country: str, indicator: str, year: int) -> float | None:
@@ -133,7 +137,7 @@ def generate_world_movers(long_df: pd.DataFrame, country_names: dict, shap_data:
             if rows.empty:
                 continue
             mean_value = float(rows["value"].mean())
-            favorable_score = mean_value if is_readiness else 1 - mean_value
+            favorable_score = 1 - mean_value
             indicator_averages.append({
                 "name": name,
                 "category": "readiness" if is_readiness else "vulnerability",
@@ -157,7 +161,13 @@ def generate_world_movers(long_df: pd.DataFrame, country_names: dict, shap_data:
     }
 
 
-def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_data: dict | None) -> dict:
+def generate_country_details(
+    long_df: pd.DataFrame,
+    country_names: dict,
+    shap_data: dict | None,
+    attribution_df: pd.DataFrame,
+    latest_actual_year: int,
+) -> dict:
     global_importance = shap_data["global_importance"] if shap_data else {}
     local_shap = shap_data["local_shap"] if shap_data else {}
     importance_order = sorted(global_importance, key=global_importance.get, reverse=True) if global_importance else []
@@ -197,7 +207,7 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
             latest_value = get_indicator_forecast(country_df, country, name, latest_year)
             if latest_value is None:
                 continue
-            favorable_score = latest_value if is_readiness else 1 - latest_value
+            favorable_score = 1 - latest_value
             shap_value = country_shap.get(name)
 
             indicators.append({
@@ -230,16 +240,170 @@ def generate_country_details(long_df: pd.DataFrame, country_names: dict, shap_da
             strongest = indicators[:3]
             weakest = indicators[-3:]
 
+        country_shap_trend = compute_shap_importance_trend(attribution_df, latest_actual_year, target_year=2040, country=country)
+
         details[country] = {
             "country": country,
             "country_name": country_names.get(country),
             "trend": trend,
             "strongest_indicators": strongest,
             "weakest_indicators": weakest,
+            "shap_importance_trend": country_shap_trend,
         }
 
     return details
 
+def compute_feature_dependence_correlation(attribution_df: pd.DataFrame, feature_col: str = "Feature Value") -> dict:
+    """For each feature, correlation between its raw value and its SHAP
+    contribution across all country-year observations. Strong negative =
+    higher values consistently reduce risk; strong positive = higher
+    values consistently increase risk; near zero = inconsistent effect.
+    """
+    correlations = {}
+    for feature, group in attribution_df.groupby("Feature"):
+        if group[feature_col].nunique() < 2:
+            continue
+        corr = group[feature_col].corr(group["SHAP Value"])
+        correlations[feature] = {
+            "correlation": float(corr) if not pd.isna(corr) else None,
+            "consistency": (
+                "consistent" if abs(corr) >= 0.5 else "inconsistent"
+            ) if not pd.isna(corr) else "unknown",
+        }
+    return correlations
+
+def compute_shap_importance_trend(
+    attribution_df: pd.DataFrame,
+    latest_actual_year: int,
+    target_year: int = 2040,
+    country: str | None = None,
+) -> list[dict]:
+    """For each feature, compare SHAP importance (%) at the latest actual
+    year vs. the target forecast year. If country is None, averages across
+    all countries (global view); otherwise restricts to that one country.
+
+    Returns a list of dicts sorted by absolute change (largest first),
+    each with: name, latest_importance, forecast_importance, change,
+    significant, direction.
+    """
+    df = attribution_df if country is None else attribution_df[attribution_df["Country"] == country]
+
+    latest = df[df["Year"] == latest_actual_year].groupby("Feature")["SHAP Importance (%)"].mean()
+    forecast = df[df["Year"] == target_year].groupby("Feature")["SHAP Importance (%)"].mean()
+
+    results = []
+    for feature in latest.index.union(forecast.index):
+        latest_val = float(latest.get(feature, 0.0))
+        forecast_val = float(forecast.get(feature, 0.0))
+        change = forecast_val - latest_val
+        significant = abs(change) >= SHAP_IMPORTANCE_CHANGE_THRESHOLD
+        results.append({
+            "name": feature,
+            "latest_importance": latest_val,
+            "forecast_importance": forecast_val,
+            "change": change,
+            "significant": significant,
+            "direction": "increasing" if change > 0 else "decreasing" if change < 0 else "unchanged",
+        })
+
+    return sorted(results, key=lambda r: abs(r["change"]), reverse=True)
+
+def compute_global_indicator_trends(long_df: pd.DataFrame, indicators: list[str], target_year: int = 2040) -> dict:
+    """For each indicator, global average forecast slope (latest actual
+    value -> target_year forecast), averaged across all countries.
+    """
+    trends = {}
+    for name in indicators:
+        actual = long_df[(long_df["indicator"] == name) & (long_df["source"] == "actual")]
+        forecast = long_df[(long_df["indicator"] == name) & (long_df["source"] == "forecast")]
+        if actual.empty or forecast.empty:
+            continue
+        latest_year = actual["year"].max()
+        latest_avg = actual[actual["year"] == latest_year]["value"].mean()
+        target_avg = forecast[forecast["year"] == target_year]["value"].mean()
+        if pd.isna(latest_avg) or pd.isna(target_avg) or target_year <= latest_year:
+            continue
+        trends[name] = {
+            "latest_value": float(latest_avg),
+            "forecast_value": float(target_avg),
+            "slope_per_year": float((target_avg - latest_avg) / (target_year - latest_year)),
+            "direction": "improving" if target_avg < latest_avg else "worsening",
+        }
+    return trends
+
+ALERT_THRESHOLD_VALUE = 0.6  # placeholder -- replace with your chosen absolute cutoff
+
+
+def compute_alerts(
+    long_df: pd.DataFrame,
+    country_names: dict,
+    country_details: dict,
+    threshold: float = ALERT_THRESHOLD_VALUE,
+    horizon_years: int = 15,
+) -> list[dict]:
+    """Countries currently above a fixed absolute risk threshold, countries
+    forecasted to cross it (entering the alert list), and currently-flagged
+    countries forecasted to drop back below it (leaving the alert list).
+    Each country's own actual crossing year is found individually.
+    """
+    risk_actual = long_df[(long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "actual")]
+    latest_year = risk_actual["year"].max()
+    latest = risk_actual[risk_actual["year"] == latest_year]
+
+    risk_forecast = long_df[(long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "forecast")]
+    horizon_end_year = min(latest_year + horizon_years, 2040)
+
+    alerts = []
+    for _, row in latest.iterrows():
+        country = row["country"]
+        current_value = row["value"]
+        currently_alert = current_value >= threshold
+
+        country_forecast = risk_forecast[
+            (risk_forecast["country"] == country)
+            & (risk_forecast["year"] > latest_year)
+            & (risk_forecast["year"] <= horizon_end_year)
+        ].sort_values("year")
+
+        crossing_year = None
+        crossing_value = None
+        status = None
+
+        if currently_alert:
+            # Check if this country is forecasted to drop back below the threshold
+            recovery_rows = country_forecast[country_forecast["value"] < threshold]
+            if not recovery_rows.empty:
+                first_recovery = recovery_rows.iloc[0]
+                crossing_year = int(first_recovery["year"])
+                crossing_value = float(first_recovery["value"])
+                status = "forecasted_to_recover"
+            else:
+                status = "currently_above_threshold"
+        else:
+            crossing_rows = country_forecast[country_forecast["value"] >= threshold]
+            if not crossing_rows.empty:
+                first_crossing = crossing_rows.iloc[0]
+                crossing_year = int(first_crossing["year"])
+                crossing_value = float(first_crossing["value"])
+                status = "forecasted_to_cross_threshold"
+
+        if status is not None:
+            detail = country_details.get(country, {})
+            reasons = [
+                {"name": i["name"], "shap_contribution": i.get("shap_contribution")}
+                for i in detail.get("weakest_indicators", [])
+            ]
+            alerts.append({
+                "country": country,
+                "country_name": country_names.get(country),
+                "current_value": float(current_value),
+                "crossing_year": crossing_year,
+                "crossing_value": crossing_value,
+                "status": status,
+                "top_risk_drivers": reasons,
+            })
+
+    return sorted(alerts, key=lambda a: a["current_value"], reverse=True)
 
 if __name__ == "__main__":
     if not LONG_FORMAT_PATH.exists():
@@ -250,13 +414,34 @@ if __name__ == "__main__":
     shap_data = load_shap_data()
 
     world_movers = generate_world_movers(long_df, country_names, shap_data)
+
+    dependence_df = pd.read_csv(ROOT / "data" / "outputs" / "feature_dependence.csv")
+    feature_dependence = compute_feature_dependence_correlation(dependence_df)
+    world_movers["feature_dependence"] = feature_dependence
+
+    all_indicators = READINESS_INDICATORS + VULNERABILITY_INDICATORS
+    world_movers["global_indicator_trends"] = compute_global_indicator_trends(long_df, all_indicators)
+
+    attribution_df = pd.read_csv(ROOT / "data" / "outputs" / "country_feature_attribution.csv")
+    latest_actual_year = int(long_df[
+        (long_df["indicator"] == COMPOSITE_LABEL) & (long_df["source"] == "actual")
+    ]["year"].max())
+    world_movers["global_shap_trend"] = compute_shap_importance_trend(attribution_df, latest_actual_year, target_year=2040)
+
     world_movers_path = ROOT / "data" / "outputs" / "world_movers.json"
+
     with open(world_movers_path, "w") as f:
         json.dump(world_movers, f, indent=2)
     print(f"Saved {world_movers_path} ({len(world_movers['improved'])} improved, {len(world_movers['worsened'])} worsened)")
 
-    country_details = generate_country_details(long_df, country_names, shap_data)
+    country_details = generate_country_details(long_df, country_names, shap_data, attribution_df, latest_actual_year)
     country_details_path = ROOT / "data" / "outputs" / "country_details.json"
     with open(country_details_path, "w") as f:
         json.dump(country_details, f, indent=2)
     print(f"Saved {country_details_path} ({len(country_details)} countries, SHAP included: {shap_data is not None})")
+
+    alerts = compute_alerts(long_df, country_names, country_details, threshold=0.6, horizon_years=10)
+    alerts_path = ROOT / "data" / "outputs" / "alerts.json"
+    with open(alerts_path, "w") as f:
+        json.dump(alerts, f, indent=2)
+    print(f"Saved {alerts_path} ({len(alerts)} countries flagged)")

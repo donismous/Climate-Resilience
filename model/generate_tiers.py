@@ -6,10 +6,10 @@ Each year's cohort is split into 4 tiers by that year's median
 Vulnerability and median Readiness (both ND-GAIN indicators, 0-1 scale,
 already present in data/outputs/all_indicators_with_forecast.csv):
 
-    Tier 4  high vulnerability, low readiness   -- most exposed, least prepared
-    Tier 3  high vulnerability, high readiness   -- exposed, but prepared
-    Tier 2  low vulnerability, low readiness     -- less exposed, still unprepared
-    Tier 1  low vulnerability, high readiness    -- well positioned
+    Tier 4  vulnerability above avg, readiness below avg   -- most exposed, least prepared
+    Tier 3  vulnerability above avg, readiness above avg   -- most exposed, most prepared
+    Tier 2  vulnerability below avg, readiness below avg   -- less exposed, least prepared
+    Tier 1  vulnerability below avg, readiness above avg   -- less exposed, most prepared
 
 Usage:
     python model/generate_tiers.py

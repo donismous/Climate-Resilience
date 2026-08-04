@@ -12,6 +12,10 @@ WORLD_MOVERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "world_movers.jso
 COUNTRY_DETAILS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_details.json")
 TIERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_tiers.json")
 FEATURE_IMPORTANCE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "global_feature_importance.csv")
+SHAP_ANALYSIS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "shap_analysis.json")
+ALERTS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "alerts.json")
+
+
 
 # SHAP values behind global_feature_importance.csv were fit against an
 # earlier, PCA-weighted version of CompositeRisk, not the current
@@ -221,6 +225,15 @@ def get_global_movers(top_n: int = 5) -> dict:
         "global_direction": data["global_direction"],
     }
 
+def get_global_drivers() -> dict:
+    """Return precomputed global feature importance + dependence data."""
+    shap_data = _load_shap_analysis()
+    world_data = _load_world_movers()
+    return {
+        "global_importance": shap_data.get("global_importance", {}) if shap_data else {},
+        "feature_dependence": world_data.get("feature_dependence", {}),
+    }
+
 def get_country_detail(country: str) -> dict:
     """Return precomputed detail for one country."""
     data = _load_country_details()
@@ -269,3 +282,48 @@ def get_feature_importance() -> dict:
         for _, row in df.iterrows()
     ]
     return {"data": records, "caveat": FEATURE_IMPORTANCE_CAVEAT}
+
+@lru_cache(maxsize=1)
+def _load_shap_analysis() -> dict | None:
+    if not os.path.exists(SHAP_ANALYSIS_PATH):
+        return None
+    with open(SHAP_ANALYSIS_PATH) as f:
+        return json.load(f)
+
+@lru_cache(maxsize=1)
+def _load_alerts() -> list[dict]:
+    if not os.path.exists(ALERTS_PATH):
+        raise FileNotFoundError(
+            f"{ALERTS_PATH!r} not found. Run `python model/generate_dashboard_data.py` first."
+        )
+    with open(ALERTS_PATH) as f:
+        return json.load(f)
+
+
+def get_alerts() -> list[dict]:
+    """Return the precomputed alert tracker list."""
+    return _load_alerts()
+
+def get_trend_comparison_data(countries: list[str]) -> list[dict]:
+    """Return compact trend + top driver data for a set of countries, for
+    live Trend Explorer comparisons. Reuses country_details.json -- no new
+    computation, just repackaged for this specific view.
+    """
+    data = _load_country_details()
+    result = []
+    for country in countries:
+        country = country.upper()
+        detail = data.get(country)
+        if detail is None:
+            continue
+        result.append({
+            "country": country,
+            "country_name": detail.get("country_name"),
+            "latest_actual_value": detail["trend"]["latest_actual_value"],
+            "latest_actual_year": detail["trend"]["latest_actual_year"],
+            "forecast_2040_value": detail["trend"].get("forecast_2040_value"),
+            "direction": detail["trend"]["direction"],
+            "top_reducer": detail["strongest_indicators"][0] if detail["strongest_indicators"] else None,
+            "top_increaser": detail["weakest_indicators"][0] if detail["weakest_indicators"] else None,
+        })
+    return result

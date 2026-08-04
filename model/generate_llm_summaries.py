@@ -10,17 +10,16 @@ import sys
 from pathlib import Path
 import pandas as pd
 
+from package_folder.climate import get_global_movers, get_country_detail, all_predictions, get_global_drivers, get_alerts
+from package_folder.llm_integration import summarize_world_map, summarize_country_detail, draft_recommendations, explain_global_drivers, summarize_alert_tracker
+
 ROOT = Path(__file__).resolve().parent.parent
+output_path = ROOT / "data" / "outputs" / "llm_summaries_cache.csv"
 sys.path.insert(0, str(ROOT))
 
-from package_folder.climate import get_global_movers, get_country_detail, all_predictions
-from package_folder.llm_integration import summarize_world_map, summarize_country_detail, draft_recommendations
-
 CACHEABLE_PERSONAS = ["individual", "government/institution"]
+TEST_COUNTRIES = None  # set to None to run the full ~186-country batch
 
-TEST_COUNTRIES = ["FRA", "SOM"]  # set to None to run the full ~186-country batch
-
-output_path = ROOT / "data" / "outputs" / "llm_summaries_cache.csv"
 
 if output_path.exists():
     existing = pd.read_csv(output_path)
@@ -52,6 +51,23 @@ for persona in CACHEABLE_PERSONAS:
     if ("world", kind) not in done:
         rec = draft_recommendations(persona=persona, industry=None, dashboard_summary=world_summary_text, driver_summary="")
         add_row("world", kind, rec)
+
+save()
+
+if ("global_drivers", "summary") not in done:
+    drivers = get_global_drivers()
+    explanation = explain_global_drivers(
+        drivers["global_importance"],
+        drivers["feature_dependence"],
+    )
+    add_row("global_drivers", "summary", explanation)
+
+save()
+
+if ("alerts", "summary") not in done:
+    alert_list = get_alerts()
+    explanation = summarize_alert_tracker(alert_list)
+    add_row("alerts", "summary", explanation)
 
 save()
 
