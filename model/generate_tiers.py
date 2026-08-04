@@ -6,10 +6,10 @@ Each year's cohort is split into 4 tiers by that year's median
 Vulnerability and median Readiness (both ND-GAIN indicators, 0-1 scale,
 already present in data/outputs/all_indicators_with_forecast.csv):
 
-    Tier 4  high vulnerability, low readiness   -- most exposed, least prepared
-    Tier 3  high vulnerability, high readiness   -- exposed, but prepared
-    Tier 2  low vulnerability, low readiness     -- less exposed, still unprepared
-    Tier 1  low vulnerability, high readiness    -- well positioned
+    High Risk  vulnerability above avg, lack of readiness above avg   -- most exposed, least prepared
+    Prepared  vulnerability above avg, lack of readiness below avg   -- most exposed, most prepared
+    Developing  vulnerability below avg, lack of readiness above avg   -- less exposed, least prepared
+    Resilient  vulnerability below avg, lack of readiness below avg   -- less exposed, most prepared
 
 Usage:
     python model/generate_tiers.py
@@ -29,21 +29,53 @@ COUNTRY_NAMES_PATH = ROOT / "config" / "iso3_to_region_name.csv"
 OUTPUT_PATH = ROOT / "data" / "outputs" / "country_tiers.json"
 
 TIERS = {
-    4: {"name": "Tier 4 — High Vulnerability, Low Readiness", "emoji": "🔴", "color": "#B22222"},
-    3: {"name": "Tier 3 — High Vulnerability, High Readiness", "emoji": "🔵", "color": "#3A6EA8"},
-    2: {"name": "Tier 2 — Low Vulnerability, Low Readiness", "emoji": "🟡", "color": "#D9A62E"},
-    1: {"name": "Tier 1 — Well Positioned", "emoji": "🟢", "color": "#3F5730"},
+    4: {
+        "tier": 4,
+        "name": "High Risk",
+        "label": "Most exposed, Least prepared",
+        "emoji": "🔴",
+        "color": "#B22222",
+        "short": "High vulnerability, high lack of readiness",
+        "note": "Most exposed to climate risk and least prepared to respond.",
+    },
+    3: {
+        "tier": 3,
+        "name": "Prepared",
+        "label": "Most exposed, Most prepared",
+        "emoji": "🟡",
+        "color": "#D9A62E",
+        "short": "High vulnerability, low lack of readiness",
+        "note": "Faces serious climate exposure, but has institutions and resources in place.",
+    },
+    2: {
+        "tier": 2,
+        "name": "Developing",
+        "label": "Least exposed, still unprepared",
+        "emoji": "🔵",
+        "color": "#3A6EA8",
+        "short": "Low vulnerability, high lack of readiness",
+        "note": "Not yet under severe climate pressure, but under-resourced if that changes.",
+    },
+    1: {
+        "tier": 1,
+        "name": "Resilient",
+        "label": "Least exposed, Most prepared",
+        "emoji": "🟢",
+        "color": "#3F5730",
+        "short": "Low vulnerability, low lack of readiness",
+        "note": "Relatively low exposure and strong capacity to adapt.",
+    },
 }
 
 
 def assign_tier(vulnerability: float, readiness: float, vuln_median: float, ready_median: float) -> int:
     high_vulnerability = vulnerability >= vuln_median
     high_readiness = readiness >= ready_median
-    if high_vulnerability and not high_readiness:
-        return 4
     if high_vulnerability and high_readiness:
+        return 4
+    if high_vulnerability and not high_readiness:
         return 3
-    if not high_vulnerability and not high_readiness:
+    if not high_vulnerability and high_readiness:
         return 2
     return 1
 

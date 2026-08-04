@@ -18,6 +18,9 @@ from package_folder.climate import (
     get_cached_summary,
     get_country_tiers,
     get_feature_importance,
+    get_global_drivers,
+    get_alerts,
+    get_trend_comparison_data,
     flag_url,
     get_indicators
 )
@@ -28,6 +31,9 @@ from package_folder.llm_integration import (
     ChatSession,
     summarize_world_map,
     summarize_country_detail,
+    explain_global_drivers,
+    summarize_alert_tracker,
+    explain_trend_comparison
 )
 
 # FastAPI instance
@@ -224,3 +230,38 @@ def country_detail(country: str):
     cached = get_cached_summary(country)
     summary = cached if cached is not None else summarize_country_detail(detail)
     return {"detail": detail, "summary": summary, "flag": flag_url(country)}
+
+@app.get("/global-drivers")
+def global_drivers():
+    drivers = get_global_drivers()
+    cached = get_cached_summary("global_drivers")
+    explanation = cached if cached is not None else explain_global_drivers(
+        drivers["global_importance"],
+        drivers["feature_dependence"],
+    )
+    return {"drivers": drivers, "explanation": explanation}
+
+@app.get("/alerts")
+def alerts():
+    alert_list = get_alerts()
+    cached = get_cached_summary("alerts")
+    explanation = cached if cached is not None else summarize_alert_tracker(alert_list)
+    return {"alerts": alert_list, "explanation": explanation}
+
+
+class TrendComparisonRequest(BaseModel):
+    countries: list[str]
+
+@app.post("/trend-comparison")
+def trend_comparison(request: TrendComparisonRequest):
+    if len(request.countries) < 2:
+        raise HTTPException(status_code=422, detail="Select at least 2 countries to compare.")
+    if len(request.countries) > 5:
+        raise HTTPException(status_code=422, detail="Select at most 5 countries to compare.")
+
+    comparison_data = get_trend_comparison_data(request.countries)
+    if len(comparison_data) < 2:
+        raise HTTPException(status_code=404, detail="Not enough valid countries found for comparison.")
+
+    explanation = explain_trend_comparison(comparison_data)
+    return {"data": comparison_data, "explanation": explanation}

@@ -1,267 +1,489 @@
 {
   "improved": [
     {
-      "country": "MHL",
-      "country_name": "Marshall Islands",
-      "forecast_slope_per_year": -0.001355436637718183,
+      "country": "PHL",
+      "country_name": "Philippines",
+      "forecast_slope_per_year": -0.0012762406888066134,
       "direction": "improving"
     },
     {
-      "country": "UZB",
-      "country_name": "Uzbekistan",
-      "forecast_slope_per_year": -0.001131553075343683,
+      "country": "NIC",
+      "country_name": "Nicaragua",
+      "forecast_slope_per_year": -0.0009879050601743864,
       "direction": "improving"
     },
     {
-      "country": "AGO",
-      "country_name": "Angola",
-      "forecast_slope_per_year": -0.000921270723670555,
-      "direction": "improving"
-    },
-    {
-      "country": "WSM",
-      "country_name": "Samoa",
-      "forecast_slope_per_year": -0.0009001926444980421,
+      "country": "AFG",
+      "country_name": "Afghanistan",
+      "forecast_slope_per_year": -0.0009259617247231913,
       "direction": "improving"
     },
     {
       "country": "SAU",
       "country_name": "Saudi Arabia",
-      "forecast_slope_per_year": -0.0008493910642973649,
+      "forecast_slope_per_year": -0.0009127071386335192,
       "direction": "improving"
     },
     {
-      "country": "SYR",
-      "country_name": "Syrian Arab Republic",
-      "forecast_slope_per_year": -0.0008370311108157074,
+      "country": "NAM",
+      "country_name": "Namibia",
+      "forecast_slope_per_year": -0.000900092482415313,
       "direction": "improving"
     },
     {
-      "country": "BRN",
-      "country_name": "Brunei Darussalam",
-      "forecast_slope_per_year": -0.0008244610505749349,
+      "country": "RWA",
+      "country_name": "Rwanda",
+      "forecast_slope_per_year": -0.000883505032154436,
       "direction": "improving"
     },
     {
-      "country": "BTN",
-      "country_name": "Bhutan",
-      "forecast_slope_per_year": -0.0008115733045638382,
+      "country": "MDV",
+      "country_name": "Maldives",
+      "forecast_slope_per_year": -0.0008381432522400364,
       "direction": "improving"
     },
     {
-      "country": "TGO",
-      "country_name": "Togo",
-      "forecast_slope_per_year": -0.0007227430275304546,
+      "country": "TON",
+      "country_name": "Tonga",
+      "forecast_slope_per_year": -0.0008121666114289889,
       "direction": "improving"
     },
     {
-      "country": "CIV",
-      "country_name": "Cote d'Ivoire",
-      "forecast_slope_per_year": -0.0006793121656411647,
+      "country": "SWZ",
+      "country_name": "Swaziland",
+      "forecast_slope_per_year": -0.0008082817731392966,
+      "direction": "improving"
+    },
+    {
+      "country": "ALB",
+      "country_name": "Albania",
+      "forecast_slope_per_year": -0.0008050649193257944,
       "direction": "improving"
     }
   ],
   "worsened": [
     {
-      "country": "NIC",
-      "country_name": "Nicaragua",
-      "forecast_slope_per_year": 0.0015586194541291,
+      "country": "GBR",
+      "country_name": "United Kingdom",
+      "forecast_slope_per_year": 0.0014886193556048607,
       "direction": "worsening"
     },
     {
-      "country": "NGA",
-      "country_name": "Nigeria",
-      "forecast_slope_per_year": 0.0013188183674625402,
+      "country": "FJI",
+      "country_name": "Fiji",
+      "forecast_slope_per_year": 0.0013065059652496583,
       "direction": "worsening"
     },
     {
-      "country": "MWI",
-      "country_name": "Malawi",
-      "forecast_slope_per_year": 0.001105973482816586,
+      "country": "PLW",
+      "country_name": "Palau",
+      "forecast_slope_per_year": 0.001007008385254667,
       "direction": "worsening"
     },
     {
-      "country": "SWZ",
-      "country_name": "Swaziland",
-      "forecast_slope_per_year": 0.0011014996013409828,
+      "country": "RUS",
+      "country_name": "Russian Federation",
+      "forecast_slope_per_year": 0.000999836996216174,
       "direction": "worsening"
     },
     {
-      "country": "MEX",
-      "country_name": "Mexico",
-      "forecast_slope_per_year": 0.0010887997842334001,
+      "country": "SYC",
+      "country_name": "Seychelles",
+      "forecast_slope_per_year": 0.0008115794361239345,
       "direction": "worsening"
     },
     {
-      "country": "KHM",
-      "country_name": "Cambodia",
-      "forecast_slope_per_year": 0.0010872871496964568,
+      "country": "AZE",
+      "country_name": "Azerbaijan",
+      "forecast_slope_per_year": 0.000697178638234476,
       "direction": "worsening"
     },
     {
-      "country": "GNB",
-      "country_name": "Guinea-Bissau",
-      "forecast_slope_per_year": 0.001080283822760963,
+      "country": "GEO",
+      "country_name": "Georgia",
+      "forecast_slope_per_year": 0.0006233029306902132,
       "direction": "worsening"
     },
     {
-      "country": "IDN",
-      "country_name": "Indonesia",
-      "forecast_slope_per_year": 0.0010426498418782699,
+      "country": "MDA",
+      "country_name": "Moldova, Republic of",
+      "forecast_slope_per_year": 0.0006207131356403044,
       "direction": "worsening"
     },
     {
-      "country": "MLT",
-      "country_name": "Malta",
-      "forecast_slope_per_year": 0.0010226146311318463,
+      "country": "ARM",
+      "country_name": "Armenia",
+      "forecast_slope_per_year": 0.0005681754984616584,
       "direction": "worsening"
     },
     {
-      "country": "LBN",
-      "country_name": "Lebanon",
-      "forecast_slope_per_year": 0.000997592580266872,
+      "country": "KAZ",
+      "country_name": "Kazakhstan",
+      "forecast_slope_per_year": 0.0005311797345427004,
       "direction": "worsening"
     }
   ],
   "best_current": [
     {
-      "country": "CZE",
-      "country_name": "Czech Republic",
-      "risk_score": 0.3342283356634224
+      "country": "NOR",
+      "country_name": "Norway",
+      "risk_score": 0.2475982284495481
     },
     {
-      "country": "KGZ",
-      "country_name": "Kyrgyzstan",
-      "risk_score": 0.334405443526552
+      "country": "CHE",
+      "country_name": "Switzerland",
+      "risk_score": 0.252153983160445
     },
     {
-      "country": "MLT",
-      "country_name": "Malta",
-      "risk_score": 0.3362547408867369
+      "country": "FIN",
+      "country_name": "Finland",
+      "risk_score": 0.2636795597947208
     },
     {
-      "country": "VEN",
-      "country_name": "Venezuela, Bolivarian Republic of",
-      "risk_score": 0.3437704060469352
+      "country": "DNK",
+      "country_name": "Denmark",
+      "risk_score": 0.2839752535638282
     },
     {
-      "country": "TKM",
-      "country_name": "Turkmenistan",
-      "risk_score": 0.3533914085082583
+      "country": "GBR",
+      "country_name": "United Kingdom",
+      "risk_score": 0.2887099012394302
     },
     {
-      "country": "ISR",
-      "country_name": "Israel",
-      "risk_score": 0.353747548303052
+      "country": "DEU",
+      "country_name": "Germany",
+      "risk_score": 0.290581376953456
     },
     {
-      "country": "ESP",
-      "country_name": "Spain",
-      "risk_score": 0.3542514541496817
+      "country": "SWE",
+      "country_name": "Sweden",
+      "risk_score": 0.2989340753364434
     },
     {
-      "country": "BLR",
-      "country_name": "Belarus",
-      "risk_score": 0.3545385840693411
+      "country": "AUT",
+      "country_name": "Austria",
+      "risk_score": 0.2998751012893114
     },
     {
-      "country": "BIH",
-      "country_name": "Bosnia and Herzegovina",
-      "risk_score": 0.3575426406716303
+      "country": "CAN",
+      "country_name": "Canada",
+      "risk_score": 0.302169996147708
     },
     {
-      "country": "POL",
-      "country_name": "Poland",
-      "risk_score": 0.3600282386930862
+      "country": "NZL",
+      "country_name": "New Zealand",
+      "risk_score": 0.3032763698971211
     }
   ],
   "worst_current": [
     {
-      "country": "SOM",
-      "country_name": "Somalia",
-      "risk_score": 0.5754005508725962
-    },
-    {
-      "country": "NER",
-      "country_name": "Niger",
-      "risk_score": 0.5749188030964538
-    },
-    {
-      "country": "SLB",
-      "country_name": "Solomon Islands",
-      "risk_score": 0.5383654821267685
-    },
-    {
-      "country": "BEN",
-      "country_name": "Benin",
-      "risk_score": 0.537341756012146
+      "country": "TCD",
+      "country_name": "Chad",
+      "risk_score": 0.6951487883412649
     },
     {
       "country": "SDN",
       "country_name": "Sudan",
-      "risk_score": 0.5340275057000154
+      "risk_score": 0.6823081737888425
     },
     {
-      "country": "RWA",
-      "country_name": "Rwanda",
-      "risk_score": 0.532387317753452
+      "country": "ERI",
+      "country_name": "Eritrea",
+      "risk_score": 0.6801787208859658
     },
     {
-      "country": "TON",
-      "country_name": "Tonga",
-      "risk_score": 0.5294850730584025
+      "country": "CAF",
+      "country_name": "Central African Republic",
+      "risk_score": 0.6660353433896886
     },
     {
-      "country": "COD",
-      "country_name": "Congo, the Democratic Republic of",
-      "risk_score": 0.5249962209238779
+      "country": "SOM",
+      "country_name": "Somalia",
+      "risk_score": 0.6652948716082363
     },
     {
-      "country": "MRT",
-      "country_name": "Mauritania",
-      "risk_score": 0.5245754295320593
+      "country": "NER",
+      "country_name": "Niger",
+      "risk_score": 0.6646024606840516
+    },
+    {
+      "country": "MDG",
+      "country_name": "Madagascar",
+      "risk_score": 0.6530654113650315
     },
     {
       "country": "GNB",
       "country_name": "Guinea-Bissau",
-      "risk_score": 0.5146268696440506
+      "risk_score": 0.6517598938080297
+    },
+    {
+      "country": "YEM",
+      "country_name": "Yemen",
+      "risk_score": 0.6465819304920359
+    },
+    {
+      "country": "COD",
+      "country_name": "Congo, the Democratic Republic of",
+      "risk_score": 0.6381260285181892
     }
   ],
   "best_indicators_global": [
     {
       "name": "Capacity",
       "category": "vulnerability",
-      "mean_shap_contribution": -0.0027450422062850594
-    },
-    {
-      "name": "Food",
-      "category": "vulnerability",
-      "mean_shap_contribution": -0.0021811007599948176
-    },
-    {
-      "name": "Infrastructure",
-      "category": "vulnerability",
-      "mean_shap_contribution": -0.0009137605536666391
-    }
-  ],
-  "worst_indicators_global": [
-    {
-      "name": "Exposure",
-      "category": "vulnerability",
-      "mean_shap_contribution": 0.0011368454969680137
-    },
-    {
-      "name": "Economic",
-      "category": "readiness",
-      "mean_shap_contribution": 0.0006553399058624279
+      "mean_shap_contribution": -0.013842148797189507
     },
     {
       "name": "Social",
       "category": "readiness",
-      "mean_shap_contribution": 0.0004942477730433379
+      "mean_shap_contribution": -0.0013599911621659587
+    },
+    {
+      "name": "Economic",
+      "category": "readiness",
+      "mean_shap_contribution": -0.0004626900098749246
+    }
+  ],
+  "worst_indicators_global": [
+    {
+      "name": "Health",
+      "category": "vulnerability",
+      "mean_shap_contribution": 0.001973784037348518
+    },
+    {
+      "name": "Governance",
+      "category": "readiness",
+      "mean_shap_contribution": 0.0014274960313529824
+    },
+    {
+      "name": "Food",
+      "category": "vulnerability",
+      "mean_shap_contribution": 0.0006777874244028291
     }
   ],
   "forecast_target_year": 2040,
-  "global_mean_slope": 0.00014308171442693385,
-  "global_direction": "worsening"
+  "global_mean_slope": -0.00010214104234803215,
+  "global_direction": "improving",
+  "feature_dependence": {
+    "Capacity": {
+      "correlation": 0.9047474956733064,
+      "consistency": "consistent"
+    },
+    "Economic": {
+      "correlation": 0.5447691054195833,
+      "consistency": "consistent"
+    },
+    "Ecosystems": {
+      "correlation": 0.4592986674776672,
+      "consistency": "inconsistent"
+    },
+    "Exposure": {
+      "correlation": 0.5381412217734772,
+      "consistency": "consistent"
+    },
+    "Food": {
+      "correlation": 0.3275683998562722,
+      "consistency": "inconsistent"
+    },
+    "Governance": {
+      "correlation": 0.5692177106225148,
+      "consistency": "consistent"
+    },
+    "Habitat": {
+      "correlation": 0.4524864837074082,
+      "consistency": "inconsistent"
+    },
+    "Health": {
+      "correlation": 0.7423719680912446,
+      "consistency": "consistent"
+    },
+    "Infrastructure": {
+      "correlation": 0.35177374608850875,
+      "consistency": "inconsistent"
+    },
+    "Sensitivity": {
+      "correlation": 0.5485953320384609,
+      "consistency": "consistent"
+    },
+    "Social": {
+      "correlation": 0.4316804729800018,
+      "consistency": "inconsistent"
+    },
+    "Water": {
+      "correlation": 0.4946133815627031,
+      "consistency": "inconsistent"
+    }
+  },
+  "global_indicator_trends": {
+    "Economic": {
+      "latest_value": 0.5732583114754098,
+      "forecast_value": 0.5744845752688171,
+      "slope_per_year": 7.213316431807585e-05,
+      "direction": "worsening"
+    },
+    "Governance": {
+      "latest_value": 0.595124786885246,
+      "forecast_value": 0.5967098978494624,
+      "slope_per_year": 9.324182142449586e-05,
+      "direction": "worsening"
+    },
+    "Social": {
+      "latest_value": 0.6359666373626374,
+      "forecast_value": 0.6207108333333334,
+      "slope_per_year": -0.0008974002370178783,
+      "direction": "improving"
+    },
+    "Exposure": {
+      "latest_value": 0.43644703763440856,
+      "forecast_value": 0.43644703763440856,
+      "slope_per_year": 0.0,
+      "direction": "worsening"
+    },
+    "Sensitivity": {
+      "latest_value": 0.3351321813186813,
+      "forecast_value": 0.33507824731182795,
+      "slope_per_year": -3.1725886384311144e-06,
+      "direction": "improving"
+    },
+    "Capacity": {
+      "latest_value": 0.5197361761363637,
+      "forecast_value": 0.5116071075268818,
+      "slope_per_year": -0.0004781805064401133,
+      "direction": "improving"
+    },
+    "Food": {
+      "latest_value": 0.45844392473118273,
+      "forecast_value": 0.4595304516129033,
+      "slope_per_year": 6.391334598356247e-05,
+      "direction": "worsening"
+    },
+    "Water": {
+      "latest_value": 0.36332329999999996,
+      "forecast_value": 0.3638297956989247,
+      "slope_per_year": 2.9793864642632182e-05,
+      "direction": "worsening"
+    },
+    "Health": {
+      "latest_value": 0.4684474432432432,
+      "forecast_value": 0.46758663978494625,
+      "slope_per_year": -5.0635497546881e-05,
+      "direction": "improving"
+    },
+    "Ecosystems": {
+      "latest_value": 0.4561351722222223,
+      "forecast_value": 0.4578954408602151,
+      "slope_per_year": 0.0001035452139995785,
+      "direction": "worsening"
+    },
+    "Habitat": {
+      "latest_value": 0.5081209247311829,
+      "forecast_value": 0.5105778064516129,
+      "slope_per_year": 0.00014452245414294207,
+      "direction": "worsening"
+    },
+    "Infrastructure": {
+      "latest_value": 0.29613473493975906,
+      "forecast_value": 0.2946925860215054,
+      "slope_per_year": -8.483228930903951e-05,
+      "direction": "improving"
+    }
+  },
+  "global_shap_trend": [
+    {
+      "name": "Health",
+      "latest_importance": 28.572431096595707,
+      "forecast_importance": 28.004287458262947,
+      "change": -0.56814363833276,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Food",
+      "latest_importance": 4.037364559600828,
+      "forecast_importance": 4.407536771683391,
+      "change": 0.37017221208256323,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Capacity",
+      "latest_importance": 41.38306177099077,
+      "forecast_importance": 41.13007292620274,
+      "change": -0.2529888447880282,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Social",
+      "latest_importance": 2.7245311621540256,
+      "forecast_importance": 2.96145871912529,
+      "change": 0.23692755697126433,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Governance",
+      "latest_importance": 7.822998861334996,
+      "forecast_importance": 7.93649636154042,
+      "change": 0.11349750020542348,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Habitat",
+      "latest_importance": 1.041620155335473,
+      "forecast_importance": 0.9557731540214552,
+      "change": -0.08584700131401768,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Exposure",
+      "latest_importance": 2.3858614498179556,
+      "forecast_importance": 2.4594112913947255,
+      "change": 0.07354984157676991,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Water",
+      "latest_importance": 0.7118443474837622,
+      "forecast_importance": 0.7778318229983275,
+      "change": 0.0659874755145653,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Sensitivity",
+      "latest_importance": 3.6592250315917694,
+      "forecast_importance": 3.7158536645742934,
+      "change": 0.056628632982524074,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Ecosystems",
+      "latest_importance": 1.6467973742159758,
+      "forecast_importance": 1.6066285233753996,
+      "change": -0.0401688508405762,
+      "significant": false,
+      "direction": "decreasing"
+    },
+    {
+      "name": "Economic",
+      "latest_importance": 5.255257747679006,
+      "forecast_importance": 5.286012764815331,
+      "change": 0.030755017136325336,
+      "significant": false,
+      "direction": "increasing"
+    },
+    {
+      "name": "Infrastructure",
+      "latest_importance": 0.7590064431997248,
+      "forecast_importance": 0.758636542005672,
+      "change": -0.00036990119405277966,
+      "significant": false,
+      "direction": "decreasing"
+    }
+  ]
 }

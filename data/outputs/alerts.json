@@ -1,0 +1,596 @@
+[
+  {
+    "country": "TCD",
+    "country_name": "Chad",
+    "current_value": 0.6951487883412649,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0771358025432449
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0705148906036657
+      },
+      {
+        "name": "Food",
+        "shap_contribution": 0.0287486788661373
+      }
+    ]
+  },
+  {
+    "country": "SDN",
+    "country_name": "Sudan",
+    "current_value": 0.6823081737888425,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0692815082530972
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0687910863120147
+      },
+      {
+        "name": "Food",
+        "shap_contribution": 0.0290149935607861
+      }
+    ]
+  },
+  {
+    "country": "ERI",
+    "country_name": "Eritrea",
+    "current_value": 0.6801787208859658,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0738648591127244
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0696342079161405
+      },
+      {
+        "name": "Food",
+        "shap_contribution": 0.0288596719442663
+      }
+    ]
+  },
+  {
+    "country": "CAF",
+    "country_name": "Central African Republic",
+    "current_value": 0.6660353433896886,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0903335401372051
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0735629555840231
+      },
+      {
+        "name": "Governance",
+        "shap_contribution": 0.0062822311316162
+      }
+    ]
+  },
+  {
+    "country": "SOM",
+    "country_name": "Somalia",
+    "current_value": 0.6652948716082363,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0695151160269699
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0674585286874377
+      },
+      {
+        "name": "Food",
+        "shap_contribution": 0.0282157316494934
+      }
+    ]
+  },
+  {
+    "country": "NER",
+    "country_name": "Niger",
+    "current_value": 0.6646024606840516,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0743186802885718
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.070304348816201
+      },
+      {
+        "name": "Food",
+        "shap_contribution": 0.0310829543239238
+      }
+    ]
+  },
+  {
+    "country": "MDG",
+    "country_name": "Madagascar",
+    "current_value": 0.6530654113650315,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0894057278568353
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.074588481498042
+      },
+      {
+        "name": "Governance",
+        "shap_contribution": 0.004908133092667
+      }
+    ]
+  },
+  {
+    "country": "GNB",
+    "country_name": "Guinea-Bissau",
+    "current_value": 0.6517598938080297,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0737383165884945
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0635019328749691
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0094905077334337
+      }
+    ]
+  },
+  {
+    "country": "YEM",
+    "country_name": "Yemen",
+    "current_value": 0.6465819304920359,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0883502205533002
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0752845374849326
+      },
+      {
+        "name": "Governance",
+        "shap_contribution": 0.0061791719338071
+      }
+    ]
+  },
+  {
+    "country": "COD",
+    "country_name": "Congo, the Democratic Republic of",
+    "current_value": 0.6381260285181892,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0946179390282735
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0732197201313196
+      },
+      {
+        "name": "Exposure",
+        "shap_contribution": 0.0002891703686479
+      }
+    ]
+  },
+  {
+    "country": "BGD",
+    "country_name": "Bangladesh",
+    "current_value": 0.634826939336254,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0685086677985039
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0536564197636806
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.009750383880158
+      }
+    ]
+  },
+  {
+    "country": "PNG",
+    "country_name": "Papua New Guinea",
+    "current_value": 0.6341707636354663,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0811788896201463
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0610300051417064
+      },
+      {
+        "name": "Ecosystems",
+        "shap_contribution": 0.0044942469625415
+      }
+    ]
+  },
+  {
+    "country": "BDI",
+    "country_name": "Burundi",
+    "current_value": 0.6329993482315357,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0712578020120487
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0631751049506184
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0071302264809826
+      }
+    ]
+  },
+  {
+    "country": "COG",
+    "country_name": "Congo",
+    "current_value": 0.6292358232904037,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0528713866674992
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0339887430579047
+      },
+      {
+        "name": "Governance",
+        "shap_contribution": 0.0129197283907023
+      }
+    ]
+  },
+  {
+    "country": "UGA",
+    "country_name": "Uganda",
+    "current_value": 0.6276483164075349,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0670504722820447
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0314224559006876
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0102719245458863
+      }
+    ]
+  },
+  {
+    "country": "SLE",
+    "country_name": "Sierra Leone",
+    "current_value": 0.6272743991365556,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0814723561816028
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0354865188828355
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0108233276661719
+      }
+    ]
+  },
+  {
+    "country": "BEN",
+    "country_name": "Benin",
+    "current_value": 0.622985010325167,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0718769314919296
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0633706384024134
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0078374231775935
+      }
+    ]
+  },
+  {
+    "country": "MRT",
+    "country_name": "Mauritania",
+    "current_value": 0.62206788932309,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0808154197272088
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0398739745309747
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0114361877821941
+      }
+    ]
+  },
+  {
+    "country": "LBR",
+    "country_name": "Liberia",
+    "current_value": 0.6210095471954928,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0626606170383177
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0186577642216852
+      },
+      {
+        "name": "Food",
+        "shap_contribution": 0.0100916683025012
+      }
+    ]
+  },
+  {
+    "country": "AFG",
+    "country_name": "Afghanistan",
+    "current_value": 0.6196288107811203,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0693698035073366
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0114483387270871
+      },
+      {
+        "name": "Governance",
+        "shap_contribution": 0.0105916971953114
+      }
+    ]
+  },
+  {
+    "country": "HTI",
+    "country_name": "Haiti",
+    "current_value": 0.6191944790050337,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0701799375490364
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0623712264532325
+      },
+      {
+        "name": "Governance",
+        "shap_contribution": 0.0035135217135278
+      }
+    ]
+  },
+  {
+    "country": "MLI",
+    "country_name": "Mali",
+    "current_value": 0.6139774372185588,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0852578793213459
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0387543981434284
+      },
+      {
+        "name": "Exposure",
+        "shap_contribution": 0.0041957160570431
+      }
+    ]
+  },
+  {
+    "country": "MWI",
+    "country_name": "Malawi",
+    "current_value": 0.6095839867727725,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0727726609544648
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0628262372156496
+      },
+      {
+        "name": "Ecosystems",
+        "shap_contribution": 0.0022037024461781
+      }
+    ]
+  },
+  {
+    "country": "SLB",
+    "country_name": "Solomon Islands",
+    "current_value": 0.6069081606403068,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0543795677614556
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0330887352465084
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0151177128681343
+      }
+    ]
+  },
+  {
+    "country": "ZWE",
+    "country_name": "Zimbabwe",
+    "current_value": 0.6064216581300869,
+    "crossing_year": 2033,
+    "crossing_value": 0.5996260253352529,
+    "status": "forecasted_to_recover",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0628442796052356
+      },
+      {
+        "name": "Governance",
+        "shap_contribution": 0.0104818335261057
+      },
+      {
+        "name": "Sensitivity",
+        "shap_contribution": 0.0098922263502785
+      }
+    ]
+  },
+  {
+    "country": "ETH",
+    "country_name": "Ethiopia",
+    "current_value": 0.6044599960748067,
+    "crossing_year": null,
+    "crossing_value": null,
+    "status": "currently_above_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Health",
+        "shap_contribution": 0.0681285403364214
+      },
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0293329144791135
+      },
+      {
+        "name": "Food",
+        "shap_contribution": 0.0122042816696629
+      }
+    ]
+  },
+  {
+    "country": "AGO",
+    "country_name": "Angola",
+    "current_value": 0.5982047750926343,
+    "crossing_year": 2026,
+    "crossing_value": 0.6003082198893698,
+    "status": "forecasted_to_cross_threshold",
+    "top_risk_drivers": [
+      {
+        "name": "Capacity",
+        "shap_contribution": 0.0721710366965123
+      },
+      {
+        "name": "Health",
+        "shap_contribution": 0.0396676068114862
+      },
+      {
+        "name": "Ecosystems",
+        "shap_contribution": 0.0059480787133176
+      }
+    ]
+  }
+]
