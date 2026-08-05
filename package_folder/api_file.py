@@ -22,7 +22,8 @@ from package_folder.climate import (
     get_alerts,
     get_trend_comparison_data,
     flag_url,
-    get_indicators
+    get_indicators,
+    get_country_feature_attribution
 )
 
 from package_folder.llm_integration import (
@@ -122,11 +123,28 @@ def tiers(year: int | None = None):
 
 
 @app.get("/feature-importance")
-def feature_importance():
-    """Return each ND-GAIN sub-indicator's global contribution to the
-    composite risk score, ranked by SHAP importance (highest first)."""
-    result = get_feature_importance()
-    return {"count": len(result["data"]), "data": result["data"], "caveat": result["caveat"]}
+def feature_importance(
+    country: str = Query("global", description="'global' or an ISO3 country code"),
+    year: int | None = Query(None, description="Optional year filter (country scope only)"),
+):
+    """Return each ND-GAIN sub-indicator's contribution to the composite
+    risk score, ranked by SHAP importance (highest first).
+
+    Args:
+        country: "global" for the overall model-wide contribution, or an
+            ISO3 country code for that country's own SHAP breakdown.
+        year: Optional calendar year to narrow a country's results to
+            (ignored for "global", which has no year dimension).
+    """
+    if country.upper() == "GLOBAL":
+        result = get_feature_importance()
+        return {"count": len(result["data"]), "data": result["data"], "caveat": result["caveat"]}
+
+    country = country.upper()
+    if pycountry.countries.get(alpha_3=country) is None:
+        raise HTTPException(status_code=422, detail=f"{country!r} is not a valid ISO3 country code.")
+    result = get_country_feature_attribution(country, year)
+    return {"count": len(result["data"]), "data": result["data"]}
 
 
 @app.get("/indicators")
@@ -135,6 +153,7 @@ def indicators():
     composite risk score, ranked by SHAP importance (highest first)."""
     result = get_indicators()
     return {"count": len(result["data"]), "data": result["data"], "caveat": result["caveat"]}
+
 
 
 # ------- LLM-powered endpoints -------
