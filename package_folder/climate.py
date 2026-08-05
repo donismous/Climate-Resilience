@@ -14,6 +14,8 @@ TIERS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_tiers.json")
 FEATURE_IMPORTANCE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "global_feature_importance.csv")
 SHAP_ANALYSIS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "shap_analysis.json")
 ALERTS_PATH = os.path.join(ROOT_PATH, "data", "outputs", "alerts.json")
+COUNTRY_FEATURE_IMPORTANCE_PATH = os.path.join(ROOT_PATH, "data", "outputs", "country_feature_attribution.csv")
+
 
 
 
@@ -318,6 +320,7 @@ def get_indicators() -> dict:
         for _, row in df.iterrows()
     ]
     return {"data": records, "caveat": INDICATORS_CAVEAT}
+
 @lru_cache(maxsize=1)
 def _load_shap_analysis() -> dict | None:
     if not os.path.exists(SHAP_ANALYSIS_PATH):
@@ -362,3 +365,34 @@ def get_trend_comparison_data(countries: list[str]) -> list[dict]:
             "top_increaser": detail["weakest_indicators"][0] if detail["weakest_indicators"] else None,
         })
     return result
+
+
+@lru_cache(maxsize=1)
+def _load_country_feature_attribution() -> pd.DataFrame:
+    if not os.path.exists(COUNTRY_FEATURE_IMPORTANCE_PATH):
+        raise FileNotFoundError(
+            f"{COUNTRY_FEATURE_IMPORTANCE_PATH!r} not found. "
+            "Run save_outputs.py first."
+        )
+    return pd.read_csv(COUNTRY_FEATURE_IMPORTANCE_PATH)
+
+
+def get_country_feature_attribution(country: str, year: int | None = None) -> dict:
+    """Return the SHAP contribution for each indicator for one country,
+    across every year unless `year` narrows it to one.
+    If no data is returned, please check if the file is saved correctly under outputs/country_feature_attribution.csv."""
+    df = _load_country_feature_attribution()
+    df = df[df["Country"] == country]
+    if year is not None:
+        df = df[df["Year"] == year]
+    records = [
+        {
+            "country": row["Country"],
+            "indicator": row["Feature"],
+            "year": int(row["Year"]),
+            "value": float(row["SHAP Value"]),
+            "importance_pct": round(float(row["SHAP Importance (%)"]), 2),
+        }
+        for _, row in df.iterrows()
+    ]
+    return {"data": records}
