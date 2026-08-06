@@ -132,8 +132,9 @@ def flag_url(iso3: str) -> str | None:
 def _format_record(row: pd.Series, country_names: dict) -> dict:
     """Shape one row of the long-format forecast data into an API record.
 
-    Shared by prediction_function() and all_predictions() so /predict and
-    /predict_all always return identically-shaped records.
+    Used by prediction_function() (/predict) only - all_predictions()
+    (/predict_all) uses the slimmer _format_indicator_record() instead,
+    since /country-features now covers the per-country metadata fields.
     """
     country_info = country_names.get(row["country"], {})
     return {
@@ -146,6 +147,21 @@ def _format_record(row: pd.Series, country_names: dict) -> dict:
         "value": float(row["value"]),
         "source": row["source"],
         "flag": flag_url(row["country"]),
+    }
+
+
+def _format_indicator_record(row: pd.Series) -> dict:
+    """Shape one row of the long-format forecast data into a slim
+    /predict_all record - just the indicator observation, no per-country
+    metadata (that's static and lives in /country-features instead, so
+    it isn't repeated on every one of the thousands of indicator rows).
+    """
+    return {
+        "country": row["country"],
+        "indicator": row["indicator"],
+        "year": int(row["year"]),
+        "value": float(row["value"]),
+        "source": row["source"],
     }
 
 
@@ -187,17 +203,43 @@ def all_predictions(year: int | None = None) -> list[dict]:
             If omitted, returns every row in the dataset.
 
     Returns:
-        A list of dicts, each shaped like the /predict response: country,
-        indicator, country_name, region, sub_region, year, value, source,
-        lower, upper.
+        A list of slim dicts: country, indicator, year, value, source.
+        Per-country metadata (country_name, region, sub_region, flag) is
+        static and belongs on /country-features instead, so it's not
+        repeated on every row here.
     """
     df = _load_forecast()
-    country_names = _load_country_names()
 
     if year is not None:
         df = df[df["year"] == year]
 
-    return [_format_record(row, country_names) for _, row in df.iterrows()]
+    return [_format_indicator_record(row) for _, row in df.iterrows()]
+
+
+def get_country_features() -> list[dict]:
+    """Return static per-country metadata: name, region, sub_region, flag.
+
+    One row per country in config/iso3_to_region_name.csv, independent of
+    the indicator/year data - pairs with /predict_all's slim rows. Some
+    territories have blank region/sub_region cells, which pandas reads as
+    NaN - not valid JSON under Starlette's strict encoder - so those are
+    normalized to None here.
+    """
+    country_names = _load_country_names()
+
+    def _clean(value):
+        return None if pd.isna(value) else value
+
+    return [
+        {
+            "country": iso3,
+            "country_name": _clean(info["Name"]),
+            "region": _clean(info["region"]),
+            "sub_region": _clean(info["sub_region"]),
+            "flag": flag_url(iso3),
+        }
+        for iso3, info in country_names.items()
+    ]
 
 
 @lru_cache(maxsize=1)

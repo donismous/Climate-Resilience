@@ -14,6 +14,7 @@ from package_folder.climate import (
     all_predictions,
     get_global_movers,
     get_country_detail,
+    get_country_features,
     get_cached_recommendation,
     get_cached_summary,
     get_country_tiers,
@@ -103,10 +104,25 @@ def predict(
 def predict_all(year: int | None = None):
     """Return every country's risk score, optionally filtered to one year.
 
+    Slim record shape (country, indicator, year, value, source) - pair
+    with /country-features for country_name/region/sub_region/flag.
+
     Args:
         year: Optional calendar year to narrow results to (still all countries).
     """
     records = all_predictions(year)
+    return {"count": len(records), "data": records}
+
+
+# Static per-country metadata (name, region, sub_region, flag)
+@app.get("/country-features")
+def country_features():
+    """Return static per-country metadata: name, region, sub_region, flag.
+
+    Pairs with /predict_all's slim indicator rows so that metadata isn't
+    repeated on every one of the thousands of indicator/year rows.
+    """
+    records = get_country_features()
     return {"count": len(records), "data": records}
 
 
