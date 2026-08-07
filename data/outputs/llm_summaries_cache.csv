@@ -1,10 +1,10 @@
 scope,kind,summary
 world,summary,"The global climate risk landscape is uneven, with high-performing countries facing rising challenges while vulnerable nations struggle to adapt.
 
-- **Current risk leaders** (lowest scores): Norway, Switzerland, Finland, Denmark, and the UK.
-- **Current risk laggards** (highest scores): Chad, Sudan, Eritrea, Central African Republic, and Somalia.
-- **Best forecasted improvement**: Philippines, Nicaragua, Afghanistan, Saudi Arabia, and Namibia.
-- **Worst forecasted deterioration**: UK, Fiji, Palau, Russia, and Seychelles.
+- **Least at risk**: Norway, Switzerland, Finland, Denmark, and the UK.
+- **Most at risk**: Chad, Sudan, Eritrea, Central African Republic, and Somalia.
+- **Best outlook**: Philippines, Nicaragua, Afghanistan, Saudi Arabia, and Namibia.
+- **Worst outlook**: UK, Fiji, Palau, Russia, and Seychelles.
 - **Top risk-reducing indicators**: Capacity (vulnerability), Social (readiness), and Economic (readiness).
 - **Top risk-increasing indicators**: Health (vulnerability), Governance (readiness), and Food (vulnerability).
 - **Stable drivers**: No indicator’s importance is projected to shift significantly by 2040.
@@ -25,29 +25,25 @@ world,recommendation_government/institution,"Global climate risk reduction requi
 - **Invest in food system adaptation** by promoting climate-resilient agriculture and trade policies in vulnerable regions to counter increasing food system risks."
 global_drivers,summary,"**Global climate risk is driven by a combination of vulnerability, exposure, and systemic capacity to adapt.**
 
-- **Capacity** (highest impact, most consistent) – A country’s ability to adapt (e.g., infrastructure, institutions, resources) strongly reduces risk when high.
-- **Health** (second-highest impact, consistent) – Poor health systems and high disease burden increase vulnerability to climate shocks.
-- **Governance** (third-highest impact, consistent) – Effective policy and institutional quality critically shape adaptive capacity and risk outcomes.
-- **Economic** (fourth-highest impact, consistent) – Wealth and economic stability enable resilience, while poverty increases sensitivity to shocks.
-- **Food systems** (fifth-highest impact, inconsistent) – Food insecurity raises risk, but the relationship varies by context and adaptation measures.
-- **Sensitivity** (sixth-highest impact, consistent) – How directly a system (e.g., agriculture, coastal zones) is affected by climate hazards.
-- **Exposure** (seventh-highest impact, consistent) – The presence of people, assets, or ecosystems in hazard-prone areas increases risk."
+- **Capacity** – A country’s ability to adapt (e.g., infrastructure, institutions, resources) strongly reduces risk when high.
+- **Health** – Poor health systems and high disease burden increase vulnerability to climate shocks.
+- **Governance** – Effective policy and institutional quality critically shape adaptive capacity and risk outcomes.
+- **Economic** – Wealth and economic stability enable resilience, while poverty increases sensitivity to shocks.
+- **Food systems** – Food insecurity raises risk, but the relationship varies by context and adaptation measures.
+- **Sensitivity** – How directly a system (e.g., agriculture, coastal zones) is affected by climate hazards.
+- **Exposure** – The presence of people, assets, or ecosystems in hazard-prone areas increases risk."
 alerts,summary,"**Climate Risk Alert Tracker:** The alert threshold signals countries facing severe and sustained climate vulnerability with no forecasted recovery; currently, 25 countries are flagged.
 
----
-
-### **1. Newly Entering the Alert List**
+#### **Newly Entering the Alert List**
 - **Angola** (2026): Driven mainly by **Capacity, Health, Ecosystems**.
 
----
-
-### **2. Forecasted to Leave the Alert List**
+#### **Forecasted to Leave the Alert List**
 - **Zimbabwe** (2033): Driven mainly by **Health, Governance, Sensitivity**."
 FRA,summary,"France’s climate risk profile reflects a mix of strong resilience-building factors and moderate exposure-driven challenges.
 
 **Risk-reducing indicators**
 - **Capacity**: High capacity (74%) enables effective adaptation planning and resource mobilization.
-- **Health**: Strong health systems (72%) reduce vulnerability to climate-related health risks.
+- **Health**: France's strong health systems (72%) reduce vulnerability to climate-related health risks.
 - **Sensitivity**: Low sensitivity (74%) means critical systems (e.g., infrastructure, ecosystems) are less impacted by climate hazards.
 
 **Risk-increasing indicators**
@@ -2348,7 +2344,7 @@ KNA,recommendation_government/institution,"**Saint Kitts and Nevis can reduce gl
 - **Enhance governance frameworks** by integrating climate risk into national development plans and disaster risk reduction strategies, leveraging the 52% governance score to improve coordination.
 - **Invest in resilient infrastructure** for coastal zones and water systems, prioritizing projects that protect both local communities and regional economic stability given the 70% infrastructure vulnerability.
 - **Foster regional collaboration** through CARICOM or similar bodies to share climate data, best practices, and pooled resources, amplifying impact beyond national borders."
-KOR,summary,"Korea, Republic of (KOR) faces a stable but moderately high climate risk profile, with a forecasted slight improvement by 2040.
+KOR,summary,"South Korea faces a stable but moderately high climate risk profile, with a forecasted slight improvement by 2040.
 
 **Risk-reducing indicators**
 - **Capacity (71%)**: Strong institutional and infrastructural capacity enhances adaptive responses to climate impacts.
